@@ -16,3 +16,6 @@ build/
 # Varios
 *.swp
 *~
+
+# Ejecutables sueltos generados al compilar pruebas con swiftc
+/main

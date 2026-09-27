@@ -1,244 +1,231 @@
 # PcComponentIA
 
-PcComponentIA es una app SwiftUI en español para identificar, aprender y documentar componentes de PC durante el montaje, mantenimiento o diagnóstico de un equipo. La app combina cámara, detección local con Core ML, un diccionario técnico, checklist de montaje, diagnósticos, builds guardadas y un asistente de IA especializado en hardware.
+App para iPhone y iPad (SwiftUI) que **reconoce componentes de PC con la cámara** y explica qué son, para qué sirven y cómo se montan. Pensada para aprender, montar o diagnosticar un PC de casa.
 
-El proyecto está en desarrollo activo y se está probando con macOS 27 beta 3 e iPadOS 27 beta 3.
+Todo funciona **en el dispositivo**: la detección usa un modelo Core ML propio y el asistente usa los Foundation Models de Apple.
 
-## Estado del Proyecto
+> Proyecto en desarrollo. Destino mínimo **iOS / iPadOS 27.0**; probado en iPadOS 27.2 beta con Xcode 27.0 beta.
 
-- App iOS/iPadOS creada con SwiftUI.
-- Desarrollada actualmente en macOS 27 beta 3.
-- Probada con iPadOS 27 beta 3.
-- Target principal: `PcComponentIA`.
-- Interfaz y contenido técnico en español.
-- Detección basada en un modelo Core ML local incluido en el proyecto.
+---
+
+## Índice
+
+1. [Funcionalidades](#funcionalidades)
+2. [Requisitos y ejecución](#requisitos-y-ejecución)
+3. [Detector de componentes](#detector-de-componentes)
+4. [Asistente de IA](#asistente-de-ia)
+5. [Estructura del proyecto](#estructura-del-proyecto)
+6. [Datos guardados](#datos-guardados)
+7. [Cómo ampliar la app](#cómo-ampliar-la-app)
+8. [Limitaciones y próximos pasos](#limitaciones-y-próximos-pasos)
+9. [Créditos de los datos](#créditos-de-los-datos)
+
+---
 
 ## Funcionalidades
 
-- Escáner de componentes en tiempo real usando la cámara.
-- Detección local con AVFoundation, Vision y Core ML.
-- Vista separada para componentes detectables por la IA.
-- Diccionario completo de componentes, conectores, ranuras y conceptos de hardware.
-- Fichas técnicas con descripción, guía de montaje o uso, dificultad y tiempo estimado.
-- Guía visual tipo AR sobre la imagen de la placa base para orientar instalaciones.
-- Checklist persistente para seguir el montaje completo de un PC.
-- Historial de escaneos.
-- Historial de chats con retención configurable.
-- Diagnóstico de LEDs y errores comunes de PC.
-- Historial de diagnósticos guardados.
-- Gestor de builds con componentes, etiquetas, notas y presupuesto.
-- Asistente técnico con Foundation Models.
-- Onboarding inicial.
-- Modo taller oscuro y modo claro.
+**Escáner**
+- Detección en tiempo real con la cámara trasera (AVFoundation + Vision + Core ML).
+- Cajas estabilizadas (sin parpadeos) y ajustadas al tamaño real del fotograma, en vertical y en horizontal.
+- Congelar la imagen, linterna y guía visual tipo AR sobre la placa base.
+- Historial de capturas con retención configurable (7, 30 o 90 días).
 
-## Componentes Detectables
+**Aprender**
+- Diccionario con 69 fichas de componentes, conectores y puertos: descripción, guía de montaje, dificultad y tiempo.
+- Sección **"Se conecta con / Relacionado"** en cada ficha. Explica también piezas que la cámara no detecta (p. ej. el cabezal SYS_FAN desde el ventilador de caja).
+- Lista separada de componentes que la IA puede detectar.
 
-La lógica de componentes detectables está separada en:
+**Montar y diagnosticar**
+- Checklist de montaje persistente.
+- Diagnóstico por LEDs, pitidos y síntomas, con historial.
+- Gestor de *builds*: componentes, precios, etiquetas, notas y presupuesto.
+
+**Asistente**
+- Chat técnico en español con Foundation Models, con historial de conversaciones.
+
+**General**
+- Onboarding inicial y modo taller (oscuro) / claro.
+
+---
+
+## Requisitos y ejecución
+
+| | |
+| --- | --- |
+| Xcode | 27.0 beta o posterior |
+| Destino | iOS / iPadOS 27.0 (`IPHONEOS_DEPLOYMENT_TARGET = 27.0`) |
+| Dispositivo | Físico recomendado: el simulador no tiene cámara real |
+| Asistente | Dispositivo compatible con Apple Intelligence, activado y con el modelo descargado |
+
+1. Abre `PcComponentIA.xcodeproj`.
+2. Elige el esquema **PcComponentIA** y tu iPhone/iPad como destino.
+3. En *Signing & Capabilities* selecciona tu **Team**.
+4. `Cmd + R`. La primera vez el dispositivo pedirá activar el **Modo desarrollador** y confiar en el desarrollador.
+
+La app pide permiso de cámara con el texto:
+*"Necesitamos acceder a la cámara para poder escanear e identificar los componentes de tu PC en tiempo real."*
+
+---
+
+## Detector de componentes
+
+### Modelo actual
+
+`PcComponentIA/ML/PcComponentDetector3.mlmodel`: Create ML, *Object Detection*, algoritmo **Full Network**, 6.000 iteraciones.
+
+- **Entrenamiento:** 3.457 imágenes. **Test:** 531 imágenes que el modelo no ha visto; se comprobó que ninguna es un duplicado casi idéntico de otra de entrenamiento.
+- **mAP@50 en test** (misma evaluación para los tres modelos):
+
+| Modelo | mAP@50 |
+| --- | --- |
+| Modelo 1 (original, 91 fotos propias) | 4,7 % |
+| Modelo 2 (Transfer Learning, 761 fotos) | 14,2 % |
+| **Modelo 3 (actual)** | **27,5 %** |
+
+### Qué detecta (30 clases)
+
+| Grupo | Clases |
+| --- | --- |
+| Placa base | `Placa_Base`, `Socket_Intel`, `Socket_AMD`, `Ranura_RAM`, `Ranura_PCIe_x16`, `Ranura_M2`, `Puerto_SATA`, `Conector_ATX_24p`, `Conector_EPS_8p`, `Pila_CMOS`, `Protector_IO` |
+| Componentes | `CPU`, `GPU`, `Modulo_RAM`, `Fuente_Alimentacion`, `HDD`, `SSD_SATA`, `M2_SSD_NVMe`, `Caja_PC` |
+| Refrigeración | `Disipador_Aire`, `Ventilador_Caja`, `Radiador`, `Bloque_refrigeracion_liquida` |
+| Puertos | `Puerto_USB_A`, `Puerto_USB_C`, `Puerto_HDMI`, `Puerto_Ethernet` |
+| Periféricos | `Monitor`, `Teclado`, `Raton` |
+
+Las claves del modelo coinciden con las de `DatosHardware.swift`. Por eso cada detección abre directamente su ficha.
+
+Se retiraron del detector por falta de fotos: `Bomba_Liquida`, `Conector_SYS_FAN`, DisplayPort y los cables PCIe/12VHPWR. Sus fichas siguen en el diccionario.
+
+### Cómo funciona en la app
 
 ```text
-PcComponentIA/PcComponentIA/View/ComponentesDetectablesView.swift
+Cámara (AVFoundation, 720p)
+  └─ CameraViewController ──► DetectionStabilizer ──► ScannerView
+       captura fotogramas      · modelo cargado 1 vez,       · dibuja las cajas
+       y limita a ~5/s           fuera del hilo principal    · abre la ficha (DatosHardware)
+                               · suaviza cajas entre frames  · guarda en el historial
 ```
 
-Este archivo contiene:
+- **Umbrales de confianza:** 0,55 para aceptar una detección y 0,60 para mostrarla.
+- **Estado térmico:** si el dispositivo se calienta, baja la frecuencia de análisis y, en caso extremo, la resolución.
 
-- `ComponentesDetectables.claves`: conjunto de claves que el modelo puede detectar actualmente.
-- `ComponentesDetectables.diccionario`: filtro del diccionario general para mostrar solo detectables.
-- `ComponentesDetectables.total`: contador usado por el Home.
-- `ComponentesDetectablesView`: pantalla que reutiliza `DiccionarioView` con colores propios para la sección Detectables.
+---
 
-La idea es que esta lista crezca en el futuro conforme el modelo Core ML aprenda o incluya más clases. Para añadir nuevos detectables, normalmente basta con:
+## Asistente de IA
 
-1. Añadir la clave al modelo o confirmar que el modelo ya la devuelve.
-2. Asegurar que existe esa misma clave en `DatosHardware.swift`.
-3. Añadir la clave a `ComponentesDetectables.claves`.
+`Controllers/ControladorIA.swift` usa `FoundationModels` (`LanguageModelSession`), todo en el dispositivo.
 
-Detectables actuales:
+- Especializado en hardware de PC y en español.
+- Conversaciones guardadas, con límite de mensajes y retención configurable.
+- Solo funciona si Apple Intelligence está disponible: dispositivo compatible, activado, idioma/región admitidos y modelo descargado.
 
-- `Socket_Intel`
-- `Socket_AMD`
-- `CPU`
-- `Ranura_PCIe_x16`
-- `Ranura_RAM`
-- `Pila_CMOS`
-- `Protector_IO`
-- `GPU`
-- `Modulo_RAM`
-- `Fuente_Alimentacion`
-- `HDD`
-- `SSD_SATA`
-- `M2_SSD_NVMe`
-- `Ranura_M2`
-- `Puerto_SATA`
-- `Ventilador_Caja`
-- `Disipador_Aire`
-- `Radiador`
-- `Bloque_refrigeracion_liquida`
-- `Bomba_Liquida`
-- `Conector_ATX_24p`
-- `Conector_EPS_8p`
-- `Conector_SYS_FAN`
-- `Placa_Base`, `Caja_PC`, `Puerto_HDMI`, `Puerto_Ethernet`, `Puerto_USB_A`, `Puerto_USB_C` (necesitan el modelo reentrenado con `~/Proyectos/DatosPC`; el modelo actual no las detecta)
+---
 
-El modelo actual (`Pc component detector 1.mlmodel`) todavía devuelve los nombres antiguos del dataset (`Bloque_CPU`, `Discos_HDD`, `RAM`...). `ScannerView.buscarInformacion` los traduce con su tabla de alias. El dataset (`~/Proyectos/DatosPC`) ya usa estas mismas claves, así que un modelo reentrenado las devolverá directamente.
-
-## Arquitectura General
-
-La app sigue una estructura SwiftUI sencilla, con datos compartidos desde `PcComponentIAApp` mediante `@StateObject` y `@EnvironmentObject`.
+## Estructura del proyecto
 
 ```text
 PcComponentIA/
 ├── App/
-│   └── PcComponentIAApp.swift
-├── Components/
+│   └── PcComponentIAApp.swift         Punto de entrada, contenedor SwiftData y migración inicial
+├── Controllers/
+│   ├── CameraViewController.swift     Cámara, orientación, linterna y captura de fotos
+│   ├── DetectionStabilizer.swift      Inferencia con Vision + Core ML y suavizado de cajas
+│   └── ControladorIA.swift            Asistente con Foundation Models
+├── ML/
+│   └── PcComponentDetector3.mlmodel   Detector de componentes (30 clases)
+├── Models/
+│   ├── DatosHardware.swift            Fichas de los componentes (fuente de todo el contenido técnico)
+│   ├── ComponentesRelacionados.swift  Qué piezas se conectan con cuáles
+│   ├── EsquemasComponentes.swift      Datos de los esquemas interactivos de conectores
+│   ├── DiagnosticoLED.swift           Base de conocimiento de LEDs, pitidos y errores
+│   ├── SwiftDataModels.swift          Modelos persistentes (builds, diagnósticos, capturas)
+│   ├── MigrationManager.swift         Migración única de UserDefaults a SwiftData
+│   └── Modelos.swift                  Tipos compartidos (builds, categorías…)
+├── View/                              Pantallas
+│   ├── HomeView.swift                 Inicio, accesos rápidos y estadísticas
+│   ├── ScannerView.swift              Escáner, cajas, congelado y detalle
+│   ├── VisualizadorARView.swift       Guía visual sobre la placa base
+│   ├── DetalleComponenteView.swift    Tarjeta de detalle de una detección
+│   ├── DiccionarioView.swift          Diccionario genérico (completo o filtrado)
+│   ├── ComponentesDetectablesView.swift  Lista de clases que detecta el modelo
+│   ├── ChecklistMontaje.swift         Checklist de montaje
+│   ├── DiagnosticoLedView.swift       Diagnóstico guiado
+│   ├── MisBuildsView.swift            Lista de builds
+│   ├── DetalleBuildView.swift         Edición de una build
+│   ├── ChatIAView.swift               Chat con el asistente
+│   ├── HistorialChatsView.swift       Conversaciones guardadas
+│   ├── HistorialView.swift            Historial de capturas del escáner
+│   ├── OnboardingView.swift           Bienvenida
+│   └── FlowLayout.swift               Layout auxiliar
+├── Diagnosticos/                      Guardado, detalle y enlaces de diagnósticos
+├── Components/                        Piezas de interfaz reutilizables
+│   ├── SeccionRelacionados.swift      Sección desplegable "Se conecta con"
 │   ├── BotonCircular.swift
 │   └── NavigationSwipeBackFix.swift
-├── Controllers/
-│   ├── CameraViewController.swift
-│   └── ControladorIA.swift
-├── Diagnosticos/
-│   ├── AlmacenDiagnosticos.swift
-│   ├── DetalleDiagnosticoGuardadoView.swift
-│   ├── HistorialDiagnosticosView.swift
-│   └── RegistroDiagnostico.swift
-├── ML/
-│   └── Pc component detector 1.mlmodel
-├── Models/
-│   ├── DatosHardware.swift
-│   ├── DiagnosticoLED.swift
-│   └── Modelos.swift
-├── Settings/
-│   ├── AjustesHistorialEscaneos.swift
-│   └── AppSettings.swift
-└── View/
-    ├── ChatIAView.swift
-    ├── ChecklistMontaje.swift
-    ├── ComponentesDetectablesView.swift
-    ├── DetalleBuildView.swift
-    ├── DetalleComponenteView.swift
-    ├── DiagnosticoLedView.swift
-    ├── DiccionarioView.swift
-    ├── FlowLayout.swift
-    ├── HistorialChatsView.swift
-    ├── HistorialView.swift
-    ├── HomeView.swift
-    ├── MisBuildsView.swift
-    ├── OnboardingView.swift
-    ├── ScannerView.swift
-    └── VisualizadorARView.swift
+├── Settings/                          Ajustes de la app y retención de historiales
+└── Extensions.swift
+Creditos/
+└── CREDITOS_COMMONS.json              Autor y licencia de cada foto de Wikimedia Commons usada
 ```
 
-## Pantallas Principales
+---
 
-| Archivo | Responsabilidad |
+## Datos guardados
+
+Todo se guarda **solo en el dispositivo**.
+
+| Qué | Dónde |
 | --- | --- |
-| `HomeView.swift` | Pantalla principal, accesos rápidos, resumen de checklist y estadísticas. |
-| `ScannerView.swift` | Escáner con cámara, detecciones, congelado de imagen, detalle y guía visual. |
-| `ComponentesDetectablesView.swift` | Lista filtrada de componentes detectables por IA. |
-| `DiccionarioView.swift` | Vista genérica para mostrar componentes y conexiones desde un diccionario. |
-| `DetalleComponenteView.swift` | Detalle técnico de un componente detectado o seleccionado. |
-| `VisualizadorARView.swift` | Superposición visual para guiar la colocación de componentes. |
-| `ChecklistMontaje.swift` | Checklist interactiva del montaje del PC. |
-| `ChatIAView.swift` | Chat técnico usando Foundation Models. |
-| `HistorialChatsView.swift` | Historial de conversaciones del asistente. |
-| `HistorialView.swift` | Historial de capturas o escaneos. |
-| `MisBuildsView.swift` | Lista y gestión de builds guardadas. |
-| `DetalleBuildView.swift` | Edición y detalle de una build. |
-| `DiagnosticoLedView.swift` | Diagnóstico guiado por LEDs, síntomas y errores. |
-| `HistorialDiagnosticosView.swift` | Historial de diagnósticos guardados. |
-| `OnboardingView.swift` | Flujo inicial de bienvenida. |
+| Builds y sus componentes | SwiftData (`BuildSD`, `ComponenteBuildSD`) |
+| Diagnósticos guardados | SwiftData (`RegistroDiagnosticoSD`) |
+| Historial de capturas del escáner | SwiftData (`CapturaHistorialSD`, fotos en almacenamiento externo) |
+| Conversaciones del chat | UserDefaults (`conversacionesChatIA`) |
+| Checklist de montaje | UserDefaults (`checklistMontajePCComponentIA`) |
+| Ajustes (modo taller, retenciones, onboarding) | UserDefaults / `@AppStorage` |
 
-## Modelo Core ML
+`MigrationManager` pasa una única vez a SwiftData los datos antiguos que estaban en UserDefaults (builds, diagnósticos y capturas).
 
-El modelo incluido está en:
+---
 
-```text
-PcComponentIA/PcComponentIA/ML/Pc component detector 1.mlmodel
-```
+## Cómo ampliar la app
 
-`CameraViewController` carga ese modelo, lo convierte a `VNCoreMLModel` y procesa frames de vídeo con Vision. La inferencia ocurre localmente en el dispositivo.
+**Añadir una ficha al diccionario**
+1. Añade una entrada a `DatosHardware.swift` con su clave (p. ej. `"Tarjeta_Red"`).
+2. Si procede, añade sus piezas relacionadas en `ComponentesRelacionados.swift`.
 
-Detalles relevantes:
+**Hacer detectable un componente nuevo**
+1. Reentrena el modelo con esa clase, usando exactamente la misma clave que en `DatosHardware.swift`.
+2. Sustituye el `.mlmodel` en `ML/` y actualiza en `DetectionStabilizer.swift` el nombre de la clase que genera Xcode.
+3. Añade la clave a `ComponentesDetectables.claves`.
 
-- Usa la cámara trasera con AVFoundation.
-- Procesa frames en colas separadas para no bloquear la interfaz.
-- Aplica confianza mínima para filtrar detecciones.
-- Mantiene detecciones estables para evitar parpadeos en pantalla.
-- Limita el número de cajas visibles.
-- Permite linterna y captura congelada para revisar un componente.
+**Añadir un esquema de conectores**
+- Añade una entrada a `EsquemasComponentes.todos`, con las formas y los puntos en coordenadas de 0 a 1. La vista no hay que tocarla.
 
-## IA con Foundation Models
+---
 
-`ControladorIA.swift` gestiona el asistente técnico usando `FoundationModels` y `LanguageModelSession`.
+## Limitaciones y próximos pasos
 
-El asistente está orientado a:
+- **Precisión desigual:** las ranuras y los conectores de la placa van bien, pero `Puerto_SATA`, `Protector_IO`, `Modulo_RAM`, `Radiador` y `Raton` tienen pocos aciertos. En la prueba real a veces confunde una GPU con luces RGB con un teclado. Siguiente paso: más fotos de las clases más flojas.
+- **Esquema interactivo de conectores:** los datos (gráfica, placa base y tarjeta de sonido) ya están en `EsquemasComponentes.swift`; falta la vista animada y el botón "Ver conectores".
+- **iOS 27.2 y chat:** subir el destino a 27.2 cuando haya SDK (Xcode 27.2) y adaptar el asistente a las novedades de Foundation Models en iOS 27.
+- El escáner necesita un dispositivo físico, y el asistente, Apple Intelligence.
+- No hay tests automáticos.
 
-- Resolver dudas de hardware.
-- Responder en español.
-- Mantener conversaciones guardadas.
-- Limitar historial y mensajes por conversación.
-- Aplicar retención configurable.
+---
 
-La disponibilidad depende del sistema:
+## Créditos de los datos
 
-- El dispositivo debe ser compatible con Apple Intelligence.
-- Apple Intelligence debe estar activo.
-- La región y el idioma deben permitir el uso del modelo.
-- Los recursos del modelo del sistema deben estar descargados.
+El detector se entrenó con fotos propias y con estos conjuntos de datos públicos. Las clases se revisaron y se tradujeron a las claves de la app.
 
-## Persistencia Local
+**Roboflow Universe** (CC BY 4.0)
+- [PC Components](https://universe.roboflow.com/disassembly/pc-components-2ugi7) — Disassembly
+- [components detection](https://universe.roboflow.com/bullshits/components-detection) — Bullshits
+- [PC](https://universe.roboflow.com/u-ju3pv/pc-7jyvc) — U
+- [PC Ports](https://universe.roboflow.com/ports-gmmmp/pc-ports) — Ports
+- [merged_motherboard_yolo](https://universe.roboflow.com/pokalokaopa-qv69g/merged_motherboard_yolo) — pokalokaopa
+- [My First Project](https://universe.roboflow.com/detgeyjred/my-first-project-seshc) — detgeyjred
+- [Computer Hardware Identification](https://universe.roboflow.com/hardentify/computer-hardware-identification) — Hardentify
+- [Is This Monitor? Keyboard? Mouse?](https://universe.roboflow.com/asen-oxbum/is-this-monitor-keyboard-mouse) — Asen
+- [keyboard-mouse-monitor](https://universe.roboflow.com/nogada/keyboard-mouse-monitor) — nogada
 
-La app usa `UserDefaults` con modelos `Codable` para datos ligeros.
-
-| Dato | Clave |
-| --- | --- |
-| Builds guardadas | `misBuildsGuardados` |
-| Checklist de montaje | `checklistMontajePCComponentIA` |
-| Version de checklist | `checklistMontajeVersionPCComponentIA` |
-| Conversaciones del chat | `conversacionesChatIA` |
-| Retención del chat | `retencionHistorialChatIA` |
-| Diagnósticos guardados | `historialDiagnosticosPC` |
-| Onboarding completado | `onboardingCompletado` |
-| Tema / modo taller | `modoTaller` |
-
-## Requisitos de Desarrollo
-
-- macOS 27 beta 3.
-- Xcode compatible con los SDK beta usados por el proyecto.
-- iPadOS 27 beta 3 para pruebas en iPad.
-- Dispositivo físico recomendado para probar cámara, linterna y detección real.
-- Apple Intelligence disponible para probar el asistente con Foundation Models.
-
-El target actual tiene `IPHONEOS_DEPLOYMENT_TARGET` configurado en `26.5`.
-
-## Permisos
-
-La app solicita permiso de cámara para escanear componentes.
-
-Texto configurado:
-
-```text
-Necesitamos acceder a la cámara para poder escanear e identificar los componentes de tu PC en tiempo real.
-```
-
-## Ejecución
-
-1. Abre el proyecto en Xcode.
-2. Selecciona el esquema `PcComponentIA`.
-3. Elige un destino iPhone, iPad o simulador compatible.
-4. Para validar el escáner, usa un dispositivo físico.
-5. Ejecuta con `Cmd + R`.
-
-## Notas Para Seguir Desarrollando
-
-- `DatosHardware.swift` es la fuente principal del contenido técnico.
-- `ComponentesDetectablesView.swift` concentra qué elementos puede detectar la IA ahora mismo.
-- `DiccionarioView.swift` debe seguir siendo genérica para poder reutilizarse con el diccionario completo o con subconjuntos filtrados.
-- `HomeView.swift` solo debería coordinar accesos, resumen y estadísticas, evitando contener listas largas de datos.
-- Si crece mucho la persistencia, puede convenir migrar de `UserDefaults` a SwiftData u otro almacenamiento estructurado.
-
-## Limitaciones Actuales
-
-- El escáner completo necesita cámara física; el simulador no valida la captura real.
-- El chat depende de Foundation Models y Apple Intelligence.
-- La lista de detectables depende de las clases que realmente devuelva el modelo Core ML.
-- El proyecto no incluye targets de test visibles en la estructura actual.
+**Wikimedia Commons**: 178 fotos con licencias CC BY, CC BY-SA y CC0. El autor, la licencia y el enlace de cada una están en [`Creditos/CREDITOS_COMMONS.json`](Creditos/CREDITOS_COMMONS.json).
