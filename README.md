@@ -6,21 +6,45 @@ Todo funciona **en el dispositivo**: la detección usa un modelo Core ML propio 
 
 > Proyecto en desarrollo. Destino mínimo **iOS / iPadOS 27.0**; probado en iPadOS 27.2 beta con Xcode 27.0 beta.
 
+<!--
+  CAPTURAS (pendiente). Guardarlas en docs/capturas/ y descomentar este bloque.
+  Recomendadas: 1) escáner detectando piezas en una placa, 2) ficha de un componente con
+  "Se conecta con", 3) inicio, 4) chat con el asistente, 5) diagnóstico por LEDs.
+  Un GIF o vídeo corto del escáner en acción es lo que más luce.
+
+<p align="center">
+  <img src="docs/capturas/escaner.png" width="230" alt="Escáner detectando componentes">
+  <img src="docs/capturas/ficha.png" width="230" alt="Ficha de un componente">
+  <img src="docs/capturas/inicio.png" width="230" alt="Pantalla de inicio">
+</p>
+-->
+
 ---
 
 ## Índice
 
-1. [Cómo lo desarrollé](#cómo-lo-desarrollé)
-2. [Funcionalidades](#funcionalidades)
-3. [Requisitos y ejecución](#requisitos-y-ejecución)
-4. [Detector de componentes](#detector-de-componentes)
-5. [Asistente de IA](#asistente-de-ia)
-6. [Estructura del proyecto](#estructura-del-proyecto)
-7. [Datos guardados](#datos-guardados)
-8. [Cómo ampliar la app](#cómo-ampliar-la-app)
-9. [Limitaciones y próximos pasos](#limitaciones-y-próximos-pasos)
-10. [Créditos de los datos](#créditos-de-los-datos)
-11. [Licencia](#licencia)
+1. [Motivación](#motivación)
+2. [Cómo lo desarrollé](#cómo-lo-desarrollé)
+3. [Qué he aprendido](#qué-he-aprendido)
+4. [Funcionalidades](#funcionalidades)
+5. [Requisitos y ejecución](#requisitos-y-ejecución)
+6. [Detector de componentes](#detector-de-componentes)
+7. [Asistente de IA](#asistente-de-ia)
+8. [Estructura del proyecto](#estructura-del-proyecto)
+9. [Datos guardados](#datos-guardados)
+10. [Cómo ampliar la app](#cómo-ampliar-la-app)
+11. [Limitaciones y próximos pasos](#limitaciones-y-próximos-pasos)
+12. [Créditos de los datos](#créditos-de-los-datos)
+13. [Autor](#autor)
+14. [Licencia](#licencia)
+
+---
+
+## Motivación
+
+Montar o reparar un PC por primera vez intimida: hay decenas de conectores parecidos, y un cable mal puesto puede hacer que el equipo no arranque. Quería una app que, con solo apuntar la cámara, te dijera **qué es cada pieza y cómo se conecta**, explicado para alguien que empieza.
+
+A la vez, era la excusa perfecta para **aprender desarrollo iOS e inteligencia artificial con un proyecto real**, de principio a fin: una app completa en SwiftUI, un modelo de visión entrenado por mí y un asistente de IA que funciona en el propio dispositivo.
 
 ---
 
@@ -44,6 +68,14 @@ Cada versión la medí con el mismo test para comparar de forma honesta: del **4
 - que todo funcione sin conexión, en el propio dispositivo;
 - que las piezas que la cámara no puede reconocer (conectores diminutos, la bomba de una refrigeración líquida) se expliquen desde la pieza visible con la que se conectan;
 - qué clases mantener y cuáles retirar según los datos disponibles.
+
+---
+
+## Qué he aprendido
+
+- **Entrenar un modelo de visión de principio a fin.** Preparar y etiquetar datos, entrenar con Create ML y comparar versiones con un test justo. La mayor lección: **los datos pesan más que el algoritmo**. Revisar etiquetas y quitar duplicados mejoró el modelo más que cualquier ajuste.
+- **SwiftUI y desarrollo iOS en un dispositivo real.** Cámara con AVFoundation, Vision, Core ML, SwiftData y Foundation Models. Y depurar lo que solo falla en el iPad: la rotación, el rendimiento o el calor del dispositivo.
+- **Trabajar con IA sin perder el control.** Usar asistentes de IA para programar más rápido, pero decidiendo yo qué se hace, revisando lo que proponen y usando a una segunda IA para contrastar errores. La responsabilidad del resultado sigue siendo mía.
 
 ---
 
@@ -263,6 +295,15 @@ El detector se entrenó con fotos propias y con estos conjuntos de datos públic
 - [keyboard-mouse-monitor](https://universe.roboflow.com/nogada/keyboard-mouse-monitor) — nogada
 
 **Wikimedia Commons**: 178 fotos con licencias CC BY, CC BY-SA y CC0. El autor, la licencia y el enlace de cada una están en [`Creditos/CREDITOS_COMMONS.json`](Creditos/CREDITOS_COMMONS.json).
+
+---
+
+## Autor
+
+**Olai Fernández García**, estudiante de último curso de **Ingeniería Informática** en la Universidad de Oviedo.
+
+- LinkedIn: [Olai Fernández García](https://www.linkedin.com/in/olai-fernandez-garcia-a12897222/)
+- GitHub: [@OlaiFG7](https://github.com/OlaiFG7)
 
 ---
 
