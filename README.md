@@ -10,15 +10,40 @@ Todo funciona **en el dispositivo**: la detección usa un modelo Core ML propio 
 
 ## Índice
 
-1. [Funcionalidades](#funcionalidades)
-2. [Requisitos y ejecución](#requisitos-y-ejecución)
-3. [Detector de componentes](#detector-de-componentes)
-4. [Asistente de IA](#asistente-de-ia)
-5. [Estructura del proyecto](#estructura-del-proyecto)
-6. [Datos guardados](#datos-guardados)
-7. [Cómo ampliar la app](#cómo-ampliar-la-app)
-8. [Limitaciones y próximos pasos](#limitaciones-y-próximos-pasos)
-9. [Créditos de los datos](#créditos-de-los-datos)
+1. [Cómo lo desarrollé](#cómo-lo-desarrollé)
+2. [Funcionalidades](#funcionalidades)
+3. [Requisitos y ejecución](#requisitos-y-ejecución)
+4. [Detector de componentes](#detector-de-componentes)
+5. [Asistente de IA](#asistente-de-ia)
+6. [Estructura del proyecto](#estructura-del-proyecto)
+7. [Datos guardados](#datos-guardados)
+8. [Cómo ampliar la app](#cómo-ampliar-la-app)
+9. [Limitaciones y próximos pasos](#limitaciones-y-próximos-pasos)
+10. [Créditos de los datos](#créditos-de-los-datos)
+11. [Licencia](#licencia)
+
+---
+
+## Cómo lo desarrollé
+
+PcComponentIA es un proyecto personal que he llevado de principio a fin: la idea, el diseño de la app, los datos, el entrenamiento del modelo y las pruebas en un dispositivo real.
+
+**Desarrollo con ayuda de IA.** He escrito parte del código y el resto lo he desarrollado con asistentes de IA (Claude y Gemini). Yo decidí qué construir y cómo debía comportarse cada pantalla, y revisé, adapté y probé lo que se generaba. Además usé a Gemini como segundo revisor del código, contrastando cada error que señalaba antes de corregirlo.
+
+**Corrección y pulido de la interfaz.** Buena parte del trabajo ha sido probar la app una y otra vez en el iPad y corregir errores de interfaz: cajas de detección descuadradas al girar el dispositivo, parpadeos, pantallas que se recargaban de más, textos y navegación. Muchos de estos errores solo aparecían al usar la app de verdad, no en el simulador.
+
+**Datos y modelo propios.** El detector no es un modelo genérico descargado: lo he construido yo, en tres versiones.
+
+1. **Modelo 1:** 84 fotos propias de componentes etiquetadas a mano.
+2. **Modelo 2:** amplié el dataset con conjuntos públicos. Revisé las clases foto a foto, porque había errores en los originales: por ejemplo, "CPU" significaba la torre entera en un dataset, o había "radiadores" que eran disipadores.
+3. **Modelo 3:** casi 4.000 imágenes y 30 clases. Detecté y eliminé fugas entre entrenamiento y test (fotogramas casi idénticos de un mismo vídeo que inflaban las métricas) y retiré las clases sin fotos suficientes.
+
+Cada versión la medí con el mismo test para comparar de forma honesta: del **4,7 % al 27,5 % de mAP@50**. Las pruebas en el iPad sacaron problemas que no se veían en los números, como una GPU con luces RGB confundida con un teclado, que marcan el siguiente paso.
+
+**Decisiones de producto.** Entre otras:
+- que todo funcione sin conexión, en el propio dispositivo;
+- que las piezas que la cámara no puede reconocer (conectores diminutos, la bomba de una refrigeración líquida) se expliquen desde la pieza visible con la que se conectan;
+- qué clases mantener y cuáles retirar según los datos disponibles.
 
 ---
 
@@ -71,14 +96,23 @@ La app pide permiso de cámara con el texto:
 
 ### Modelo actual
 
-`PcComponentIA/ML/PcComponentDetector3.mlmodel`: Create ML, *Object Detection*, algoritmo **Full Network**, 6.000 iteraciones.
+`PcComponentIA/ML/PcComponentDetector3.mlmodel`
 
-- **Entrenamiento:** 3.457 imágenes. **Test:** 531 imágenes que el modelo no ha visto; se comprobó que ninguna es un duplicado casi idéntico de otra de entrenamiento.
+| Entrenamiento | |
+| --- | --- |
+| Herramienta | **Create ML** (Object Detection), algoritmo **Full Network** |
+| Equipo | **MacBook Air M2**, en local; unas 3,5 horas |
+| Iteraciones | 6.000 (el *loss* bajó de ~13 a 2,3 y se estabilizó) |
+| Imágenes | **3.988** en total, 12.611 cajas etiquetadas |
+| Reparto | 3.457 de entrenamiento y 531 de test |
+| Clases | 30 |
+
+Ninguna imagen de test es un duplicado casi idéntico de otra de entrenamiento. Se comprobó comparando la huella visual de cada imagen de test con todas las de entrenamiento.
 - **mAP@50 en test** (misma evaluación para los tres modelos):
 
 | Modelo | mAP@50 |
 | --- | --- |
-| Modelo 1 (original, 91 fotos propias) | 4,7 % |
+| Modelo 1 (original, 84 fotos propias) | 4,7 % |
 | Modelo 2 (Transfer Learning, 761 fotos) | 14,2 % |
 | **Modelo 3 (actual)** | **27,5 %** |
 
@@ -229,3 +263,9 @@ El detector se entrenó con fotos propias y con estos conjuntos de datos públic
 - [keyboard-mouse-monitor](https://universe.roboflow.com/nogada/keyboard-mouse-monitor) — nogada
 
 **Wikimedia Commons**: 178 fotos con licencias CC BY, CC BY-SA y CC0. El autor, la licencia y el enlace de cada una están en [`Creditos/CREDITOS_COMMONS.json`](Creditos/CREDITOS_COMMONS.json).
+
+---
+
+## Licencia
+
+© 2026 Olai Fernández García. **Todos los derechos reservados.** Se puede consultar el contenido, pero no copiarlo, reutilizarlo ni publicar la app sin autorización. Los datos de terceros usados para el entrenamiento mantienen sus licencias originales. Detalles en [`LICENSE`](LICENSE).

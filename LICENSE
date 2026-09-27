@@ -1,0 +1,16 @@
+Copyright (c) 2026 Olai Fernández García. Todos los derechos reservados.
+
+Este repositorio (código fuente, modelo de detección entrenado, diseño, textos e
+imágenes propias de la app PcComponentIA) es propiedad de su autor.
+
+Se permite consultar el contenido con fines de evaluación (por ejemplo, revisión
+del portfolio del autor). No se permite copiar, modificar, distribuir, publicar,
+sublicenciar ni usar total o parcialmente este contenido, ni compilar o publicar
+la aplicación, sin autorización previa y por escrito del autor.
+
+Contenido de terceros: los conjuntos de datos e imágenes usados para entrenar el
+modelo (Roboflow Universe y Wikimedia Commons) conservan sus licencias originales
+(CC BY 4.0, CC BY-SA, CC0...). Sus autores y licencias figuran en el README y en
+Creditos/CREDITOS_COMMONS.json.
+
+EL CONTENIDO SE PROPORCIONA "TAL CUAL", SIN GARANTÍA DE NINGÚN TIPO.
