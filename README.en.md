@@ -226,7 +226,8 @@ PcComponentIA/
 │   ├── Datos/              SwiftData models and migration from UserDefaults
 │   ├── Diseno/             Animations, grids and shared UI components
 │   ├── AppSettings.swift
-│   └── Extensions.swift
+│   ├── Extensions.swift
+│   └── Localizacion.swift  App language (Spanish/English) and live switching
 ├── ML/                     PcComponentDetector4.mlmodel
 ├── Modelos3D/              USDZ models for the 3D viewer
 ├── Assets/                 Icons, colours and sheet photos

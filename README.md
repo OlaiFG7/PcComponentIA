@@ -230,7 +230,8 @@ PcComponentIA/
 │   ├── Datos/              Modelos de SwiftData y migración desde UserDefaults
 │   ├── Diseno/             Animaciones, rejillas y componentes de interfaz compartidos
 │   ├── AppSettings.swift
-│   └── Extensions.swift
+│   ├── Extensions.swift
+│   └── Localizacion.swift  Idioma de la app (español/inglés) y cambio en directo
 ├── ML/                     PcComponentDetector4.mlmodel
 ├── Modelos3D/              Modelos USDZ del visor 3D
 ├── Assets/                 Iconos, colores y fotos de las fichas
