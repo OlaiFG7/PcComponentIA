@@ -58,13 +58,14 @@ PcComponentIA es un proyecto personal que he llevado de principio a fin: la idea
 
 **Corrección y pulido de la interfaz.** Buena parte del trabajo ha sido probar la app una y otra vez en el iPad y corregir errores de interfaz: cajas de detección descuadradas al girar el dispositivo, parpadeos, pantallas que se recargaban de más, textos y navegación. Muchos de estos errores solo aparecían al usar la app de verdad, no en el simulador.
 
-**Datos y modelo propios.** El detector no es un modelo genérico descargado: lo he construido yo, en tres versiones.
+**Datos y modelo propios.** El detector no es un modelo genérico descargado: lo he construido yo, en cuatro versiones.
 
 1. **Modelo 1:** 84 fotos propias de componentes etiquetadas a mano.
 2. **Modelo 2:** amplié el dataset con conjuntos públicos. Revisé las clases foto a foto, porque había errores en los originales: por ejemplo, "CPU" significaba la torre entera en un dataset, o había "radiadores" que eran disipadores.
 3. **Modelo 3:** casi 4.000 imágenes y 30 clases. Detecté y eliminé fugas entre entrenamiento y test (fotogramas casi idénticos de un mismo vídeo que inflaban las métricas) y retiré las clases sin fotos suficientes.
+4. **Modelo 4:** 8.670 imágenes y 25 clases, con miles de fotos nuevas de datasets públicos revisados uno a uno. Uní los dos sockets en `Socket_CPU` y saqué del detector las piezas que se explican mejor en el visor 3D o en los esquemas.
 
-Cada versión la medí con el mismo test para comparar de forma honesta: del **4,7 % al 27,5 % de mAP@50**. Las pruebas en el iPad sacaron problemas que no se veían en los números, como una GPU con luces RGB confundida con un teclado, que marcan el siguiente paso.
+Cada versión la medí con el mismo test para comparar de forma honesta: del **4,7 % al 28,7 % de mAP@50**. Pero los números no lo cuentan todo: el modelo 4 solo sube un punto en el test y, en el iPad, funciona bastante mejor que el 3 (ver [Detector de componentes](#detector-de-componentes)).
 
 **Decisiones de producto.** Entre otras:
 - que todo funcione sin conexión, en el propio dispositivo;
@@ -137,34 +138,46 @@ La app pide permiso de cámara con el texto:
 
 ### Modelo actual
 
-`PcComponentIA/ML/PcComponentDetector3.mlmodel`
+`PcComponentIA/ML/PcComponentDetector4.mlmodel`
 
 | Entrenamiento | |
 | --- | --- |
 | Herramienta | **Create ML** (Object Detection), algoritmo **Full Network** |
-| Equipo | **MacBook Air M2**, en local; unas 3,5 horas |
-| Iteraciones | 6.000 (el *loss* bajó de ~13 a 2,3 y se estabilizó) |
-| Imágenes | **3.988** en total, 12.611 cajas etiquetadas |
-| Reparto | 3.457 de entrenamiento y 531 de test |
-| Clases | 30 |
+| Equipo | **MacBook Air M2**, en local; unas 5 horas |
+| Iteraciones | 6.300 (*snapshot* elegido entre varios; el *loss* bajó de ~12 a 2,0) |
+| Imágenes | **8.670** en total |
+| Reparto | 8.045 de entrenamiento y 625 de test |
+| Clases | 25 |
 
 Ninguna imagen de test es un duplicado casi idéntico de otra de entrenamiento. Se comprobó comparando la huella visual de cada imagen de test con todas las de entrenamiento.
-- **mAP@50 en test** (misma evaluación para los tres modelos):
+
+- **mAP@50 en test:**
 
 | Modelo | mAP@50 |
 | --- | --- |
 | Modelo 1 (original, 84 fotos propias) | 4,7 % |
 | Modelo 2 (Transfer Learning, 761 fotos) | 14,2 % |
-| **Modelo 3 (actual)** | **27,5 %** |
+| Modelo 3 (3.988 fotos, 30 clases) | 27,5 % |
+| **Modelo 4 (actual, 8.670 fotos, 25 clases)** | **28,7 %** |
 
-### Qué detecta (30 clases)
+El modelo 4 se evaluó con su propio test (625 fotos y 25 clases), así que la comparación con el 3 es orientativa.
+
+**Por qué funciona mejor de lo que dice el 28,7 %.** En el iPad el modelo 4 reconoce las piezas con mucha más seguridad que el 3. La diferencia con el número tiene explicación:
+- **Encuentra casi todo:** detecta el 89 % de las CPU, el 96 % de los sockets y de las placas base y el 84-85 % de los M.2 y discos duros. Las piezas grandes están entre el 50 % y el 75 % de AP@50 (CPU 75 %, socket 68 %, M.2 58 %, HDD 53 %).
+- **Etiquetas incompletas:** las fotos vienen de varios datasets y cada uno etiquetó solo sus piezas. Si en una foto de discos duros aparece un teclado sin etiquetar y el modelo lo detecta bien, el test lo cuenta como fallo. Es lo que hunde clases como el ratón: lo encuentra el 59 % de las veces, pero su AP@50 es del 2,5 %.
+- **Clases pequeñas o con pocas fotos de test:** puertos y ranuras son difíciles para cualquier modelo, y clases como el radiador solo tienen 4 cajas en el test. Como el mAP es la media de las clases, cada una pesa lo mismo.
+- **En la app se filtra el ruido:** solo se muestran detecciones con confianza ≥ 0,55, y el estabilizador descarta las que aparecen en un solo fotograma.
+
+Para elegir el modelo comparé dos *snapshots* con el test: el de la iteración 4.440 dio un 26,7 % y el de la 6.300, un 28,7 %, así que entrenar más no lo sobreajustó.
+
+### Qué detecta (25 clases)
 
 | Grupo | Clases |
 | --- | --- |
-| Placa base | `Placa_Base`, `Socket_Intel`, `Socket_AMD`, `Ranura_RAM`, `Ranura_PCIe_x16`, `Ranura_M2`, `Puerto_SATA`, `Conector_ATX_24p`, `Conector_EPS_8p`, `Pila_CMOS`, `Protector_IO` |
+| Placa base | `Placa_Base`, `Socket_CPU`, `Ranura_RAM`, `Ranura_PCIe_x16`, `Ranura_M2`, `Conector_ATX_24p`, `Conector_EPS_8p` |
 | Componentes | `CPU`, `GPU`, `Modulo_RAM`, `Fuente_Alimentacion`, `HDD`, `SSD_SATA`, `M2_SSD_NVMe`, `Caja_PC` |
 | Refrigeración | `Disipador_Aire`, `Ventilador_Caja`, `Radiador`, `Bloque_refrigeracion_liquida` |
-| Puertos | `Puerto_USB_A`, `Puerto_USB_C`, `Puerto_HDMI`, `Puerto_Ethernet` |
+| Puertos | `Puerto_USB_A`, `Puerto_USB_C`, `Puerto_Ethernet` |
 | Periféricos | `Monitor`, `Teclado`, `Raton` |
 
 Las claves del modelo coinciden con las de `DatosHardware.swift`. Por eso cada detección abre directamente su ficha.
@@ -217,7 +230,7 @@ PcComponentIA/
 │   ├── Diseno/             Animaciones, rejillas y componentes de interfaz compartidos
 │   ├── AppSettings.swift
 │   └── Extensions.swift
-├── ML/                     PcComponentDetector3.mlmodel
+├── ML/                     PcComponentDetector4.mlmodel
 ├── Modelos3D/              Modelos USDZ del visor 3D
 ├── Assets/                 Iconos, colores y fotos de las fichas
 ├── Localizable.xcstrings   Traducciones de la interfaz y del contenido (español → inglés)
@@ -271,7 +284,7 @@ Todo se guarda **solo en el dispositivo**.
 
 ## Limitaciones y próximos pasos
 
-- **Precisión desigual del detector:** las ranuras y los conectores de la placa van bien, pero el modelo 3 acierta poco con `Modulo_RAM`, `Radiador` o `Raton`, y en la prueba real a veces confunde una GPU con luces RGB con un teclado. En entrenamiento: **modelo 4**, con 8.670 imágenes y 25 clases (miles de fotos nuevas de GPU, CPU, RAM, ratón, ventiladores, M.2 y discos duros). En él, `Socket_Intel` y `Socket_AMD` se unen en `Socket_CPU`, y `Pila_CMOS`, `Puerto_SATA`, `Puerto_HDMI` y `Protector_IO` salen del detector: se explican en sus fichas, en los esquemas y en el visor 3D. La refrigeración líquida sigue teniendo pocas fotos.
+- **Precisión desigual del detector:** las piezas grandes (CPU, socket, M.2, discos duros, fuente) van bien, pero `Modulo_RAM`, `Raton` y la refrigeración líquida siguen flojos. El siguiente paso (modelo 5): **ajustar mejor las etiquetas de las fotos actuales**, completando las que faltan en las fotos de datasets mezclados (el propio modelo 4 puede proponer las cajas y solo habría que validarlas), y **reunir más fotos de los componentes que peor detecta**: módulos de RAM, ratón, radiador, bloque de líquida, puertos USB y GPU. `Pila_CMOS`, `Puerto_SATA`, `Puerto_HDMI` y `Protector_IO` ya no se detectan; se explican en sus fichas, en los esquemas y en el visor 3D.
 - **Compatibilidad orientativa:** se deduce de los nombres que escribe el usuario; si un modelo no se reconoce, la app lo dice en lugar de suponer.
 - **Sin widgets ni iCloud:** requieren la cuenta de desarrollador de pago (App Groups / CloudKit).
 - El escáner necesita un dispositivo físico, y el asistente, Apple Intelligence.

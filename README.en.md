@@ -60,8 +60,9 @@ PcComponentIA is a personal project I have taken from start to finish: the idea,
 1. **Model 1:** 84 of my own photos of components, labelled by hand.
 2. **Model 2:** I extended the dataset with public datasets. I reviewed the classes photo by photo because the originals had mistakes: for example, "CPU" meant the whole tower in one dataset, and some "radiators" were actually heatsinks.
 3. **Model 3:** almost 4,000 images and 30 classes. I found and removed leaks between training and test (near-identical frames from the same video that inflated the metrics) and dropped classes without enough photos.
+4. **Model 4:** 8,670 images and 25 classes, with thousands of new photos from public datasets reviewed one by one. I merged the two sockets into `Socket_CPU` and removed from the detector the parts that are better explained in the 3D viewer or the diagrams.
 
-I measured every version on the same test set to compare them honestly: from **4.7% to 27.5% mAP@50**. Testing on the iPad revealed problems the numbers did not show, such as a GPU with RGB lights being confused with a keyboard, which set the next step.
+I measured every version on a test set to compare them honestly: from **4.7% to 28.7% mAP@50**. But the numbers do not tell the whole story: model 4 only gains one point on the test set, yet on the iPad it works much better than model 3 (see [Component detector](#component-detector)).
 
 **Product decisions.** Among others:
 - everything works offline, on the device itself;
@@ -131,37 +132,48 @@ I measured every version on the same test set to compare them honestly: from **4
 
 ### Current model
 
-`PcComponentIA/ML/PcComponentDetector3.mlmodel`
+`PcComponentIA/ML/PcComponentDetector4.mlmodel`
 
 | Training | |
 | --- | --- |
 | Tool | **Create ML** (Object Detection), **Full Network** algorithm |
-| Hardware | **MacBook Air M2**, locally; about 3.5 hours |
-| Iterations | 6,000 (the *loss* went from ~13 to 2.3 and levelled off) |
-| Images | **3,988** in total, 12,611 labelled boxes |
-| Split | 3,457 training and 531 test |
-| Classes | 30 |
+| Hardware | **MacBook Air M2**, locally; about 5 hours |
+| Iterations | 6,300 (*snapshot* chosen from several; the *loss* went from ~12 to 2.0) |
+| Images | **8,670** in total |
+| Split | 8,045 training and 625 test |
+| Classes | 25 |
 
 No test image is a near-duplicate of a training image. This was checked by comparing the visual fingerprint of every test image with all the training images.
 
-- **mAP@50 on the test set** (same evaluation for all three models):
+- **mAP@50 on the test set:**
 
 | Model | mAP@50 |
 | --- | --- |
 | Model 1 (original, 84 own photos) | 4.7% |
 | Model 2 (Transfer Learning, 761 photos) | 14.2% |
-| **Model 3 (current)** | **27.5%** |
+| Model 3 (3,988 photos, 30 classes) | 27.5% |
+| **Model 4 (current, 8,670 photos, 25 classes)** | **28.7%** |
 
-### What it detects (30 classes)
+Model 4 was evaluated on its own test set (625 photos, 25 classes), so the comparison with model 3 is approximate.
+
+**Why it works better than 28.7% suggests.** On the iPad, model 4 recognises parts with much more confidence than model 3. There are reasons for the gap with the number:
+- **It finds almost everything:** it detects 89% of CPUs, 96% of sockets and motherboards and 84-85% of M.2 drives and hard drives. Large parts score between 50% and 75% AP@50 (CPU 75%, socket 68%, M.2 58%, HDD 53%).
+- **Incomplete labels:** the photos come from several datasets and each one labelled only its own parts. If a hard-drive photo shows an unlabelled keyboard and the model detects it correctly, the test counts it as a mistake. That is what sinks classes like the mouse: it finds it 59% of the time, but its AP@50 is 2.5%.
+- **Small classes or few test photos:** ports and slots are hard for any model, and classes like the radiator have only 4 boxes in the test set. Since mAP is the average over classes, each one weighs the same.
+- **The app filters out noise:** it only shows detections with confidence ≥ 0.55, and the stabiliser discards those that appear in a single frame.
+
+To choose the model I compared two *snapshots* on the test set: iteration 4,440 scored 26.7% and iteration 6,300 scored 28.7%, so training longer did not overfit.
+
+### What it detects (25 classes)
 
 The class keys are in Spanish because they are the same keys the app uses for its sheets.
 
 | Group | Classes |
 | --- | --- |
-| Motherboard | `Placa_Base`, `Socket_Intel`, `Socket_AMD`, `Ranura_RAM`, `Ranura_PCIe_x16`, `Ranura_M2`, `Puerto_SATA`, `Conector_ATX_24p`, `Conector_EPS_8p`, `Pila_CMOS`, `Protector_IO` |
+| Motherboard | `Placa_Base`, `Socket_CPU`, `Ranura_RAM`, `Ranura_PCIe_x16`, `Ranura_M2`, `Conector_ATX_24p`, `Conector_EPS_8p` |
 | Components | `CPU`, `GPU`, `Modulo_RAM`, `Fuente_Alimentacion`, `HDD`, `SSD_SATA`, `M2_SSD_NVMe`, `Caja_PC` |
 | Cooling | `Disipador_Aire`, `Ventilador_Caja`, `Radiador`, `Bloque_refrigeracion_liquida` |
-| Ports | `Puerto_USB_A`, `Puerto_USB_C`, `Puerto_HDMI`, `Puerto_Ethernet` |
+| Ports | `Puerto_USB_A`, `Puerto_USB_C`, `Puerto_Ethernet` |
 | Peripherals | `Monitor`, `Teclado`, `Raton` |
 
 The model's class keys match those in `DatosHardware.swift`, so every detection opens its sheet directly.
@@ -214,7 +226,7 @@ PcComponentIA/
 │   ├── Diseno/             Animations, grids and shared UI components
 │   ├── AppSettings.swift
 │   └── Extensions.swift
-├── ML/                     PcComponentDetector3.mlmodel
+├── ML/                     PcComponentDetector4.mlmodel
 ├── Modelos3D/              USDZ models for the 3D viewer
 ├── Assets/                 Icons, colours and sheet photos
 ├── Localizable.xcstrings   Interface and content translations (Spanish → English)
@@ -268,7 +280,7 @@ Everything is stored **only on the device**.
 
 ## Limitations and next steps
 
-- **Uneven detector accuracy:** motherboard slots and connectors work well, but model 3 rarely gets `Modulo_RAM`, `Radiador` or `Raton` right, and in real use it sometimes confuses a GPU with RGB lights with a keyboard. In training: **model 4**, with 8,670 images and 25 classes (thousands of new photos of GPUs, CPUs, RAM, mice, fans, M.2 drives and hard drives). In it, `Socket_Intel` and `Socket_AMD` are merged into `Socket_CPU`, and `Pila_CMOS`, `Puerto_SATA`, `Puerto_HDMI` and `Protector_IO` are removed from the detector: they are explained in their sheets, diagrams and the 3D viewer. Liquid cooling still has few photos.
+- **Uneven detector accuracy:** large parts (CPU, socket, M.2, hard drives, PSU) work well, but `Modulo_RAM`, `Raton` and liquid cooling are still weak. The next step (model 5): **refine the labels of the current photos**, completing the missing ones in photos from mixed datasets (model 4 itself can propose the boxes, which would then only need checking), and **gather more photos of the parts it detects worst**: RAM modules, mice, radiators, liquid-cooling blocks, USB ports and GPUs. `Pila_CMOS`, `Puerto_SATA`, `Puerto_HDMI` and `Protector_IO` are no longer detected; they are explained in their sheets, diagrams and the 3D viewer.
 - **Approximate compatibility check:** it is inferred from the names the user types; if a model is not recognised, the app says so instead of guessing.
 - **No widgets or iCloud:** they require the paid developer account (App Groups / CloudKit).
 - The scanner needs a physical device, and the assistant needs Apple Intelligence.
