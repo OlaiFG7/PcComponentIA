@@ -157,7 +157,8 @@ No test image is a near-duplicate of a training image. This was checked by compa
 Model 4 was evaluated on its own test set (625 photos, 25 classes), so the comparison with model 3 is approximate.
 
 **Why it works better than 28.7% suggests.** On the iPad, model 4 recognises parts with much more confidence than model 3. There are reasons for the gap with the number:
-- **It finds almost everything:** it detects 89% of CPUs, 96% of sockets and motherboards and 84-85% of M.2 drives and hard drives. Large parts score between 50% and 75% AP@50 (CPU 75%, socket 68%, M.2 58%, HDD 53%).
+- **It finds almost everything (recall):** it detects 89% of CPUs, 96% of sockets and motherboards and 84-85% of M.2 drives and hard drives.
+- **Large parts score well on AP@50**, which also requires the box to be in the right place: 75% for the CPU, 68% for the socket, 58% for M.2 and 53% for the hard drive.
 - **Incomplete labels:** the photos come from several datasets and each one labelled only its own parts. If a hard-drive photo shows an unlabelled keyboard and the model detects it correctly, the test counts it as a mistake. That is what sinks classes like the mouse: it finds it 59% of the time, but its AP@50 is 2.5%.
 - **Small classes or few test photos:** ports and slots are hard for any model, and classes like the radiator have only 4 boxes in the test set. Since mAP is the average over classes, each one weighs the same.
 - **The app filters out noise:** it only shows detections with confidence ≥ 0.55, and the stabiliser discards those that appear in a single frame.
@@ -281,6 +282,8 @@ Everything is stored **only on the device**.
 ## Limitations and next steps
 
 - **Uneven detector accuracy:** large parts (CPU, socket, M.2, hard drives, PSU) work well, but `Modulo_RAM`, `Raton` and liquid cooling are still weak. The next step (model 5): **refine the labels of the current photos**, completing the missing ones in photos from mixed datasets (model 4 itself can propose the boxes, which would then only need checking), and **gather more photos of the parts it detects worst**: RAM modules, mice, radiators, liquid-cooling blocks, USB ports and GPUs. `Pila_CMOS`, `Puerto_SATA`, `Puerto_HDMI` and `Protector_IO` are no longer detected; they are explained in their sheets, diagrams and the 3D viewer.
+- **3D viewer:** the selectable points for each connector need adjusting so they sit exactly on the connector they explain in each model. Some motherboard connectors are not explained yet: points need adding for all of them.
+- **Ports in the detector:** small ports (`Puerto_USB_A`, `Puerto_USB_C`, `Puerto_Ethernet`) are the ones it detects worst. One option for model 5 is to remove them from the detector, as was done with HDMI and SATA, and explain them in the 3D viewer instead.
 - **Approximate compatibility check:** it is inferred from the names the user types; if a model is not recognised, the app says so instead of guessing.
 - **No widgets or iCloud:** they require the paid developer account (App Groups / CloudKit).
 - The scanner needs a physical device, and the assistant needs Apple Intelligence.

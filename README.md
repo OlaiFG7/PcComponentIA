@@ -163,7 +163,8 @@ Ninguna imagen de test es un duplicado casi idéntico de otra de entrenamiento. 
 El modelo 4 se evaluó con su propio test (625 fotos y 25 clases), así que la comparación con el 3 es orientativa.
 
 **Por qué funciona mejor de lo que dice el 28,7 %.** En el iPad el modelo 4 reconoce las piezas con mucha más seguridad que el 3. La diferencia con el número tiene explicación:
-- **Encuentra casi todo:** detecta el 89 % de las CPU, el 96 % de los sockets y de las placas base y el 84-85 % de los M.2 y discos duros. Las piezas grandes están entre el 50 % y el 75 % de AP@50 (CPU 75 %, socket 68 %, M.2 58 %, HDD 53 %).
+- **Encuentra casi todo (recall):** detecta el 89 % de las CPU, el 96 % de los sockets y de las placas base y el 84-85 % de los M.2 y discos duros.
+- **Las piezas grandes puntúan bien en AP@50**, que además exige que la caja esté bien colocada: 75 % la CPU, 68 % el socket, 58 % el M.2 y 53 % el disco duro.
 - **Etiquetas incompletas:** las fotos vienen de varios datasets y cada uno etiquetó solo sus piezas. Si en una foto de discos duros aparece un teclado sin etiquetar y el modelo lo detecta bien, el test lo cuenta como fallo. Es lo que hunde clases como el ratón: lo encuentra el 59 % de las veces, pero su AP@50 es del 2,5 %.
 - **Clases pequeñas o con pocas fotos de test:** puertos y ranuras son difíciles para cualquier modelo, y clases como el radiador solo tienen 4 cajas en el test. Como el mAP es la media de las clases, cada una pesa lo mismo.
 - **En la app se filtra el ruido:** solo se muestran detecciones con confianza ≥ 0,55, y el estabilizador descarta las que aparecen en un solo fotograma.
@@ -285,6 +286,8 @@ Todo se guarda **solo en el dispositivo**.
 ## Limitaciones y próximos pasos
 
 - **Precisión desigual del detector:** las piezas grandes (CPU, socket, M.2, discos duros, fuente) van bien, pero `Modulo_RAM`, `Raton` y la refrigeración líquida siguen flojos. El siguiente paso (modelo 5): **ajustar mejor las etiquetas de las fotos actuales**, completando las que faltan en las fotos de datasets mezclados (el propio modelo 4 puede proponer las cajas y solo habría que validarlas), y **reunir más fotos de los componentes que peor detecta**: módulos de RAM, ratón, radiador, bloque de líquida, puertos USB y GPU. `Pila_CMOS`, `Puerto_SATA`, `Puerto_HDMI` y `Protector_IO` ya no se detectan; se explican en sus fichas, en los esquemas y en el visor 3D.
+- **Visor 3D:** hay que ajustar los puntos seleccionables de cada conector para que caigan exactamente sobre el conector que explican en cada modelo. En la placa base faltan conectores por explicar: hay que añadir puntos para todos.
+- **Puertos en el detector:** los puertos pequeños (`Puerto_USB_A`, `Puerto_USB_C`, `Puerto_Ethernet`) son los que peor detecta. Una opción para el modelo 5 es quitarlos del detector, como ya se hizo con HDMI y SATA, y explicarlos en el visor 3D.
 - **Compatibilidad orientativa:** se deduce de los nombres que escribe el usuario; si un modelo no se reconoce, la app lo dice en lugar de suponer.
 - **Sin widgets ni iCloud:** requieren la cuenta de desarrollador de pago (App Groups / CloudKit).
 - El escáner necesita un dispositivo físico, y el asistente, Apple Intelligence.
