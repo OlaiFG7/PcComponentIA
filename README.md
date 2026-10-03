@@ -1,5 +1,7 @@
 # PcComponentIA
 
+**Español** · [English](README.en.md)
+
 App para iPhone y iPad (SwiftUI) que **reconoce componentes de PC con la cámara** y explica qué son, para qué sirven y cómo se montan. Pensada para aprender, montar o diagnosticar un PC de casa.
 
 Todo funciona **en el dispositivo**: la detección usa un modelo Core ML propio y el asistente usa los Foundation Models de Apple.
@@ -52,7 +54,7 @@ A la vez, era la excusa perfecta para **aprender desarrollo iOS e inteligencia a
 
 PcComponentIA es un proyecto personal que he llevado de principio a fin: la idea, el diseño de la app, los datos, el entrenamiento del modelo y las pruebas en un dispositivo real.
 
-**Desarrollo con ayuda de IA.** He escrito parte del código y el resto lo he desarrollado con asistentes de IA (Claude y Gemini). Yo decidí qué construir y cómo debía comportarse cada pantalla, y revisé, adapté y probé lo que se generaba. Además usé a Gemini como segundo revisor del código, contrastando cada error que señalaba antes de corregirlo.
+**Desarrollo con ayuda de IA.** He escrito parte del código y el resto lo he desarrollado con asistentes de IA (Claude, Gemini y Codex). Yo decidí qué construir y cómo debía comportarse cada pantalla, y revisé, adapté y probé lo que se generaba. Además usé a Gemini y a Codex como revisores del código, incluso revisando cada uno el trabajo del otro, y contrasté cada error que señalaban antes de corregirlo.
 
 **Corrección y pulido de la interfaz.** Buena parte del trabajo ha sido probar la app una y otra vez en el iPad y corregir errores de interfaz: cajas de detección descuadradas al girar el dispositivo, parpadeos, pantallas que se recargaban de más, textos y navegación. Muchos de estos errores solo aparecían al usar la app de verdad, no en el simulador.
 
@@ -83,25 +85,32 @@ Cada versión la medí con el mismo test para comparar de forma honesta: del **4
 
 **Escáner**
 - Detección en tiempo real con la cámara trasera (AVFoundation + Vision + Core ML).
-- Cajas estabilizadas (sin parpadeos) y ajustadas al tamaño real del fotograma, en vertical y en horizontal.
-- Congelar la imagen, linterna y guía visual tipo AR sobre la placa base.
+- Cajas estabilizadas (sin parpadeos) que se deslizan entre fotogramas y ajustadas al tamaño real del fotograma, en vertical y en horizontal.
+- **Analizar una foto de la galería** (también sin permiso de cámara).
+- Congelar la imagen, linterna, vibración suave al reconocer una pieza y guía visual tipo AR sobre la placa base.
 - Historial de capturas con retención configurable (7, 30 o 90 días).
 
 **Aprender**
-- Diccionario con 69 fichas de componentes, conectores y puertos: descripción, guía de montaje, dificultad y tiempo.
-- Sección **"Se conecta con / Relacionado"** en cada ficha. Explica también piezas que la cámara no detecta (p. ej. el cabezal SYS_FAN desde el ventilador de caja).
+- Diccionario con 69 fichas de componentes, conectores y puertos: descripción, guía de montaje, dificultad, tiempo y, en algunas, foto real.
+- **Visor 3D** (RealityKit) de la gráfica, la placa base, la RAM, el SSD M.2 y la fuente: la cámara se acerca a cada conector y muestra una burbuja con su explicación.
+- **Esquemas interactivos 2D** de conectores para el resto (p. ej. tarjeta de sonido).
+- Sección **"Se conecta con / Relacionado"** en cada ficha.
 - Lista separada de componentes que la IA puede detectar.
 
 **Montar y diagnosticar**
-- Checklist de montaje persistente.
-- Diagnóstico por LEDs, pitidos y síntomas, con historial.
-- Gestor de *builds*: componentes, precios, etiquetas, notas y presupuesto.
+- Gestor de *builds*: componentes, precios, etiquetas, notas y presupuesto; añadir piezas desde el escáner o el diccionario; compartir como texto o imagen.
+- **Compatibilidad y consumo**: socket CPU/placa, DDR4/DDR5, salida de vídeo y fuente recomendada a partir de los nombres de las piezas.
+- Checklist de montaje persistente, **uno por build**.
+- Diagnóstico por LEDs (Q-LED), códigos POST y **pitidos** (AMI y Award), con historial.
 
 **Asistente**
-- Chat técnico en español con Foundation Models, con historial de conversaciones.
+- Chat técnico con Foundation Models que responde en el idioma del dispositivo: respuestas en directo, contexto de la build o pieza que estás viendo, errores explicados y botón "Reintentar".
 
-**General**
-- Onboarding inicial y modo taller (oscuro) / claro.
+**Sistema**
+- **iPad**: barra lateral con todas las secciones (`NavigationSplitView`).
+- **Siri y Atajos**: "Escanea un componente con PcComponentIA", "¿Cómo va mi montaje en PcComponentIA?"…
+- **Español e inglés** (catálogo `Localizable.xcstrings`).
+- Onboarding, modo taller (oscuro) / claro, animaciones que respetan "Reducir movimiento" y etiquetas de VoiceOver.
 
 ---
 
@@ -179,9 +188,9 @@ Cámara (AVFoundation, 720p)
 
 ## Asistente de IA
 
-`Controllers/ControladorIA.swift` usa `FoundationModels` (`LanguageModelSession`), todo en el dispositivo.
+`Funciones/Asistente/ControladorIA.swift` usa `FoundationModels` (`LanguageModelSession`), todo en el dispositivo.
 
-- Especializado en hardware de PC y en español.
+- Especializado en hardware de PC; responde en el idioma del dispositivo (español o inglés).
 - Conversaciones guardadas, con límite de mensajes y retención configurable.
 - Solo funciona si Apple Intelligence está disponible: dispositivo compatible, activado, idioma/región admitidos y modelo descargado.
 
@@ -189,49 +198,32 @@ Cámara (AVFoundation, 720p)
 
 ## Estructura del proyecto
 
+Organizado por funcionalidad: cada carpeta de `Funciones/` reúne las pantallas, la lógica y los datos de esa parte de la app.
+
 ```text
 PcComponentIA/
-├── App/
-│   └── PcComponentIAApp.swift         Punto de entrada, contenedor SwiftData y migración inicial
-├── Controllers/
-│   ├── CameraViewController.swift     Cámara, orientación, linterna y captura de fotos
-│   ├── DetectionStabilizer.swift      Inferencia con Vision + Core ML y suavizado de cajas
-│   └── ControladorIA.swift            Asistente con Foundation Models
-├── ML/
-│   └── PcComponentDetector3.mlmodel   Detector de componentes (30 clases)
-├── Models/
-│   ├── DatosHardware.swift            Fichas de los componentes (fuente de todo el contenido técnico)
-│   ├── ComponentesRelacionados.swift  Qué piezas se conectan con cuáles
-│   ├── EsquemasComponentes.swift      Datos de los esquemas interactivos de conectores
-│   ├── DiagnosticoLED.swift           Base de conocimiento de LEDs, pitidos y errores
-│   ├── SwiftDataModels.swift          Modelos persistentes (builds, diagnósticos, capturas)
-│   ├── MigrationManager.swift         Migración única de UserDefaults a SwiftData
-│   └── Modelos.swift                  Tipos compartidos (builds, categorías…)
-├── View/                              Pantallas
-│   ├── HomeView.swift                 Inicio, accesos rápidos y estadísticas
-│   ├── ScannerView.swift              Escáner, cajas, congelado y detalle
-│   ├── VisualizadorARView.swift       Guía visual sobre la placa base
-│   ├── DetalleComponenteView.swift    Tarjeta de detalle de una detección
-│   ├── DiccionarioView.swift          Diccionario genérico (completo o filtrado)
-│   ├── ComponentesDetectablesView.swift  Lista de clases que detecta el modelo
-│   ├── ChecklistMontaje.swift         Checklist de montaje
-│   ├── DiagnosticoLedView.swift       Diagnóstico guiado
-│   ├── MisBuildsView.swift            Lista de builds
-│   ├── DetalleBuildView.swift         Edición de una build
-│   ├── ChatIAView.swift               Chat con el asistente
-│   ├── HistorialChatsView.swift       Conversaciones guardadas
-│   ├── HistorialView.swift            Historial de capturas del escáner
-│   ├── OnboardingView.swift           Bienvenida
-│   └── FlowLayout.swift               Layout auxiliar
-├── Diagnosticos/                      Guardado, detalle y enlaces de diagnósticos
-├── Components/                        Piezas de interfaz reutilizables
-│   ├── SeccionRelacionados.swift      Sección desplegable "Se conecta con"
-│   ├── BotonCircular.swift
-│   └── NavigationSwipeBackFix.swift
-├── Settings/                          Ajustes de la app y retención de historiales
-└── Extensions.swift
+├── App/                    Arranque, raíz (barra lateral en iPad) y atajos de Siri
+├── Funciones/
+│   ├── Inicio/             Pantalla de inicio y bienvenida
+│   ├── Escaner/            Cámara, detector (Vision + Core ML), escáner y guía AR
+│   ├── Componentes/        Diccionario, fichas, esquemas 2D, visor 3D y fotos
+│   ├── Builds/             Mis builds, compatibilidad y consumo, compartir
+│   ├── Montaje/            Checklist de montaje (uno por build)
+│   ├── Diagnostico/        LEDs, códigos POST, pitidos e historial de diagnósticos
+│   ├── Asistente/          Chat con Foundation Models
+│   └── Historial/          Historial de capturas y su retención
+├── Comun/
+│   ├── Datos/              Modelos de SwiftData y migración desde UserDefaults
+│   ├── Diseno/             Animaciones, rejillas y componentes de interfaz compartidos
+│   ├── AppSettings.swift
+│   └── Extensions.swift
+├── ML/                     PcComponentDetector3.mlmodel
+├── Modelos3D/              Modelos USDZ del visor 3D
+├── Assets/                 Iconos, colores y fotos de las fichas
+├── Localizable.xcstrings   Traducciones de la interfaz y del contenido (español → inglés)
+└── PrivacyInfo.xcprivacy   Manifiesto de privacidad (sin rastreo ni datos recogidos)
 Creditos/
-└── CREDITOS_COMMONS.json              Autor y licencia de cada foto de Wikimedia Commons usada
+└── CREDITOS_COMMONS.json   Autor y licencia de cada foto de Wikimedia Commons usada
 ```
 
 ---
@@ -246,7 +238,7 @@ Todo se guarda **solo en el dispositivo**.
 | Diagnósticos guardados | SwiftData (`RegistroDiagnosticoSD`) |
 | Historial de capturas del escáner | SwiftData (`CapturaHistorialSD`, fotos en almacenamiento externo) |
 | Conversaciones del chat | UserDefaults (`conversacionesChatIA`) |
-| Checklist de montaje | UserDefaults (`checklistMontajePCComponentIA`) |
+| Checklist de montaje | UserDefaults (`checklistMontajePCComponentIA`, más una clave por build) |
 | Ajustes (modo taller, retenciones, onboarding) | UserDefaults / `@AppStorage` |
 
 `MigrationManager` pasa una única vez a SwiftData los datos antiguos que estaban en UserDefaults (builds, diagnósticos y capturas).
@@ -258,6 +250,7 @@ Todo se guarda **solo en el dispositivo**.
 **Añadir una ficha al diccionario**
 1. Añade una entrada a `DatosHardware.swift` con su clave (p. ej. `"Tarjeta_Red"`).
 2. Si procede, añade sus piezas relacionadas en `ComponentesRelacionados.swift`.
+3. Añade la traducción al inglés en `Localizable.xcstrings`.
 
 **Hacer detectable un componente nuevo**
 1. Reentrena el modelo con esa clase, usando exactamente la misma clave que en `DatosHardware.swift`.
@@ -267,15 +260,22 @@ Todo se guarda **solo en el dispositivo**.
 **Añadir un esquema de conectores**
 - Añade una entrada a `EsquemasComponentes.todos`, con las formas y los puntos en coordenadas de 0 a 1. La vista no hay que tocarla.
 
+**Añadir un modelo 3D**
+1. Copia el `.usdz` en `Modelos3D/` (con licencia que permita su uso y su crédito).
+2. Añade una entrada a `ModelosPiezas3D.todos` con los conectores en coordenadas de 0 a 1 dentro del modelo. Si existe, el botón de la ficha pasa a "Ver en 3D".
+
+**Añadir una foto a una ficha**
+- Imagen `foto_<clave>` en `Assets` y su autor/licencia en `FotosFichas.creditos`.
+
 ---
 
 ## Limitaciones y próximos pasos
 
-- **Precisión desigual:** las ranuras y los conectores de la placa van bien, pero `Puerto_SATA`, `Protector_IO`, `Modulo_RAM`, `Radiador` y `Raton` tienen pocos aciertos. En la prueba real a veces confunde una GPU con luces RGB con un teclado. Siguiente paso: más fotos de las clases más flojas.
-- **Esquema interactivo de conectores:** los datos (gráfica, placa base y tarjeta de sonido) ya están en `EsquemasComponentes.swift`; falta la vista animada y el botón "Ver conectores".
-- **iOS 27.2 y chat:** subir el destino a 27.2 cuando haya SDK (Xcode 27.2) y adaptar el asistente a las novedades de Foundation Models en iOS 27.
+- **Precisión desigual del detector:** las ranuras y los conectores de la placa van bien, pero el modelo 3 acierta poco con `Modulo_RAM`, `Radiador` o `Raton`, y en la prueba real a veces confunde una GPU con luces RGB con un teclado. En entrenamiento: **modelo 4**, con 8.670 imágenes y 25 clases (miles de fotos nuevas de GPU, CPU, RAM, ratón, ventiladores, M.2 y discos duros). En él, `Socket_Intel` y `Socket_AMD` se unen en `Socket_CPU`, y `Pila_CMOS`, `Puerto_SATA`, `Puerto_HDMI` y `Protector_IO` salen del detector: se explican en sus fichas, en los esquemas y en el visor 3D. La refrigeración líquida sigue teniendo pocas fotos.
+- **Compatibilidad orientativa:** se deduce de los nombres que escribe el usuario; si un modelo no se reconoce, la app lo dice en lugar de suponer.
+- **Sin widgets ni iCloud:** requieren la cuenta de desarrollador de pago (App Groups / CloudKit).
 - El escáner necesita un dispositivo físico, y el asistente, Apple Intelligence.
-- No hay tests automáticos.
+- Solo hay pruebas manuales de la lógica de compatibilidad; faltan tests automáticos.
 
 ---
 
@@ -295,6 +295,15 @@ El detector se entrenó con fotos propias y con estos conjuntos de datos públic
 - [keyboard-mouse-monitor](https://universe.roboflow.com/nogada/keyboard-mouse-monitor) — nogada
 
 **Wikimedia Commons**: 178 fotos con licencias CC BY, CC BY-SA y CC0. El autor, la licencia y el enlace de cada una están en [`Creditos/CREDITOS_COMMONS.json`](Creditos/CREDITOS_COMMONS.json).
+
+**Dentro de la app**
+- Foto de la ficha de la pila CMOS: «CMOS Battery, Motherboard» de Kent Madsen, [CC BY-SA 2.0](https://commons.wikimedia.org/wiki/File:CMOS_Battery,_Motherboard.jpg).
+- Modelos 3D de [Sketchfab](https://sketchfab.com), todos con licencia CC BY 4.0:
+  - [GeForce RTX 3080 Graphics Card](https://sketchfab.com/3d-models/geforce-rtx-3080-graphics-card-8b947ee1bf7a4e3d8ffa1c24893ac160) — _surovic_
+  - [MotherBoard + Components](https://sketchfab.com/3d-models/motherboard-components-3bc94057328243d4b341a55f59160f8a) — Daniel Cardona
+  - [RAM-Hynix553-8a-24GB(DDR5S)](https://sketchfab.com/3d-models/ram-hynix553-8a-24gbddr5s-a5285af98b9b49d78472eb76ed2d730d) — Apple
+  - [SSD NoName m.2 256gb](https://sketchfab.com/3d-models/ssd-noname-m2-256gb-ac3e66d1e3bf46dc8684a3e4abae584b) — Хлюпич
+  - [M1000 inspired by Corsair HX1000](https://sketchfab.com/3d-models/m1000-inspired-by-corsair-hx1000-free-6d122273398b446a876600401ba08b55) — Igor.Jop
 
 ---
 

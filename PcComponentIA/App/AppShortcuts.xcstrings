@@ -1,0 +1,137 @@
+{
+  "sourceLanguage" : "es",
+  "strings" : {
+    "¿Cómo va mi montaje en ${applicationName}?" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "How's my build going in ${applicationName}?"
+          }
+        },
+        "es" : {
+          "stringSet" : {
+            "state" : "new",
+            "values" : [
+              "¿Cómo va mi montaje en ${applicationName}?",
+              "Progreso del montaje en ${applicationName}"
+            ]
+          }
+        }
+      }
+    },
+    "Abre el asistente de ${applicationName}" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open the ${applicationName} assistant"
+          }
+        }
+      }
+    },
+    "Abre el escáner de ${applicationName}" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open the ${applicationName} scanner"
+          }
+        }
+      }
+    },
+    "Diagnostica el arranque con ${applicationName}" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Troubleshoot startup with ${applicationName}"
+          }
+        },
+        "es" : {
+          "stringSet" : {
+            "state" : "new",
+            "values" : [
+              "Diagnostica el arranque con ${applicationName}",
+              "Mi PC no arranca ${applicationName}"
+            ]
+          }
+        }
+      }
+    },
+    "Escanea un componente con ${applicationName}" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Scan a component with ${applicationName}"
+          }
+        },
+        "es" : {
+          "stringSet" : {
+            "state" : "new",
+            "values" : [
+              "Escanea un componente con ${applicationName}",
+              "Escanear pieza con ${applicationName}",
+              "Abre el escáner de ${applicationName}"
+            ]
+          }
+        }
+      }
+    },
+    "Escanear pieza con ${applicationName}" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scan a part with ${applicationName}"
+          }
+        }
+      }
+    },
+    "Mi PC no arranca ${applicationName}" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "My PC won't start ${applicationName}"
+          }
+        }
+      }
+    },
+    "Pregunta al asistente de ${applicationName}" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ask the ${applicationName} assistant"
+          }
+        },
+        "es" : {
+          "stringSet" : {
+            "state" : "new",
+            "values" : [
+              "Pregunta al asistente de ${applicationName}",
+              "Abre el asistente de ${applicationName}"
+            ]
+          }
+        }
+      }
+    },
+    "Progreso del montaje en ${applicationName}" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Build progress in ${applicationName}"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

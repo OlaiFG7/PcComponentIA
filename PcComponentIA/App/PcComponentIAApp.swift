@@ -16,6 +16,10 @@ struct PcComponentIAApp: App {
     @AppStorage("onboardingCompletado")
     private var onboardingCompletado = false
 
+    /// Idioma elegido en la app ("" = el del dispositivo). Al cambiar, la interfaz se vuelve a crear.
+    @AppStorage(Idioma.claveGuardado)
+    private var idiomaApp = ""
+
     let sharedModelContainer: ModelContainer = {
         let schema = Schema([
             BuildSD.self,
@@ -34,13 +38,19 @@ struct PcComponentIAApp: App {
 
     var body: some Scene {
         WindowGroup {
-            NavigationStack {
+            Group {
                 if onboardingCompletado {
-                    HomeView()
+                    // En iPad, barra lateral; en iPhone, la navegación de siempre
+                    RaizAppView()
+                        .id(idiomaApp)
                 } else {
-                    OnboardingView()
+                    NavigationStack {
+                        OnboardingView()
+                    }
+                    .id(idiomaApp)
                 }
             }
+            .environment(\.locale, Idioma.locale)
             .environmentObject(settings)
             .environmentObject(checklist)
             .environmentObject(gestorDiagnosticos)
