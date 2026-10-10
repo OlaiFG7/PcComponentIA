@@ -16,6 +16,14 @@ struct DiccionarioView: View {
     @State private var textoBusqueda = ""
     @State private var categoriaSeleccionada: CategoriaDiccionario = .todas
 
+    /// Se recuerda entre sesiones. Por defecto el básico, para no abrumar a quien empieza.
+    @AppStorage(NivelDiccionario.claveGuardado)
+    private var nivelGuardado = NivelDiccionario.basico.rawValue
+
+    private var nivel: NivelDiccionario {
+        NivelDiccionario(rawValue: nivelGuardado) ?? .basico
+    }
+
     @Namespace private var transicionFicha
 
     @Environment(\.horizontalSizeClass) private var sizeClass
@@ -50,6 +58,7 @@ struct DiccionarioView: View {
             .filter { item in
                 coincideConBusqueda(item)
                     && coincideConCategoria(item)
+                    && coincideConNivel(item)
             }
             .sorted {
                 nombreLegible($0.clave)
@@ -66,11 +75,8 @@ struct DiccionarioView: View {
         ZStack {
             fondoAsistente
 
-            if lista.isEmpty {
-                estadoVacio
-            } else {
-                contenido(lista)
-            }
+            // Sin resultados se mantienen la cabecera y las categorías, para poder cambiar de filtro
+            contenido(lista)
         }
         .navigationTitle("Diccionario")
         .navigationBarTitleDisplayMode(.large)
@@ -79,6 +85,15 @@ struct DiccionarioView: View {
             text: $textoBusqueda,
             prompt: "Buscar componente, puerto o conector..."
         )
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                NavigationLink {
+                    GlosarioView()
+                } label: {
+                    Label(L("Glosario de siglas"), systemImage: "textformat.abc")
+                }
+            }
+        }
     }
 
     // MARK: - Contenido
@@ -89,6 +104,16 @@ struct DiccionarioView: View {
                 cabecera
 
                 selectorCategorias
+
+                if textoBusqueda.isEmpty {
+                    selectorNivel(mostradas: lista.count)
+                }
+
+                if lista.isEmpty {
+                    estadoVacio
+                        .frame(maxWidth: .infinity)
+                        .padding(.top, 24)
+                }
 
                 LazyVGrid(columns: columnas, spacing: 12) {
                     ForEach(Array(lista.enumerated()), id: \.element.clave) { indice, item in
@@ -390,6 +415,25 @@ struct DiccionarioView: View {
         )
     }
 
+    // MARK: - Nivel
+
+    private func selectorNivel(mostradas: Int) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Picker(L("Nivel de detalle"), selection: $nivelGuardado.animation(Animaciones.muelle)) {
+                ForEach(NivelDiccionario.allCases) { opcion in
+                    Text(opcion.titulo).tag(opcion.rawValue)
+                }
+            }
+            .pickerStyle(.segmented)
+
+            Text(nivel.explicacion)
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .sensoryFeedback(.selection, trigger: nivelGuardado)
+    }
+
     // MARK: - Filtro
 
     private func coincideConBusqueda(
@@ -417,6 +461,17 @@ struct DiccionarioView: View {
         )
 
         return contenido.contains(consulta)
+    }
+
+    /// Al buscar se ignora el nivel: lo que se escribe debe encontrarse siempre.
+    private func coincideConNivel(
+        _ item: (clave: String, info: InfoComponente)
+    ) -> Bool {
+        guard textoBusqueda.isEmpty else {
+            return true
+        }
+
+        return NivelDiccionario.nivel(de: item.clave).rawValue <= nivel.rawValue
     }
 
     private func coincideConCategoria(
@@ -488,6 +543,8 @@ struct DiccionarioView: View {
                 with: "GPU",
                 options: .caseInsensitive
             )
+            // El nombre sale de la clave (en español): se traduce para mostrarlo, ordenar y buscar
+            .localizado
     }
 
     private var colorFondoChip: Color {

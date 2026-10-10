@@ -5,13 +5,112 @@
 
 import SwiftUI
 
-struct PaginaOnboarding: Identifiable {
-    let id = UUID()
+struct PuntoOnboarding: Identifiable {
+    var id: String { texto }
     let icono: String
+    let texto: String
+}
+
+struct PaginaOnboarding: Identifiable {
+    let id: Int
+    let icono: String
+    /// Iconos pequeños que flotan alrededor del principal
+    let satelites: [String]
     let color: Color
+    let etiqueta: String
     let titulo: String
     let descripcion: String
-    let detalle: String
+    /// Tres cosas concretas que se pueden hacer en esa parte de la app
+    let puntos: [PuntoOnboarding]
+
+    static var todas: [PaginaOnboarding] {
+        [
+            PaginaOnboarding(
+                id: 0,
+                icono: "camera.viewfinder",
+                satelites: ["photo.on.rectangle", "cpu", "memorychip"],
+                color: Color(red: 0.02, green: 0.66, blue: 0.63),
+                etiqueta: L("ESCÁNER INTELIGENTE"),
+                titulo: L("Identifica tu hardware"),
+                descripcion: L("Apunta la cámara a una pieza y la app te dice qué es, sin conexión."),
+                puntos: [
+                    PuntoOnboarding(icono: "camera.fill", texto: L("En directo con la cámara o desde una foto de tu galería")),
+                    PuntoOnboarding(icono: "hand.tap.fill", texto: L("Toca una pieza detectada para abrir su ficha")),
+                    PuntoOnboarding(icono: "clock.arrow.circlepath", texto: L("Tus capturas se guardan en el historial"))
+                ]
+            ),
+            PaginaOnboarding(
+                id: 1,
+                icono: "character.book.closed.fill",
+                satelites: ["cube.transparent", "cable.connector", "magnifyingglass"],
+                color: Color(red: 0.49, green: 0.27, blue: 0.93),
+                etiqueta: L("DICCIONARIO Y 3D"),
+                titulo: L("Aprende mientras montas"),
+                descripcion: L("Cada componente, conector y puerto explicado con palabras sencillas."),
+                puntos: [
+                    PuntoOnboarding(icono: "book.pages.fill", texto: L("Fichas con descripción y guía de montaje")),
+                    PuntoOnboarding(icono: "cube.transparent.fill", texto: L("Modelos 3D: toca un conector y la cámara se acerca a él")),
+                    PuntoOnboarding(icono: "link", texto: L("Qué se conecta con qué, pieza a pieza"))
+                ]
+            ),
+            PaginaOnboarding(
+                id: 2,
+                icono: "checklist",
+                satelites: ["wrench.and.screwdriver.fill", "bolt.fill", "checkmark.seal.fill"],
+                color: Color(red: 0.18, green: 0.48, blue: 0.96),
+                etiqueta: L("GUÍA DE MONTAJE"),
+                titulo: L("Monta paso a paso"),
+                descripcion: L("Una lista clara para instalar cada pieza en el orden correcto."),
+                puntos: [
+                    PuntoOnboarding(icono: "list.bullet.clipboard.fill", texto: L("Un checklist propio para cada build")),
+                    PuntoOnboarding(icono: "checkmark.circle.fill", texto: L("Marca pasos desde el escáner o desde una ficha")),
+                    PuntoOnboarding(icono: "power", texto: L("Te avisa de lo esencial antes de encender"))
+                ]
+            ),
+            PaginaOnboarding(
+                id: 3,
+                icono: "pc",
+                satelites: ["eurosign.circle.fill", "bolt.shield.fill", "square.and.arrow.up.fill"],
+                color: Color(red: 0.16, green: 0.68, blue: 0.33),
+                etiqueta: L("MIS CONFIGURACIONES"),
+                titulo: L("Organiza tus builds"),
+                descripcion: L("Guarda tus equipos con sus piezas, precios y notas."),
+                puntos: [
+                    PuntoOnboarding(icono: "checkmark.shield.fill", texto: L("Comprueba si el procesador, la placa y la RAM son compatibles")),
+                    PuntoOnboarding(icono: "bolt.fill", texto: L("Calcula el consumo y la fuente recomendada")),
+                    PuntoOnboarding(icono: "square.and.arrow.up", texto: L("Comparte la build como texto o imagen"))
+                ]
+            ),
+            PaginaOnboarding(
+                id: 4,
+                icono: "stethoscope.circle.fill",
+                satelites: ["lightbulb.led.fill", "number.square.fill", "speaker.wave.2.fill"],
+                color: Color(red: 0.95, green: 0.37, blue: 0.1),
+                etiqueta: L("DIAGNÓSTICO DE ARRANQUE"),
+                titulo: L("Diagnostica fallos de arranque"),
+                descripcion: L("Si tu PC no arranca, la app te ayuda a encontrar el motivo."),
+                puntos: [
+                    PuntoOnboarding(icono: "lightbulb.led.fill", texto: L("LEDs de la placa: CPU, DRAM, VGA y BOOT")),
+                    PuntoOnboarding(icono: "number.square.fill", texto: L("Códigos POST de ASUS, Gigabyte, MSI y ASRock")),
+                    PuntoOnboarding(icono: "speaker.wave.2.fill", texto: L("Pitidos de la BIOS (AMI y Award)"))
+                ]
+            ),
+            PaginaOnboarding(
+                id: 5,
+                icono: "sparkles",
+                satelites: ["mic.fill", "globe", "ipad.and.iphone"],
+                color: Color(red: 0.88, green: 0.24, blue: 0.62),
+                etiqueta: L("ASISTENTE Y MÁS"),
+                titulo: L("Consulta al asistente IA"),
+                descripcion: L("Pregunta lo que quieras sobre compatibilidad, montaje o averías."),
+                puntos: [
+                    PuntoOnboarding(icono: "lock.shield.fill", texto: L("Funciona en tu dispositivo: tus preguntas no salen de él")),
+                    PuntoOnboarding(icono: "text.bubble.fill", texto: L("Sabe qué build o diagnóstico estás viendo")),
+                    PuntoOnboarding(icono: "globe", texto: L("En español e inglés, y también con Siri y Atajos"))
+                ]
+            )
+        ]
+    }
 }
 
 struct OnboardingView: View {
@@ -25,110 +124,8 @@ struct OnboardingView: View {
     @State private var paginaActual = 0
     @State private var haloActivo = false
 
-    private let paginas: [PaginaOnboarding] = [
-        PaginaOnboarding(
-            icono: "camera.viewfinder",
-            color: Color(
-                red: 0.02,
-                green: 0.66,
-                blue: 0.63
-            ),
-            titulo: L("Identifica tu hardware"),
-            descripcion: L("""
-            Apunta la cámara a un componente y deja que
-            la IA te ayude a reconocerlo.
-            """),
-            detalle: L("""
-            Guarda tus capturas detectadas para consultarlas después
-            desde el historial de escaneos.
-            """)
-        ),
-        PaginaOnboarding(
-            icono: "checklist",
-            color: Color(
-                red: 0.18,
-                green: 0.48,
-                blue: 0.96
-            ),
-            titulo: L("Monta paso a paso"),
-            descripcion: L("""
-            Sigue una lista clara para instalar los componentes
-            de tu PC en el orden correcto.
-            """),
-            detalle: L("""
-            Marca cada paso como completado y detecta rápidamente
-            qué pieza, cable o conexión te falta.
-            """)
-        ),
-        PaginaOnboarding(
-            icono: "character.book.closed.fill",
-            color: Color(
-                red: 0.49,
-                green: 0.27,
-                blue: 0.93
-            ),
-            titulo: L("Aprende mientras montas"),
-            descripcion: L("""
-            Consulta el diccionario con explicaciones técnicas
-            y guías de conexión de cada componente.
-            """),
-            detalle: L("""
-            Encuentra información sobre sockets, conectores, RAM,
-            almacenamiento, refrigeración y mucho más.
-            """)
-        ),
-        PaginaOnboarding(
-            icono: "stethoscope.circle.fill",
-            color: Color(
-                red: 0.95,
-                green: 0.37,
-                blue: 0.10
-            ),
-            titulo: L("Diagnostica fallos de arranque"),
-            descripcion: L("""
-            Consulta LEDs Q-LED, EZ Debug y códigos POST
-            mostrados por tu placa base.
-            """),
-            detalle: L("""
-            Revisa los pasos recomendados, guarda el diagnóstico
-            y controla si está pendiente, en proceso o resuelto.
-            """)
-        ),
-        PaginaOnboarding(
-            icono: "sparkles",
-            color: Color(
-                red: 0.88,
-                green: 0.24,
-                blue: 0.62
-            ),
-            titulo: L("Consulta al asistente IA"),
-            descripcion: L("""
-            Pregunta sobre compatibilidad, montaje, rendimiento
-            o problemas con tus componentes.
-            """),
-            detalle: L("""
-            Desde un diagnóstico, el asistente recibe automáticamente
-            el LED o código POST y los pasos que ya has comprobado.
-            """)
-        ),
-        PaginaOnboarding(
-            icono: "pc",
-            color: Color(
-                red: 0.16,
-                green: 0.68,
-                blue: 0.33
-            ),
-            titulo: L("Organiza tus builds"),
-            descripcion: L("""
-            Guarda tus equipos con componentes, precios,
-            estado y notas personales.
-            """),
-            detalle: L("""
-            Ten cada configuración reunida en un solo lugar antes
-            de comprar, montar, mejorar o reparar tu PC.
-            """)
-        )
-    ]
+    private let paginas = PaginaOnboarding.todas
+
     var body: some View {
         ZStack {
             fondoOnboarding
@@ -239,60 +236,56 @@ struct OnboardingView: View {
         _ pagina: PaginaOnboarding,
         indice: Int
     ) -> some View {
-        VStack(spacing: 0) {
-            Spacer(minLength: 24)
-
-            iconoPrincipal(
-                pagina,
-                indice: indice
-            )
-
-            Spacer()
-                .frame(height: 34)
-
-            VStack(spacing: 12) {
-                etiquetaFuncion(
-                    para: pagina,
-                    indice: indice
-                )
-
-                Text(pagina.titulo.localizado)
-                    .font(
-                        .system(
-                            size: 28,
-                            weight: .bold,
-                            design: .rounded
-                        )
+        // Con letra grande o en un iPhone pequeño el contenido no cabe: se puede desplazar
+        GeometryReader { geo in
+            ScrollView {
+                VStack(spacing: 24) {
+                    iconoPrincipal(
+                        pagina,
+                        indice: indice
                     )
-                    .foregroundStyle(.primary)
-                    .multilineTextAlignment(.center)
 
-                Text(pagina.descripcion.localizado)
-                    .font(.system(size: 16, weight: .regular))
-                    .foregroundStyle(.secondary)
-                    .multilineTextAlignment(.center)
-                    .lineSpacing(3)
+                    VStack(spacing: 12) {
+                        etiquetaFuncion(para: pagina)
 
-                Text(pagina.detalle.localizado)
-                    .font(.system(size: 13, weight: .medium))
-                    .foregroundStyle(.secondary.opacity(0.84))
-                    .multilineTextAlignment(.center)
-                    .lineSpacing(2)
-                    .padding(.top, 3)
+                        Text(pagina.titulo)
+                            .font(
+                                .system(
+                                    size: 28,
+                                    weight: .bold,
+                                    design: .rounded
+                                )
+                            )
+                            .foregroundStyle(.primary)
+                            .multilineTextAlignment(.center)
+
+                        Text(pagina.descripcion)
+                            .font(.system(size: 16, weight: .regular))
+                            .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.center)
+                            .lineSpacing(3)
+                    }
+                    .accessibilityElement(children: .combine)
+
+                    tarjetaPuntos(
+                        pagina,
+                        indice: indice
+                    )
+                }
+                .padding(.horizontal, 26)
+                .padding(.vertical, 14)
+                .frame(maxWidth: 560)
+                .frame(maxWidth: .infinity, minHeight: geo.size.height)
             }
-            .padding(.horizontal, 30)
-            .frame(maxWidth: 560)
-
-            Spacer(minLength: 28)
+            .scrollBounceBehavior(.basedOnSize)
+            .scrollIndicators(.hidden)
         }
-        .padding(.top, 8)
     }
 
     private func etiquetaFuncion(
-        para pagina: PaginaOnboarding,
-        indice: Int
+        para pagina: PaginaOnboarding
     ) -> some View {
-        Text(textoEtiqueta(indice))
+        Text(pagina.etiqueta)
             .font(.caption2.weight(.bold))
             .tracking(0.9)
             .foregroundStyle(pagina.color)
@@ -313,27 +306,72 @@ struct OnboardingView: View {
             }
     }
 
-    private func textoEtiqueta(
-        _ indice: Int
-    ) -> String {
-        switch indice {
-        case 0:
-            return L("ESCÁNER INTELIGENTE")
+    /// Los tres puntos de la página, que entran uno tras otro al llegar a ella.
+    private func tarjetaPuntos(
+        _ pagina: PaginaOnboarding,
+        indice: Int
+    ) -> some View {
+        let visible = paginaActual == indice
 
-        case 1:
-            return L("GUÍA DE MONTAJE")
+        return VStack(alignment: .leading, spacing: 14) {
+            ForEach(
+                Array(pagina.puntos.enumerated()),
+                id: \.element.id
+            ) { orden, punto in
+                HStack(alignment: .center, spacing: 12) {
+                    Image(systemName: punto.icono)
+                        .font(.system(size: 15, weight: .semibold))
+                        .foregroundStyle(pagina.color)
+                        .frame(width: 36, height: 36)
+                        .background(
+                            pagina.color.opacity(
+                                colorScheme == .dark ? 0.18 : 0.12
+                            ),
+                            in: RoundedRectangle(
+                                cornerRadius: 11,
+                                style: .continuous
+                            )
+                        )
+                        .accessibilityHidden(true)
 
-        case 2:
-            return L("DICCIONARIO DE HARDWARE")
+                    Text(punto.texto)
+                        .font(.system(size: 15, weight: .medium))
+                        .foregroundStyle(.primary.opacity(0.9))
+                        .fixedSize(horizontal: false, vertical: true)
 
-        case 3:
-            return L("DIAGNÓSTICO DE ARRANQUE")
-
-        case 4:
-            return L("ASISTENTE TÉCNICO")
-
-        default:
-            return L("MIS CONFIGURACIONES")
+                    Spacer(minLength: 0)
+                }
+                .opacity(visible || reducirMovimiento ? 1 : 0)
+                .offset(y: visible || reducirMovimiento ? 0 : 10)
+                .animation(
+                    reducirMovimiento
+                        ? nil
+                        : .spring(response: 0.45, dampingFraction: 0.82)
+                            .delay(0.12 + Double(orden) * 0.09),
+                    value: visible
+                )
+            }
+        }
+        .padding(18)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(
+            colorControl,
+            in: RoundedRectangle(
+                cornerRadius: 24,
+                style: .continuous
+            )
+        )
+        .overlay {
+            RoundedRectangle(
+                cornerRadius: 24,
+                style: .continuous
+            )
+            .stroke(
+                Color.primary.opacity(
+                    colorScheme == .dark ? 0.13 : 0.09
+                ),
+                lineWidth: 1
+            )
         }
     }
 
@@ -348,7 +386,7 @@ struct OnboardingView: View {
                         colorScheme == .dark ? 0.13 : 0.11
                     )
                 )
-                .frame(width: 210, height: 210)
+                .frame(width: 190, height: 190)
                 .scaleEffect(
                     !reducirMovimiento
                     && paginaActual == indice
@@ -411,7 +449,39 @@ struct OnboardingView: View {
                     radius: 14,
                     y: 6
                 )
+                .symbolEffect(
+                    .bounce,
+                    options: .nonRepeating,
+                    value: paginaActual == indice
+                )
+
+            // Iconos pequeños alrededor, que flotan despacio
+            ForEach(
+                Array(pagina.satelites.enumerated()),
+                id: \.offset
+            ) { orden, simbolo in
+                let angulo = Angle.degrees(-150 + Double(orden) * 120)
+                let flota = !reducirMovimiento && haloActivo && paginaActual == indice
+
+                Image(systemName: simbolo)
+                    .font(.system(size: 16, weight: .semibold))
+                    .foregroundStyle(pagina.color)
+                    .frame(width: 42, height: 42)
+                    .background(colorControl, in: Circle())
+                    .overlay {
+                        Circle()
+                            .stroke(
+                                pagina.color.opacity(0.30),
+                                lineWidth: 1
+                            )
+                    }
+                    .offset(
+                        x: cos(angulo.radians) * 98,
+                        y: sin(angulo.radians) * 98 + (flota ? (orden.isMultiple(of: 2) ? -6 : 6) : 0)
+                    )
+            }
         }
+        .frame(width: 240, height: 240)
         .accessibilityHidden(true)
     }
 

@@ -10,7 +10,7 @@ import SwiftUI
 
 enum SeccionApp: String, CaseIterable, Identifiable, Hashable {
     case inicio, escaner, diagnostico, asistente
-    case diccionario, detectables
+    case diccionario, guias, guiasMontaje, detectables
     case builds, historial
 
     var id: String { rawValue }
@@ -22,6 +22,8 @@ enum SeccionApp: String, CaseIterable, Identifiable, Hashable {
         case .diagnostico: "Diagnóstico"
         case .asistente: "Asistente"
         case .diccionario: "Diccionario"
+        case .guias: "Piezas en 3D"
+        case .guiasMontaje: "Guías de montaje"
         case .detectables: "Detectables"
         case .builds: "Mis Builds"
         case .historial: "Historial"
@@ -35,6 +37,8 @@ enum SeccionApp: String, CaseIterable, Identifiable, Hashable {
         case .diagnostico: "exclamationmark.triangle.fill"
         case .asistente: "sparkles"
         case .diccionario: "character.book.closed.fill"
+        case .guias: "cube.transparent.fill"
+        case .guiasMontaje: "wrench.and.screwdriver.fill"
         case .detectables: "viewfinder"
         case .builds: "pc"
         case .historial: "books.vertical.fill"
@@ -48,6 +52,8 @@ enum SeccionApp: String, CaseIterable, Identifiable, Hashable {
         case .diagnostico: .orange
         case .asistente: .pink
         case .diccionario: .purple
+        case .guias: .mint
+        case .guiasMontaje: .cyan
         case .detectables: .teal
         case .builds: .green
         case .historial: .cyan
@@ -57,7 +63,7 @@ enum SeccionApp: String, CaseIterable, Identifiable, Hashable {
     /// Grupos de la barra lateral.
     static let grupos: [(String, [SeccionApp])] = [
         ("Herramientas", [.inicio, .escaner, .diagnostico, .asistente]),
-        ("Aprender", [.diccionario, .detectables]),
+        ("Aprender", [.diccionario, .guiasMontaje, .guias, .detectables]),
         ("Lo tuyo", [.builds, .historial]),
     ]
 
@@ -70,6 +76,8 @@ enum SeccionApp: String, CaseIterable, Identifiable, Hashable {
         case .diagnostico: DiagnosticoLedView()
         case .asistente: ChatIAView()
         case .diccionario: DiccionarioView(diccionario: DatosHardware.obtenerDiccionario())
+        case .guias: GuiasVisualesView()
+        case .guiasMontaje: GuiasMontajeView()
         case .detectables: ComponentesDetectablesView()
         case .builds: MisBuildsView()
         case .historial: HistorialView()

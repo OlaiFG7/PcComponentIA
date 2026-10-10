@@ -26,16 +26,17 @@ Everything runs **on device**: detection uses a custom Core ML model and the ass
 2. [How I built it](#how-i-built-it)
 3. [What I learned](#what-i-learned)
 4. [Features](#features)
-5. [Requirements and running the app](#requirements-and-running-the-app)
-6. [Component detector](#component-detector)
-7. [AI assistant](#ai-assistant)
-8. [Project structure](#project-structure)
-9. [Stored data](#stored-data)
-10. [Extending the app](#extending-the-app)
-11. [Limitations and next steps](#limitations-and-next-steps)
-12. [Data credits](#data-credits)
-13. [Author](#author)
-14. [License](#license)
+5. [What is new in the latest version](#what-is-new-in-the-latest-version)
+6. [Requirements and running the app](#requirements-and-running-the-app)
+7. [Component detector](#component-detector)
+8. [AI assistant](#ai-assistant)
+9. [Project structure](#project-structure)
+10. [Stored data](#stored-data)
+11. [Extending the app](#extending-the-app)
+12. [Limitations and next steps](#limitations-and-next-steps)
+13. [Data credits](#data-credits)
+14. [Author](#author)
+15. [License](#license)
 
 ---
 
@@ -89,8 +90,9 @@ I measured every version on a test set to compare them honestly: from **4.7% to 
 - Capture history with configurable retention (7, 30 or 90 days).
 
 **Learn**
-- Dictionary with 69 sheets on components, connectors and ports: description, installation guide, difficulty, time and, for some, a real photo.
+- Dictionary with 69 sheets on components, connectors and ports: description, installation guide, difficulty, time and, for some, a real photo. With **Basic, Intermediate and Expert levels** and a **glossary of acronyms**.
 - **3D viewer** (RealityKit) for the graphics card, motherboard, RAM, M.2 SSD and power supply: the camera zooms into each connector and shows a bubble explaining it.
+- **"Which is which?"**: a comparison of look-alike connectors, with drawings and warnings.
 - **Interactive 2D connector diagrams** for the rest (e.g. sound card).
 - **"Connects to / Related"** section on every sheet.
 - Separate list of the components the AI can detect.
@@ -98,6 +100,7 @@ I measured every version on a test set to compare them honestly: from **4.7% to 
 **Build and troubleshoot**
 - *Build* manager: components, prices, tags, notes and budget; add parts from the scanner or the dictionary; share as text or image.
 - **Compatibility and power draw**: CPU/motherboard socket, DDR4/DDR5, video output and recommended PSU, worked out from the part names.
+- **Animated assembly guides** for the processor and cooler, the RAM and the graphics card.
 - Persistent assembly checklist, **one per build**.
 - Troubleshooting by LEDs (Q-LED), POST codes and **beep codes** (AMI and Award), with history.
 
@@ -109,6 +112,38 @@ I measured every version on a test set to compare them honestly: from **4.7% to 
 - **Siri and Shortcuts**: "Scan a component with PcComponentIA", "How's my build going in PcComponentIA?"…
 - **Spanish and English.**
 - Onboarding, workshop (dark) / light mode, animations that respect "Reduce Motion", and VoiceOver labels.
+
+---
+
+## What is new in the latest version
+
+October 2026 release. The goal was for the app to teach better, not just detect: more ways to see what each part looks like and how it is installed.
+
+**Assembly guides (new section)**
+- Step-by-step guides for the three trickiest points: **processor and cooler** (9 steps), **RAM** (5) and **graphics card** (6).
+- Each step has an **animated drawing** made with `Canvas`, the text and, where there is a risk, a warning. The processor guide adapts to the socket: Intel LGA, AMD AM5 or AMD AM4.
+- At the end, the matching checklist steps can be marked from the guide itself.
+
+**Parts in 3D (new section)**
+- All the 3D models gathered in one gallery, in addition to the button on each sheet.
+- **Fixed 3D viewer:** the motherboard's points floated in front of the model, because it includes installed RAM modules and that distorted the height. Each point now sits on its part and the camera faces the board head-on.
+- The motherboard goes from 15 to **23 explained connectors**, with a scrolling row to pick them and a drawing of the connector's shape in the bubble.
+- **"Which is which?":** 12 comparisons of connectors people mix up (HDMI and DisplayPort, EPS and PCIe, RGB and ARGB, Intel and AMD sockets, motherboard sizes, PSU cables…), with vector drawings and warnings on the pairs that can cause damage.
+
+**Dictionary**
+- **Basic, Intermediate and Expert levels:** beginners see only the 17 main parts; the rest appear as the level goes up. Searching ignores the level.
+- **Glossary of acronyms** with 35 terms (PWM, XMP, VRM, NVMe…), each explained in one sentence.
+
+**Scanner**
+- **Duplicate box** filter: if the model marks the same object several times, only the most reliable detection is kept.
+- Detecting a CPU or a socket now offers to mark its checklist step (model 4's merged class was not covered).
+
+**Interface**
+- **Rebuilt welcome screens:** six pages with three concrete points each, now covering the recent features.
+- On iPad, Home shows the button that opens and closes the sidebar; the language button shows the active language.
+- Fixes to the English version (dictionary names and search, scanner sheet).
+
+To place the 3D viewer's points without depending on the device I used a tool of my own: it draws each USDZ model from three views with a grid and the points on top. The Codex and Gemini reviews were checked one by one before applying anything.
 
 ---
 
@@ -216,9 +251,9 @@ PcComponentIA/
 ├── Funciones/
 │   ├── Inicio/             Home screen and onboarding
 │   ├── Escaner/            Camera, detector (Vision + Core ML), scanner and AR guide
-│   ├── Componentes/        Dictionary, sheets, 2D diagrams, 3D viewer and photos
+│   ├── Componentes/        Dictionary, sheets, levels, glossary, 2D diagrams, 3D viewer and comparison tool
 │   ├── Builds/             My builds, compatibility and power draw, sharing
-│   ├── Montaje/            Assembly checklist (one per build)
+│   ├── Montaje/            Checklist (one per build) and animated assembly guides
 │   ├── Diagnostico/        LEDs, POST codes, beep codes and troubleshooting history
 │   ├── Asistente/          Chat with Foundation Models
 │   └── Historial/          Capture history and its retention
@@ -283,7 +318,8 @@ Everything is stored **only on the device**.
 ## Limitations and next steps
 
 - **Uneven detector accuracy:** large parts (CPU, socket, M.2, hard drives, PSU) work well, but `Modulo_RAM`, `Raton` and liquid cooling are still weak. The next step (model 5): **refine the labels of the current photos**, completing the missing ones in photos from mixed datasets (model 4 itself can propose the boxes, which would then only need checking), and **gather more photos of the parts it detects worst**: RAM modules, mice, radiators, liquid-cooling blocks, USB ports and GPUs. `Pila_CMOS`, `Puerto_SATA`, `Puerto_HDMI` and `Protector_IO` are no longer detected; they are explained in their sheets, diagrams and the 3D viewer.
-- **3D viewer:** the selectable points for each connector need adjusting so they sit exactly on the connector they explain in each model. Some motherboard connectors are not explained yet: points need adding for all of them.
+- **Upcoming features:** guided first boot (what to check at power-on, BIOS, XMP), a global search on Home, and different text per level inside each sheet (for now the levels only filter which sheets are shown).
+- **3D viewer:** some connectors cannot be identified with confidence on the motherboard model (PCIe x4, front USB-C), so they are not marked.
 - **Ports in the detector:** small ports (`Puerto_USB_A`, `Puerto_USB_C`, `Puerto_Ethernet`) are the ones it detects worst. One option for model 5 is to remove them from the detector, as was done with HDMI and SATA, and explain them in the 3D viewer instead.
 - **Approximate compatibility check:** it is inferred from the names the user types; if a model is not recognised, the app says so instead of guessing.
 - **No widgets or iCloud:** they require the paid developer account (App Groups / CloudKit).

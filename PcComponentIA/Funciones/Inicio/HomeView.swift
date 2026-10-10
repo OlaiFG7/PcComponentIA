@@ -11,6 +11,7 @@ struct HomeView: View {
     @EnvironmentObject private var checklist: GestorChecklist
 
     @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.horizontalSizeClass) private var sizeClass
 
     @AppStorage("onboardingCompletado")
     private var onboardingCompletado = false
@@ -79,7 +80,8 @@ struct HomeView: View {
                     .safeAreaPadding(.top, 108)
             }
         }
-        .navigationBarHidden(true)
+        // En iPad la barra se deja visible: lleva el botón que abre y cierra la barra lateral
+        .toolbar(sizeClass == .regular ? .automatic : .hidden, for: .navigationBar)
         .onAppear {
             withAnimation(Animaciones.muelle) {
                 totalEscaneos = AlmacenHistorial.contar()
@@ -249,13 +251,15 @@ struct HomeView: View {
                 }
             }
         } label: {
-            Image(systemName: "globe")
-                .font(.system(size: 17, weight: .semibold))
+            // El código del idioma activo, para saber cuál está puesto sin abrir el menú
+            Text(Idioma.codigo.uppercased())
+                .font(.system(size: 15, weight: .bold, design: .rounded))
                 .foregroundStyle(.teal)
                 .frame(width: 46, height: 46)
                 .homeGlassCircle()
         }
         .accessibilityLabel("Idioma")
+        .accessibilityValue(Idioma.nombre(de: Idioma.codigo))
     }
 
     private var botonGuia: some View {
@@ -493,13 +497,13 @@ struct HomeView: View {
         let pantallaAncha = anchoDisponible >= 620
 
         // Modificado a una rejilla dinámica o de 3 columnas en móviles para acomodar el nuevo botón de forma equilibrada
-        let columnas = Array(
-            repeating: GridItem(
-                .flexible(),
+        // Adaptable: en iPad en vertical o a pantalla partida, 2 columnas se estiraban y 6 se apretaban
+        let columnas = [
+            GridItem(
+                .adaptive(minimum: pantallaAncha ? 130 : 150),
                 spacing: 10
-            ),
-            count: pantallaAncha ? 6 : 2
-        )
+            )
+        ]
 
         return VStack(alignment: .leading, spacing: 11) {
             Text("Explorar")
@@ -534,6 +538,30 @@ struct HomeView: View {
                     )
                 )
                 .aparicionEscalonada(indice: 4)
+
+                AccesoRapidoCompacto(
+                    icono: "wrench.and.screwdriver.fill",
+                    titulo: "Guías",
+                    color: Color(
+                        red: 0.10,
+                        green: 0.55,
+                        blue: 0.90
+                    ),
+                    destino: AnyView(GuiasMontajeView())
+                )
+                .aparicionEscalonada(indice: 5)
+
+                AccesoRapidoCompacto(
+                    icono: "cube.transparent.fill",
+                    titulo: "Piezas 3D",
+                    color: Color(
+                        red: 0.05,
+                        green: 0.62,
+                        blue: 0.72
+                    ),
+                    destino: AnyView(GuiasVisualesView())
+                )
+                .aparicionEscalonada(indice: 5)
 
                 AccesoRapidoCompacto(
                     icono: "viewfinder",

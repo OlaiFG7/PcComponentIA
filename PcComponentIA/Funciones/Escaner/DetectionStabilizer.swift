@@ -154,10 +154,41 @@ final class DetectionStabilizer {
             (left.confidence + Float(left.stableFrames) * 0.02) > (right.confidence + Float(right.stableFrames) * 0.02)
         }
 
-        return visibles.map {
+        return Self.sinRepetidas(visibles, etiqueta: \.label, caja: \.boundingBox).map {
             DeteccionEstable(label: $0.label, confidence: $0.confidence, boundingBox: $0.boundingBox,
                              tamanoFotograma: tamanoFotograma)
         }
+    }
+
+    /// Quita las cajas repetidas sobre un mismo objeto. La lista llega ordenada de más a menos
+    /// fiable, así que de cada grupo se queda la mejor. Dos cajas son el mismo objeto si:
+    /// - tienen la misma clase y se solapan bastante, o una está casi entera dentro de la otra
+    ///   (pasa cuando una pista antigua y una nueva conviven unos fotogramas);
+    /// - tienen distinta clase pero ocupan prácticamente el mismo sitio (el modelo duda entre dos
+    ///   nombres). Con poco solape no se tocan: una ranura dentro de la placa son dos objetos.
+    static func sinRepetidas<T>(
+        _ detecciones: [T],
+        etiqueta: (T) -> String,
+        caja: (T) -> CGRect
+    ) -> [T] {
+        var elegidas: [T] = []
+        for candidata in detecciones {
+            let rect = caja(candidata)
+            let repetida = elegidas.contains { elegida in
+                let otra = caja(elegida)
+                let interseccion = rect.intersection(otra)
+                guard !interseccion.isNull, interseccion.width > 0, interseccion.height > 0 else { return false }
+                let areaComun = interseccion.width * interseccion.height
+                let areaA = rect.width * rect.height, areaB = otra.width * otra.height
+                let solape = areaComun / (areaA + areaB - areaComun)
+                if etiqueta(candidata) == etiqueta(elegida) {
+                    return solape >= 0.4 || areaComun / min(areaA, areaB) >= 0.75
+                }
+                return solape >= 0.65
+            }
+            if !repetida { elegidas.append(candidata) }
+        }
+        return elegidas
     }
 
     // MARK: - Geometría y Suavizado Adaptativo
@@ -244,7 +275,8 @@ final class DetectionStabilizer {
                     }
                     .sorted { $0.confidence > $1.confidence }
 
-                continuacion.resume(returning: Array(resultados.prefix(8)))
+                let unicas = Self.sinRepetidas(resultados, etiqueta: \.label, caja: \.boundingBox)
+                continuacion.resume(returning: Array(unicas.prefix(8)))
             }
         }
     }

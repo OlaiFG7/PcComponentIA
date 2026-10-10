@@ -127,7 +127,7 @@ struct DetalleComponenteView: View {
                     .foregroundColor(.cyan)
                     .tracking(2)
 
-                Text(nombre.uppercased())
+                Text(nombre.replacingOccurrences(of: "_", with: " ").localizado.uppercased())
                     .font(
                         .system(
                             size: 22,
@@ -164,7 +164,7 @@ struct DetalleComponenteView: View {
                                 ? Color.white
                                 : Color.green
                         )
-                        .frame(width: 40, height: 40)
+                        .frame(width: 44, height: 44)
                         .background(
                             pasoMarcado
                                 ? Color.green
@@ -217,7 +217,7 @@ struct DetalleComponenteView: View {
                                 )
                             )
                             .foregroundColor(.primary)
-                            .frame(width: 40, height: 40)
+                            .frame(width: 44, height: 44)
                             .background(
                                 Color.primary.opacity(0.1),
                                 in: Circle()

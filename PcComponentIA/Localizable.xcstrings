@@ -97,6 +97,17 @@
         }
       }
     },
+    "¿Cuál es cuál?" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Which is which?"
+          }
+        }
+      }
+    },
     "¿Eliminar builds seleccionados?" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -364,6 +375,17 @@
         }
       }
     },
+    "%lld conectores" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld connectors"
+          }
+        }
+      }
+    },
     "%lld conversaciones guardadas" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -459,6 +481,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld min"
+          }
+        }
+      }
+    },
+    "%lld pasos" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld steps"
           }
         }
       }
@@ -757,6 +790,28 @@
         }
       }
     },
+    "3 pines (DC)" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3-pin (DC)"
+          }
+        }
+      }
+    },
+    "4 pines (PWM)" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4-pin (PWM)"
+          }
+        }
+      }
+    },
     "7 días" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -775,6 +830,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "12VHPWR / 12V-2x6"
+          }
+        }
+      }
+    },
+    "17 × 17 cm. Para equipos compactos: una ranura de expansión y dos de RAM." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "17 × 17 cm. For compact PCs: one expansion slot and two RAM slots."
+          }
+        }
+      }
+    },
+    "24,4 × 24,4 cm. Más corta; hasta 4 ranuras de expansión." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "24.4 × 24.4 cm. Shorter; up to 4 expansion slots."
+          }
+        }
+      }
+    },
+    "30,5 × 24,4 cm. La más habitual; hasta 7 ranuras de expansión." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "30.5 × 24.4 cm. The most common; up to 7 expansion slots."
           }
         }
       }
@@ -801,6 +889,17 @@
         }
       }
     },
+    "Abre el socket" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open the socket"
+          }
+        }
+      }
+    },
     "Abre la cámara para reconocer piezas de PC." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -808,6 +907,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Opens the camera to recognise PC parts."
+          }
+        }
+      }
+    },
+    "Abre la pestaña de la ranura" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open the slot latch"
+          }
+        }
+      }
+    },
+    "Abre las pestañas" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open the latches"
           }
         }
       }
@@ -830,6 +951,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Open assembly checklist"
+          }
+        }
+      }
+    },
+    "Abrir el socket, colocar el procesador, pasta térmica y disipador." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opening the socket, seating the processor, thermal paste and cooler."
           }
         }
       }
@@ -977,6 +1109,17 @@
         }
       }
     },
+    "Además, las ranuras, cables y puertos que hacen falta para montarlo." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plus the slots, cables and ports you need to build it."
+          }
+        }
+      }
+    },
     "Advertencia" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1006,6 +1149,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "History retention settings"
+          }
+        }
+      }
+    },
+    "Algo menos de 4 cm. SSD en tarjeta y adaptadores." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Just under 4 cm. Add-in SSDs and adapters."
           }
         }
       }
@@ -1050,6 +1204,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Main motherboard power. The largest connector on the PSU."
+          }
+        }
+      }
+    },
+    "Alinea el triángulo" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Line up the triangle"
+          }
+        }
+      }
+    },
+    "Alinea la muesca" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Line up the notch"
+          }
+        }
+      }
+    },
+    "Alinea los contactos dorados con la ranura y el soporte metálico con el hueco trasero. Presiona recta hasta oír el clic de la pestaña." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Line up the gold contacts with the slot and the metal bracket with the rear opening. Press straight down until you hear the latch click."
           }
         }
       }
@@ -1105,6 +1292,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Both use the %@ socket."
+          }
+        }
+      }
+    },
+    "AMD Ryzen 1000 a 5000. Los pines van en el procesador y el socket solo tiene agujeros." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AMD Ryzen 1000 to 5000. The pins are on the processor and the socket only has holes."
+          }
+        }
+      }
+    },
+    "AMD Ryzen 7000 en adelante. Pines en la placa, como en Intel. Solo admite DDR5." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AMD Ryzen 7000 onwards. Pins on the motherboard, like Intel. DDR5 only."
           }
         }
       }
@@ -1219,6 +1428,17 @@
         }
       }
     },
+    "Ancho, 15 contactos. Viene de la fuente." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wide, 15 contacts. It comes from the PSU."
+          }
+        }
+      }
+    },
     "Anotar los componentes instalados y cualquier cambio reciente" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1248,6 +1468,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "External antennas for a motherboard or Wi‑Fi card. They improve Wi‑Fi and Bluetooth coverage and speed."
+          }
+        }
+      }
+    },
+    "Antenas Wi-Fi" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wi-Fi antennas"
+          }
+        }
+      }
+    },
+    "Anterior" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back"
           }
         }
       }
@@ -1340,6 +1582,17 @@
         }
       }
     },
+    "Apoya el módulo recto y presiona con los pulgares en los dos extremos hasta que las pestañas se cierren solas. Hace falta más fuerza de la que parece." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rest the module straight in the slot and press with your thumbs on both ends until the latches close by themselves. It takes more force than you'd expect."
+          }
+        }
+      }
+    },
     "Aprende mientras montas" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1380,6 +1633,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Point the camera at a component and let\nthe AI help you recognise it."
+          }
+        }
+      }
+    },
+    "Apunta la cámara a una pieza y la app te dice qué es, sin conexión." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Point the camera at a part and the app tells you what it is, with no connection needed."
           }
         }
       }
@@ -1512,6 +1776,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "TECH ASSISTANT"
+          }
+        }
+      }
+    },
+    "ASISTENTE Y MÁS" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ASSISTANT AND MORE"
           }
         }
       }
@@ -1655,6 +1930,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ASUS links it to external devices on some models."
+          }
+        }
+      }
+    },
+    "Atorníllala a la caja" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Screw it to the case"
           }
         }
       }
@@ -1835,6 +2121,39 @@
         }
       }
     },
+    "Baja el marco metálico y después la palanca, hasta engancharla bajo su pestaña. Hace falta bastante fuerza y es normal oír un crujido. La tapa de plástico salta sola: guárdala." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lower the metal frame and then the lever, until it hooks under its tab. It takes quite a bit of force and a creak is normal. The plastic cover pops off by itself: keep it."
+          }
+        }
+      }
+    },
+    "Baja el procesador recto y suéltalo sobre el socket. Debe quedar plano por su propio peso. Si no asienta, levántalo y vuelve a alinearlo: nunca lo empujes." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lower the processor straight down and let go over the socket. It should sit flat under its own weight. If it doesn't seat, lift it and line it up again: never push it."
+          }
+        }
+      }
+    },
+    "Baja la palanca hasta que quede enganchada. Va suave: si se resiste, el procesador no está bien asentado." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lower the lever until it locks in place. It moves easily: if it resists, the processor isn't seated properly."
+          }
+        }
+      }
+    },
     "Bajar" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1853,6 +2172,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Core complete"
+          }
+        }
+      }
+    },
+    "Básico" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Basic"
           }
         }
       }
@@ -2069,6 +2399,17 @@
         }
       }
     },
+    "Buscar sigla o palabra..." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search acronym or word..."
+          }
+        }
+      }
+    },
     "Cabecera ARGB direccionable de 5 V y tres pines integrada en la placa base. Permite controlar LEDs individuales en accesorios compatibles." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2175,6 +2516,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "4-pin header for the CPU cooler fan."
+          }
+        }
+      }
+    },
+    "Cabezal de 4 pines para tiras de luz de un solo color. No lo confundas con el ARGB de 5 V, que tiene 3 pines." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4-pin header for single-colour light strips. Don't confuse it with 5 V ARGB, which has 3 pins."
           }
         }
       }
@@ -2443,6 +2795,17 @@
         }
       }
     },
+    "Cables de la fuente" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PSU cables"
+          }
+        }
+      }
+    },
     "Cada 7 días" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2476,6 +2839,39 @@
         }
       }
     },
+    "Cada cable solo entra en su sitio y en una posición. Si no entra con una presión suave, no es el suyo." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Each cable only fits its own place, one way round. If it doesn't go in with gentle pressure, it's the wrong one."
+          }
+        }
+      }
+    },
+    "Cada componente, conector y puerto explicado con palabras sencillas." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Every component, connector and port explained in plain words."
+          }
+        }
+      }
+    },
+    "Cada disipador se ancla de una forma. Sigue su manual para elegir las piezas de tu socket." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Every cooler mounts differently. Follow its manual to pick the parts for your socket."
+          }
+        }
+      }
+    },
     "Caja" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2494,6 +2890,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "PC case"
+          }
+        }
+      }
+    },
+    "Calcula el consumo y la fuente recomendada" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estimates power draw and the recommended PSU"
+          }
+        }
+      }
+    },
+    "Calor, en vatios, que el disipador debe ser capaz de evacuar. Orienta sobre el consumo." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heat, in watts, that the cooler must be able to remove. It gives an idea of power draw."
           }
         }
       }
@@ -2696,6 +3114,17 @@
         }
       }
     },
+    "Chip o función de seguridad que exigen algunos sistemas operativos, como Windows 11." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Security chip or feature required by some operating systems, such as Windows 11."
+          }
+        }
+      }
+    },
     "Chips de memoria" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2720,6 +3149,39 @@
     },
     "Chipset" : {
 
+    },
+    "Cierra el socket" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close the socket"
+          }
+        }
+      }
+    },
+    "Circuito de la placa que da al procesador el voltaje exacto que necesita." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Motherboard circuit that gives the processor the exact voltage it needs."
+          }
+        }
+      }
+    },
+    "clic" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "click"
+          }
+        }
+      }
     },
     "Código %@ no incluido aún" : {
       "extractionState" : "manual",
@@ -2776,6 +3238,39 @@
         }
       }
     },
+    "Códigos POST de ASUS, Gigabyte, MSI y ASRock" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "POST codes from ASUS, Gigabyte, MSI and ASRock"
+          }
+        }
+      }
+    },
+    "Coge el módulo por los bordes, sin tocar los contactos dorados." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hold the module by its edges, without touching the gold contacts."
+          }
+        }
+      }
+    },
+    "Coge el procesador por los bordes: los pines de debajo se doblan con facilidad." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hold the processor by its edges: the pins underneath bend easily."
+          }
+        }
+      }
+    },
     "Coloca primero la RAM en A2. Si instalas dos módulos, usa A2 y B2. Confirma las marcas impresas en tu placa." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2783,6 +3278,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Put the RAM in A2 first. If you're installing two modules, use A2 and B2. Check the markings printed on your motherboard."
+          }
+        }
+      }
+    },
+    "Colócalo recto sobre el procesador, alineado con sus anclajes. Aprieta los tornillos en cruz y poco a poco: unas vueltas a uno, luego al de la esquina contraria, y así hasta que todos hagan tope." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Place it straight on the processor, lined up with its mounts. Tighten the screws in a cross pattern, a little at a time: a few turns on one, then the opposite corner, and so on until they all stop."
           }
         }
       }
@@ -2860,6 +3366,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "How to install it"
+          }
+        }
+      }
+    },
+    "Compacto, de 12 pines más 4 pequeños. En gráficas modernas; debe entrar hasta el fondo." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compact, 12 pins plus 4 small ones. On modern graphics cards; it must be pushed all the way in."
+          }
+        }
+      }
+    },
+    "Comparte la build como texto o imagen" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share the build as text or an image"
           }
         }
       }
@@ -3036,6 +3564,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Password check"
+          }
+        }
+      }
+    },
+    "Comprobación final" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Final check"
+          }
+        }
+      }
+    },
+    "Comprobación que hace la placa al encender. Si falla, lo indica con LEDs, códigos o pitidos." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check the motherboard runs at power-on. If it fails, it tells you with LEDs, codes or beeps."
           }
         }
       }
@@ -3579,6 +4129,17 @@
         }
       }
     },
+    "Comprueba" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check"
+          }
+        }
+      }
+    },
     "Comprueba el orden de los pitidos o elige otra BIOS. Cada fabricante puede usar códigos propios: consulta el manual de tu placa." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3645,6 +4206,17 @@
         }
       }
     },
+    "Comprueba si el procesador, la placa y la RAM son compatibles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check whether the processor, motherboard and RAM are compatible"
+          }
+        }
+      }
+    },
     "Compruebe que el formato de la placa —ATX, microATX o Mini-ITX— es compatible con la caja. Coloque separadores solo donde coincidan con sus agujeros. Instale el protector I/O si no está integrado, baje la placa sin arrastrarla y fíjela con tornillos sin apretar en exceso." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3689,6 +4261,17 @@
         }
       }
     },
+    "Con dos módulos, usa la segunda y la cuarta ranura contando desde el procesador (A2 y B2). Así trabajan en doble canal. Con cuatro, llénalas todas." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "With two modules, use the second and fourth slots counting from the processor (A2 and B2). That way they run in dual channel. With four, fill them all."
+          }
+        }
+      }
+    },
     "Con el equipo apagado, limpie los restos antiguos con alcohol isopropílico y una toallita sin pelusa. Aplique una gota centrada, aproximadamente del tamaño de un guisante. Coloque el disipador recto y apriete su anclaje; la presión repartirá la pasta. No la extienda con el dedo." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3722,6 +4305,17 @@
         }
       }
     },
+    "Conecta el cable del monitor a los puertos de la gráfica, no a los de la placa base. Es el motivo más habitual de que no haya imagen en el primer arranque." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connect the monitor cable to the graphics card's ports, not the motherboard's. It's the most common reason for no picture on first boot."
+          }
+        }
+      }
+    },
     "Conecta el monitor a la gráfica, no a la placa base." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3729,6 +4323,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Connect the monitor to the graphics card, not to the motherboard."
+          }
+        }
+      }
+    },
+    "Conecta el ventilador" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connect the fan"
+          }
+        }
+      }
+    },
+    "Conecta la alimentación" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connect the power"
           }
         }
       }
@@ -4052,6 +4668,17 @@
         }
       }
     },
+    "Conector de 8 pines (4 + 4) que alimenta el procesador." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "8-pin connector (4 + 4) that powers the processor."
+          }
+        }
+      }
+    },
     "Conector de 16 pines de las gráficas modernas. Debe entrar hasta el fondo." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4257,6 +4884,72 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Connectors"
+          }
+        }
+      }
+    },
+    "Conectores dorados donde se enroscan las antenas de Wi-Fi y Bluetooth." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gold connectors where the Wi-Fi and Bluetooth antennas screw on."
+          }
+        }
+      }
+    },
+    "Conectores que se parecen y cómo distinguirlos de un vistazo." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connectors that look alike and how to tell them apart at a glance."
+          }
+        }
+      }
+    },
+    "Conectores que se parecen y palabras que suenan a chino." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connectors that look alike and words that sound like jargon."
+          }
+        }
+      }
+    },
+    "Conexión de discos duros y SSD de 2,5 pulgadas. Usa un cable de datos y otro de alimentación." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connection for hard drives and 2.5-inch SSDs. It uses one data cable and one power cable."
+          }
+        }
+      }
+    },
+    "Conexión de las ranuras de expansión (x1, x4, x16) y de los SSD NVMe." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connection used by expansion slots (x1, x4, x16) and NVMe SSDs."
+          }
+        }
+      }
+    },
+    "Conexión para periféricos. El conector puede ser tipo A (rectangular) o tipo C (ovalado)." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connection for peripherals. The connector can be type A (rectangular) or type C (oval)."
           }
         }
       }
@@ -4690,6 +5383,17 @@
         }
       }
     },
+    "Control preciso de la velocidad de un ventilador mediante su cuarto pin." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Precise control of a fan's speed through its fourth pin."
+          }
+        }
+      }
+    },
     "Controlador" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4766,6 +5470,9 @@
           }
         }
       }
+    },
+    "CPU" : {
+
     },
     "CPU AMD" : {
       "extractionState" : "manual",
@@ -4921,6 +5628,28 @@
         }
       }
     },
+    "Cuatro pines gruesos. Es antiguo, pero aún lo usan algunos ventiladores y accesorios." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Four thick pins. It's old, but some fans and accessories still use it."
+          }
+        }
+      }
+    },
+    "Cuatro pines seguidos. Toda la tira se ilumina del mismo color." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Four pins in a row. The whole strip lights up in the same colour."
+          }
+        }
+      }
+    },
     "Cuatro ranuras DIMM. Con dos módulos, usa las que indique el manual (suele ser A2 y B2)." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4932,6 +5661,17 @@
         }
       }
     },
+    "Cuenta los pines del cabezal de la placa." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Count the pins on the motherboard header."
+          }
+        }
+      }
+    },
     "DAC" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4939,6 +5679,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "DAC"
+          }
+        }
+      }
+    },
+    "DDR4 o DDR5" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DDR4 or DDR5"
+          }
+        }
+      }
+    },
+    "Déjalo caer, sin apretar" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Let it drop in, don't press"
           }
         }
       }
@@ -5548,6 +6310,17 @@
         }
       }
     },
+    "DICCIONARIO Y 3D" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DICTIONARY AND 3D"
+          }
+        }
+      }
+    },
     "Dice cuántos pasos del montaje llevas hechos." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5566,6 +6339,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "3.5-inch mechanical hard drive. It offers large capacity at low cost, but it's slower and more sensitive to knocks than an SSD."
+          }
+        }
+      }
+    },
+    "Disco duro mecánico: mucha capacidad a bajo precio, pero más lento que un SSD." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mechanical hard drive: lots of capacity at a low price, but slower than an SSD."
           }
         }
       }
@@ -5650,6 +6434,17 @@
         }
       }
     },
+    "Distingue conectores parecidos: HDMI y DisplayPort, EPS y PCIe, RGB y ARGB…" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tell look-alike connectors apart: HDMI and DisplayPort, EPS and PCIe, RGB and ARGB…"
+          }
+        }
+      }
+    },
     "Donde se guardan los archivos; no se borran al apagar." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5668,6 +6463,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Where the processor goes. Intel (LGA) and AMD (AM4/AM5) aren't compatible with each other."
+          }
+        }
+      }
+    },
+    "Dos esquinas recortadas. Es el de las teles y casi todos los monitores." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Two cut corners. It's the one on TVs and almost every monitor."
+          }
+        }
+      }
+    },
+    "Dos muescas (llaves B y M). Solo funciona en ranuras M.2 que admitan SATA." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Two notches (B and M keys). It only works in M.2 slots that support SATA."
           }
         }
       }
@@ -5815,6 +6632,17 @@
         }
       }
     },
+    "El chip gráfico. Se usa también para llamar a la tarjeta gráfica entera." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The graphics chip. It's also used to mean the whole graphics card."
+          }
+        }
+      }
+    },
     "El chipset entra en la fase DXE de inicialización de dispositivos y recursos." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5903,6 +6731,17 @@
         }
       }
     },
+    "El cuarto pin controla la velocidad con precisión. Es lo habitual hoy." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The fourth pin controls speed precisely. It's the norm today."
+          }
+        }
+      }
+    },
     "El detalle exacto de estos códigos depende de la plataforma." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5910,6 +6749,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The exact detail of these codes depends on the platform."
+          }
+        }
+      }
+    },
+    "El disipador no debe moverse al tocarlo, y el ventilador debe girar libre. Ya puedes marcar estos pasos en tu checklist." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The cooler shouldn't move when you touch it, and the fan should spin freely. You can now mark these steps in your checklist."
           }
         }
       }
@@ -6464,6 +7314,50 @@
         }
       }
     },
+    "El más grande. Alimenta la placa base." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The biggest. It powers the motherboard."
+          }
+        }
+      }
+    },
+    "El módulo tiene una muesca entre los contactos dorados, y la ranura, un resalte en el mismo sitio. No está en el centro, así que solo entra de una forma." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The module has a notch between the gold contacts, and the slot has a ridge in the same place. It isn't in the centre, so it only goes in one way."
+          }
+        }
+      }
+    },
+    "El monitor, a la gráfica" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The monitor goes to the graphics card"
+          }
+        }
+      }
+    },
+    "El nombre del socket (LGA1700, AM5…) viene en la caja de la placa y en la del procesador. Compruébalo antes de comprar." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The socket name (LGA1700, AM5…) is on the motherboard's box and on the processor's. Check it before buying."
+          }
+        }
+      }
+    },
     "El nombre te ayuda a distinguir esta configuración. La etiqueta define su propósito principal." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6471,6 +7365,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The name helps you tell this configuration apart. The tag sets its main purpose."
+          }
+        }
+      }
+    },
+    "El orden puede cambiar en algunas placas: confírmalo en su manual o en la serigrafía." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The order can differ on some motherboards: confirm it in the manual or the printing on the board."
           }
         }
       }
@@ -6486,6 +7391,17 @@
         }
       }
     },
+    "El procesador tiene un triángulo dorado en una esquina, y el socket, una marca igual. Las dos tienen que coincidir: el procesador solo encaja de una forma." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The processor has a gold triangle on one corner, and the socket has a matching mark. The two must line up: the processor only fits one way."
+          }
+        }
+      }
+    },
     "El procesador usa %@ y la placa %@. Hace falta cambiar uno de los dos." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6493,6 +7409,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The CPU uses %@ and the motherboard %@. One of them needs to be changed."
+          }
+        }
+      }
+    },
+    "El procesador: hace los cálculos y coordina el resto de piezas." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The processor: it does the calculations and coordinates the other parts."
           }
         }
       }
@@ -6651,6 +7578,17 @@
         }
       }
     },
+    "El socket de la placa y el del procesador tienen que ser exactamente el mismo: ni siquiera dos LGA distintos son compatibles entre sí." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The motherboard's socket and the processor's must be exactly the same: not even two different LGA sockets are compatible with each other."
+          }
+        }
+      }
+    },
     "El socket no se instala ni se conecta: forma parte de la placa base. Levante la palanca, alinee el triángulo dorado de la CPU con la marca del socket y déjela caer sin fuerza. Baje la palanca para fijarla. En AM4, proteja los pines de la CPU; en AM5, no toque los contactos del socket." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6684,6 +7622,17 @@
         }
       }
     },
+    "El SSD entra inclinado por un extremo y se atornilla por el otro." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The SSD goes in at an angle at one end and is screwed down at the other."
+          }
+        }
+      }
+    },
     "El tratamiento exacto depende de la plataforma de la placa." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6713,6 +7662,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The VRM, or voltage regulator module, is built into the motherboard and converts power from the PSU into stable voltages for the CPU."
+          }
+        }
+      }
+    },
+    "Elige las ranuras" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose the slots"
           }
         }
       }
@@ -6915,6 +7875,39 @@
         }
       }
     },
+    "Empuja hacia fuera las pestañas de los extremos de la ranura. Muchas placas solo tienen una pestaña móvil: el otro extremo es fijo." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Push the latches at the ends of the slot outwards. Many motherboards have only one moving latch: the other end is fixed."
+          }
+        }
+      }
+    },
+    "Empuja la palanca hacia abajo y hacia fuera para soltarla, y levántala del todo. El marco metálico se abre con ella. Deja puesta la tapa de plástico negra: saltará sola al cerrar." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Push the lever down and outwards to release it, then lift it all the way. The metal frame opens with it. Leave the black plastic cover on: it pops off by itself when you close it."
+          }
+        }
+      }
+    },
+    "Empuja la palanca hacia abajo y hacia fuera, levántala y abre el marco metálico. Deja puesta la tapa de plástico: saltará sola al cerrar." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Push the lever down and outwards, lift it and open the metal frame. Leave the plastic cover on: it pops off by itself when you close it."
+          }
+        }
+      }
+    },
     "En algunas placas el 00 también puede aparecer tras un fallo de POST; confirma el manual del modelo." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6948,6 +7941,17 @@
         }
       }
     },
+    "En directo con la cámara o desde una foto de tu galería" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Live with the camera or from a photo in your library"
+          }
+        }
+      }
+    },
     "En el dispositivo" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -6966,6 +7970,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "On home computers it may be a harmless temporary state."
+          }
+        }
+      }
+    },
+    "En español e inglés, y también con Siri y Atajos" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In Spanish and English, and also with Siri and Shortcuts"
           }
         }
       }
@@ -6999,6 +8014,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "On most modern computers, one short beep means everything went fine. If there's also no picture, old AMI BIOSes use it for a memory refresh failure."
+          }
+        }
+      }
+    },
+    "En los USB-A, el color de la lengüeta de dentro suele indicar la velocidad." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "On USB-A ports, the colour of the tab inside usually shows the speed."
           }
         }
       }
@@ -7054,6 +8080,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "On"
+          }
+        }
+      }
+    },
+    "Enchufa el cable del ventilador al cabezal CPU_FAN de la placa, cerca del socket. La guía de plástico solo deja ponerlo de una forma. Recoge el cable sobrante para que no roce las aspas." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plug the fan cable into the motherboard's CPU_FAN header, near the socket. The plastic guide only lets it go on one way. Tidy the spare cable so it doesn't touch the blades."
+          }
+        }
+      }
+    },
+    "Enchufa los cables PCIe de la fuente (6 + 2 pines) o el de 12 pines, hasta el fondo. Si la gráfica tiene dos conectores, usa a ser posible un cable distinto para cada uno." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plug in the PSU's PCIe cables (6 + 2 pins) or the 12-pin one, all the way in. If the card has two connectors, use a separate cable for each if you can."
           }
         }
       }
@@ -7212,6 +8260,17 @@
         }
       }
     },
+    "Entrada y salida. El «panel I/O» es el conjunto de puertos traseros de la placa." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Input and output. The “I/O panel” is the set of rear ports on the motherboard."
+          }
+        }
+      }
+    },
     "Entran en la ranura de la placa. La muesca del borde impide ponerlo al revés o en una ranura de otro tipo (DDR4/DDR5)." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -7285,6 +8344,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CPU EPS"
+          }
+        }
+      }
+    },
+    "EPS de la CPU o PCIe de la gráfica" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CPU EPS or graphics card PCIe"
           }
         }
       }
@@ -7908,6 +8978,17 @@
         }
       }
     },
+    "Estándar que fija el tamaño de las placas base, las cajas y las fuentes, y sus conectores." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standard that sets the size of motherboards, cases and power supplies, and their connectors."
+          }
+        }
+      }
+    },
     "Estás montando esta build" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -7952,6 +9033,17 @@
         }
       }
     },
+    "Estrecho, 7 contactos. Va del disco a la placa base." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Narrow, 7 contacts. It goes from the drive to the motherboard."
+          }
+        }
+      }
+    },
     "Etiqueta" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -7959,6 +9051,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tag"
+          }
+        }
+      }
+    },
+    "Experto" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Expert"
           }
         }
       }
@@ -8183,6 +9286,28 @@
         }
       }
     },
+    "Fichas con descripción y guía de montaje" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sheets with a description and assembly guide"
+          }
+        }
+      }
+    },
+    "Fija el soporte metálico con los tornillos de las chapas. Así el peso no recae solo en la ranura." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fix the metal bracket with the screws from the covers. That way the weight doesn't rest on the slot alone."
+          }
+        }
+      }
+    },
     "Fije el hub con adhesivo o tornillos. Conecte su alimentación SATA si la necesita, conecte su cable de señal a SYS_FAN y después enchufe los ventiladores al hub. Normalmente solo uno de sus puertos transmite RPM a la placa." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -8245,6 +9370,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Finish selecting"
+          }
+        }
+      }
+    },
+    "Formato de los módulos de RAM de sobremesa. Los de portátil son SO-DIMM, más cortos." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Format of desktop RAM modules. Laptop ones are SO-DIMM, which are shorter."
+          }
+        }
+      }
+    },
+    "Formato pequeño y alargado para SSD (y tarjetas Wi-Fi) que se atornilla directamente a la placa." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Small, elongated format for SSDs (and Wi-Fi cards) that screws straight onto the motherboard."
           }
         }
       }
@@ -8359,6 +9506,17 @@
         }
       }
     },
+    "Funciona en tu dispositivo: tus preguntas no salen de él" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It runs on your device: your questions never leave it"
+          }
+        }
+      }
+    },
     "Funcionará, pero con poco margen. Lo recomendable son %lld W." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -8366,6 +9524,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "It will work, but with little headroom. %lld W is recommended."
+          }
+        }
+      }
+    },
+    "Generación de la memoria RAM (DDR4, DDR5). No son compatibles entre sí." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generation of RAM (DDR4, DDR5). They aren't compatible with each other."
           }
         }
       }
@@ -8414,6 +9583,28 @@
         }
       }
     },
+    "Gira la pieza y toca un conector para verlo de cerca." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rotate the part and tap a connector to see it up close."
+          }
+        }
+      }
+    },
+    "Glosario de siglas" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Glossary of acronyms"
+          }
+        }
+      }
+    },
     "GPU o gráfica integrada no reconocida" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -8458,6 +9649,17 @@
         }
       }
     },
+    "Gráficos integrados en el procesador. Permiten tener imagen sin tarjeta gráfica." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Graphics built into the processor. They give you a picture without a graphics card."
+          }
+        }
+      }
+    },
     "Guarda tus capturas detectadas para consultarlas después\ndesde el historial de escaneos." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -8476,6 +9678,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Save your PCs with components, prices,\nstatus and personal notes."
+          }
+        }
+      }
+    },
+    "Guarda tus equipos con sus piezas, precios y notas." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save your PCs with their parts, prices and notes."
           }
         }
       }
@@ -8564,6 +9777,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ASSEMBLY GUIDE"
+          }
+        }
+      }
+    },
+    "Guías" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guides"
+          }
+        }
+      }
+    },
+    "Guías de montaje" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Assembly guides"
+          }
+        }
+      }
+    },
+    "Guías visuales" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visual guides"
           }
         }
       }
@@ -8658,6 +9904,17 @@
     },
     "HDMI" : {
 
+    },
+    "HDMI o DisplayPort" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HDMI or DisplayPort"
+          }
+        }
+      }
     },
     "HDMI y DisplayPort: el monitor se conecta aquí, no a la placa base." : {
       "extractionState" : "manual",
@@ -8820,6 +10077,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Language"
+          }
+        }
+      }
+    },
+    "Igual, pero con la lengüeta azul (a veces roja o turquesa). Más rápido." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The same, but with a blue tab (sometimes red or teal). Faster."
+          }
+        }
+      }
+    },
+    "Iluminación de 5 V y 3 pines en la que cada LED puede tener un color distinto." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5 V, 3-pin lighting where each LED can be a different colour."
+          }
+        }
+      }
+    },
+    "Iluminación de 12 V y 4 pines en la que toda la tira tiene el mismo color." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "12 V, 4-pin lighting where the whole strip is the same colour."
           }
         }
       }
@@ -9286,6 +10576,17 @@
         }
       }
     },
+    "Inserta la gráfica" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Insert the graphics card"
+          }
+        }
+      }
+    },
     "Inserta la tarjeta gráfica hasta oír un clic y después fíjala al chasis con sus tornillos." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -9293,6 +10594,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Insert the graphics card until you hear a click, then fix it to the chassis with its screws."
+          }
+        }
+      }
+    },
+    "Insertarla, atornillarla, darle corriente y conectar el monitor." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inserting it, screwing it down, powering it and connecting the monitor."
           }
         }
       }
@@ -9495,6 +10807,50 @@
         }
       }
     },
+    "Intel Core de 6.ª a 9.ª generación. Las de 8.ª y 9.ª necesitan una placa de la serie 300." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intel Core 6th to 9th generation. 8th and 9th need a 300-series motherboard."
+          }
+        }
+      }
+    },
+    "Intel Core de 10.ª y 11.ª generación." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intel Core 10th and 11th generation."
+          }
+        }
+      }
+    },
+    "Intel Core de 12.ª a 14.ª generación. Es más alargado y usa otro anclaje de disipador." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intel Core 12th to 14th generation. It's longer and uses a different cooler mount."
+          }
+        }
+      }
+    },
+    "Intel Core Ultra serie 200. Mismo anclaje de disipador que LGA1700." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intel Core Ultra 200 series. Same cooler mount as LGA1700."
+          }
+        }
+      }
+    },
     "Intercambiador de calor de la refrigeración líquida. Disipa el calor del líquido refrigerante hacia el aire exterior mediante ventiladores." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -9601,6 +10957,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The BIOS found an error while checking the RAM."
+          }
+        }
+      }
+    },
+    "La BIOS moderna: con ratón, discos grandes y arranque seguro." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The modern BIOS: with mouse support, large drives and secure boot."
           }
         }
       }
@@ -9803,6 +11170,17 @@
         }
       }
     },
+    "La fuente de alimentación." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The power supply."
+          }
+        }
+      }
+    },
     "La fuente se queda corta" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -9821,6 +11199,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The main initialisation has finished and the firmware is ready to continue booting."
+          }
+        }
+      }
+    },
+    "La más corta, de unos 2,5 cm. Tarjetas de red, sonido o capturadoras." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The shortest, about 2.5 cm. Network, sound or capture cards."
+          }
+        }
+      }
+    },
+    "La más larga, de unos 9 cm. Para la tarjeta gráfica." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The longest, about 9 cm. For the graphics card."
           }
         }
       }
@@ -10144,6 +11544,17 @@
         }
       }
     },
+    "La placa regula la velocidad cambiando el voltaje. Es menos preciso." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The motherboard controls speed by changing the voltage. It's less precise."
+          }
+        }
+      }
+    },
     "La placa suele encender estos indicadores durante unos segundos. El importante es el que se queda fijo y detiene el arranque." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -10195,6 +11606,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The RAM or motherboard fails the test."
+          }
+        }
+      }
+    },
+    "La ranura es pequeña y va tumbada sobre la placa. En el SSD, mira las muescas del borde con contactos dorados." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The slot is small and lies flat on the motherboard. On the SSD, look at the notches on the edge with the gold contacts."
           }
         }
       }
@@ -10309,6 +11731,28 @@
         }
       }
     },
+    "Las pestañas deben estar cerradas y los contactos dorados no deben verse. Cuando arranques, activa el perfil XMP o EXPO en la BIOS para que la memoria vaya a su velocidad." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The latches must be closed and the gold contacts shouldn't be visible. When you boot, turn on the XMP or EXPO profile in the BIOS so the memory runs at its rated speed."
+          }
+        }
+      }
+    },
+    "Las piezas principales de un PC." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The main parts of a PC."
+          }
+        }
+      }
+    },
     "Lectura de datos SPD de RAM" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -10331,6 +11775,17 @@
         }
       }
     },
+    "LEDs de la placa: CPU, DRAM, VGA y BOOT" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Motherboard LEDs: CPU, DRAM, VGA and BOOT"
+          }
+        }
+      }
+    },
     "LEER" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -10349,6 +11804,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Read assembly guide"
+          }
+        }
+      }
+    },
+    "Levanta la palanca del lateral hasta que quede en vertical. Este socket no tiene marco: solo se ven los agujeros." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lift the lever on the side until it's upright. This socket has no frame: you only see the holes."
           }
         }
       }
@@ -10441,6 +11907,17 @@
         }
       }
     },
+    "Lista del fabricante de la placa con las memorias RAM que ha probado y funcionan." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The motherboard maker's list of RAM kits it has tested and that work."
+          }
+        }
+      }
+    },
     "Listo" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -10470,6 +11947,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "You've done %lld of %lld steps of the build%@."
+          }
+        }
+      }
+    },
+    "Lo más delicado del montaje, paso a paso y con dibujos." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The trickiest parts of the build, step by step with drawings."
           }
         }
       }
@@ -10536,6 +12024,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The gold contacts that go into the motherboard's PCIe x16 slot."
+          }
+        }
+      }
+    },
+    "Los dos tienen 8 pines y se parecen mucho. Fíjate en cómo se parte el conector y en lo que pone el cable." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Both have 8 pins and look very alike. Check how the connector splits and what's printed on the cable."
+          }
+        }
+      }
+    },
+    "Los dos tienen forma de L; el de alimentación es el doble de ancho." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Both are L-shaped; the power one is twice as wide."
           }
         }
       }
@@ -10615,6 +12125,17 @@
         }
       }
     },
+    "M.2: la ranura y los dos tipos de SSD" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "M.2: the slot and the two kinds of SSD"
+          }
+        }
+      }
+    },
     "M2 SSD NVMe" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -10655,6 +12176,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Motherboard brand"
+          }
+        }
+      }
+    },
+    "Marca pasos desde el escáner o desde una ficha" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mark steps from the scanner or from a sheet"
           }
         }
       }
@@ -10725,6 +12257,17 @@
         }
       }
     },
+    "Marcar en el checklist" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mark in the checklist"
+          }
+        }
+      }
+    },
     "Marco trasero de puertos de la placa base, también llamado I/O shield. Algunas placas lo incluyen integrado y otras requieren montarlo por separado." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -10791,6 +12334,17 @@
         }
       }
     },
+    "Memoria de trabajo: guarda lo que el equipo está usando y se borra al apagar." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Working memory: it holds what the computer is using and is cleared at power-off."
+          }
+        }
+      }
+    },
     "Memoria instalada" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -10820,6 +12374,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Memory not detected or channel errors"
+          }
+        }
+      }
+    },
+    "Memoria que guarda la hora y los ajustes de la BIOS gracias a una pila de botón. «Borrar la CMOS» los restablece." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Memory that keeps the time and BIOS settings thanks to a coin battery. “Clearing the CMOS” resets them."
           }
         }
       }
@@ -10901,6 +12466,50 @@
         }
       }
     },
+    "Miden lo mismo, pero la muesca de los contactos está en otro sitio, así que no entran en la ranura equivocada." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "They're the same size, but the notch in the contacts is in a different place, so they won't fit the wrong slot."
+          }
+        }
+      }
+    },
+    "Mira cuántas ranuras ocupa tu gráfica (normalmente dos) y quita de la caja las chapas de esa altura. Guarda los tornillos: los usarás después." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check how many slots your graphics card takes up (usually two) and remove the case's covers at that height. Keep the screws: you'll use them later."
+          }
+        }
+      }
+    },
+    "Mira la base del disipador: si ya trae una capa gris, no pongas más. Si no, pon una gota del tamaño de un guisante en el centro del procesador. El disipador la extiende al apretar." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Look at the base of the cooler: if it already has a grey layer, don't add more. If not, put a pea-sized drop in the centre of the processor. The cooler spreads it when tightened."
+          }
+        }
+      }
+    },
+    "Mira las esquinas: HDMI tiene las dos de abajo recortadas; DisplayPort, solo una." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Look at the corners: HDMI has both bottom corners cut; DisplayPort has only one."
+          }
+        }
+      }
+    },
     "Mis Builds" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -10919,6 +12528,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "MY CONFIGURATIONS"
+          }
+        }
+      }
+    },
+    "Mismo conector, distinto uso: el disipador va en CPU_FAN; los ventiladores de la caja, en SYS_FAN; la bomba de una líquida, en AIO_PUMP." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Same connector, different use: the cooler goes on CPU_FAN; case fans on SYS_FAN; a liquid cooler's pump on AIO_PUMP."
           }
         }
       }
@@ -10989,6 +12609,28 @@
         }
       }
     },
+    "Modelos 3D" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3D models"
+          }
+        }
+      }
+    },
+    "Modelos 3D: toca un conector y la cámara se acerca a él" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3D models: tap a connector and the camera zooms in on it"
+          }
+        }
+      }
+    },
     "Modo de diagnóstico" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -11018,6 +12660,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "RAM module"
+          }
+        }
+      }
+    },
+    "Monta el disipador" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mount the cooler"
           }
         }
       }
@@ -11209,6 +12862,28 @@
         }
       }
     },
+    "Muesca algo desplazada del centro. Mira también la etiqueta del módulo." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notch slightly off centre. Check the module's label too."
+          }
+        }
+      }
+    },
+    "Muesca casi en el centro. No vale para placas DDR4." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notch almost in the centre. It doesn't work in DDR4 motherboards."
+          }
+        }
+      }
+    },
     "Muesca del tornillo" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -11216,6 +12891,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Screw notch"
+          }
+        }
+      }
+    },
+    "Nivel de detalle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Level of detail"
           }
         }
       }
@@ -11249,6 +12935,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Not applicable"
+          }
+        }
+      }
+    },
+    "No apoyes la placa sobre la bolsa antiestática: por fuera conduce la electricidad." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Don't rest the motherboard on the anti-static bag: its outside conducts electricity."
           }
         }
       }
@@ -11370,6 +13067,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No memory installed"
+          }
+        }
+      }
+    },
+    "No hay ninguna sigla que coincida." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No acronym matches."
           }
         }
       }
@@ -11649,6 +13357,17 @@
         }
       }
     },
+    "No son intercambiables: no los fuerces. Enchufar uno en el lugar del otro puede dañar la placa o la gráfica." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "They aren't interchangeable: don't force them. Plugging one in place of the other can damage the motherboard or the graphics card."
+          }
+        }
+      }
+    },
     "No todos los códigos de este rango son errores; pueden ser progreso normal." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -11667,6 +13386,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Not all Gigabyte models use the same detail for A3."
+          }
+        }
+      }
+    },
+    "No toques los contactos del socket: se doblan con nada y arreglarlos es muy difícil." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Don't touch the socket contacts: they bend at the slightest touch and are very hard to fix."
+          }
+        }
+      }
+    },
+    "No uses el cable EPS del procesador: se parece, pero no es compatible." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Don't use the processor's EPS cable: it looks similar, but it isn't compatible."
           }
         }
       }
@@ -11869,6 +13610,17 @@
         }
       }
     },
+    "Nunca conectes una tira ARGB de 5 V a un cabezal RGB de 12 V: se quema." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Never connect a 5 V ARGB strip to a 12 V RGB header: it burns out."
+          }
+        }
+      }
+    },
     "O crea una nueva" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -12067,6 +13819,17 @@
         }
       }
     },
+    "Para no confundirte" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "So you don't mix things up"
+          }
+        }
+      }
+    },
     "Para reconocer componentes, PcComponentIA necesita la cámara. Actívala en Ajustes > PcComponentIA > Cámara." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -12107,6 +13870,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Part of the liquid cooler that makes direct contact with the processor to transfer its heat to the coolant."
+          }
+        }
+      }
+    },
+    "Paso %lld de %lld" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Step %lld of %lld"
           }
         }
       }
@@ -12191,6 +13965,17 @@
         }
       }
     },
+    "PCIe 8 pines" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "8-pin PCIe"
+          }
+        }
+      }
+    },
     "PCIe x1" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -12209,6 +13994,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "PCIe x16"
+          }
+        }
+      }
+    },
+    "PCIe x16 (2)" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PCIe x16 (2)"
           }
         }
       }
@@ -12268,6 +14064,39 @@
         }
       }
     },
+    "Pequeño, ovalado y entra en las dos posiciones." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Small, oval and goes in either way up."
+          }
+        }
+      }
+    },
+    "Perfil de AMD que pone la RAM a su velocidad anunciada. Equivale al XMP de Intel." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AMD profile that runs the RAM at its advertised speed. Equivalent to Intel's XMP."
+          }
+        }
+      }
+    },
+    "Perfil de Intel que pone la RAM a su velocidad anunciada. Sin activarlo, va más lenta." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intel profile that runs the RAM at its advertised speed. Without it, the RAM runs slower."
+          }
+        }
+      }
+    },
     "Periférico apuntador para controlar el cursor. Puede usar USB, receptor inalámbrico o Bluetooth." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -12308,6 +14137,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Part"
+          }
+        }
+      }
+    },
+    "Piezas 3D" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3D parts"
+          }
+        }
+      }
+    },
+    "Piezas en 3D" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parts in 3D"
           }
         }
       }
@@ -12389,6 +14240,17 @@
         }
       }
     },
+    "Pitidos de la BIOS (AMI y Award)" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BIOS beep codes (AMI and Award)"
+          }
+        }
+      }
+    },
     "Pitidos largos repetidos: la placa no encuentra la RAM." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -12455,6 +14317,17 @@
         }
       }
     },
+    "Plano y en forma de L. Para discos duros y SSD de 2,5 pulgadas." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flat and L-shaped. For hard drives and 2.5-inch SSDs."
+          }
+        }
+      }
+    },
     "Por aquí sale el aire caliente. Debe quedar libre por detrás de la caja." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -12499,6 +14372,17 @@
         }
       }
     },
+    "Pregunta lo que quieras sobre compatibilidad, montaje o averías." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ask anything about compatibility, assembly or faults."
+          }
+        }
+      }
+    },
     "Pregunta sobre compatibilidad, montaje, rendimiento\no problemas con tus componentes." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -12532,6 +14416,17 @@
         }
       }
     },
+    "Prepara la zona" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get the area ready"
+          }
+        }
+      }
+    },
     "Preparación del sistema operativo" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -12561,6 +14456,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Prepare the table, tools and anti-static protection"
+          }
+        }
+      }
+    },
+    "Presiona hasta oír el clic" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Press until it clicks"
           }
         }
       }
@@ -13148,6 +15054,17 @@
         }
       }
     },
+    "Procesador y disipador" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Processor and cooler"
+          }
+        }
+      }
+    },
     "Procesador y placa compatibles" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -13155,6 +15072,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CPU and motherboard compatible"
+          }
+        }
+      }
+    },
+    "Programa de la placa base que arranca el equipo antes que el sistema operativo y donde se ajusta el hardware." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Motherboard program that starts the computer before the operating system and where hardware is configured."
           }
         }
       }
@@ -13188,6 +15116,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "I/O shield"
+          }
+        }
+      }
+    },
+    "Protocolo rápido de los SSD M.2 modernos. Mucho más veloz que SATA." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fast protocol used by modern M.2 SSDs. Much quicker than SATA."
           }
         }
       }
@@ -13687,6 +15626,17 @@
         }
       }
     },
+    "PWM, XMP, VRM, NVMe, POST… cada una explicada en una frase." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PWM, XMP, VRM, NVMe, POST… each explained in one sentence."
+          }
+        }
+      }
+    },
     "QUÉ COMPROBAR" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -13698,6 +15648,17 @@
         }
       }
     },
+    "Qué ranuras usar y cómo encajarla sin forzar." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Which slots to use and how to seat it without forcing."
+          }
+        }
+      }
+    },
     "Qué se conecta aquí" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -13705,6 +15666,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "What connects here"
+          }
+        }
+      }
+    },
+    "Qué se conecta con qué, pieza a pieza" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What connects to what, part by part"
+          }
+        }
+      }
+    },
+    "Quita las tapas traseras" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove the rear covers"
           }
         }
       }
@@ -13863,6 +15846,17 @@
         }
       }
     },
+    "Ranuras PCIe" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PCIe slots"
+          }
+        }
+      }
+    },
     "Ranuras RAM" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -13973,6 +15967,17 @@
         }
       }
     },
+    "Rectangular, con la lengüeta negra o blanca. Para teclado y ratón." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rectangular, with a black or white tab. For keyboard and mouse."
+          }
+        }
+      }
+    },
     "Recuperación de firmware" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -14035,6 +16040,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "AIO liquid cooler"
+          }
+        }
+      }
+    },
+    "Refrigeración líquida que viene montada y sellada de fábrica: bloque con bomba, tubos y radiador." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Liquid cooling that comes assembled and sealed from the factory: block with pump, tubes and radiator."
           }
         }
       }
@@ -14941,6 +16957,50 @@
         }
       }
     },
+    "Revoluciones por minuto" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Revolutions per minute"
+          }
+        }
+      }
+    },
+    "RGB 12 V" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "12 V RGB"
+          }
+        }
+      }
+    },
+    "RGB de 12 V o ARGB de 5 V" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "12 V RGB or 5 V ARGB"
+          }
+        }
+      }
+    },
+    "Sabe qué build o diagnóstico estás viendo" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It knows which build or diagnosis you're looking at"
+          }
+        }
+      }
+    },
     "Saca la RAM y vuelve a colocarla hasta oír el clic en ambos lados." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -14959,6 +17019,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Speaker output"
+          }
+        }
+      }
+    },
+    "Salida de vídeo habitual en monitores de PC; admite altas resoluciones y tasas de refresco." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Common video output on PC monitors; it supports high resolutions and refresh rates."
           }
         }
       }
@@ -15029,6 +17100,39 @@
         }
       }
     },
+    "SATA de alimentación" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SATA power"
+          }
+        }
+      }
+    },
+    "SATA de datos" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SATA data"
+          }
+        }
+      }
+    },
+    "SATA de datos o de alimentación" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SATA data or SATA power"
+          }
+        }
+      }
+    },
     "Se atornilla a la caja para que la gráfica no se incline ni se mueva." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -15069,6 +17173,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "A drive was detected, but the firmware hit a problem while initialising it."
+          }
+        }
+      }
+    },
+    "Se distinguen por la longitud. Una tarjeta corta también funciona en una ranura más larga." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can tell them apart by length. A short card also works in a longer slot."
           }
         }
       }
@@ -15150,6 +17265,50 @@
         }
       }
     },
+    "Se separa en 4 + 4. Alimenta el procesador." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Splits into 4 + 4. It powers the processor."
+          }
+        }
+      }
+    },
+    "Se separa en 4 + 4. El cable suele poner «CPU». Va arriba a la izquierda de la placa." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Splits into 4 + 4. The cable usually says “CPU”. It goes at the top left of the motherboard."
+          }
+        }
+      }
+    },
+    "Se separa en 6 + 2. Alimenta la tarjeta gráfica." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Splits into 6 + 2. It powers the graphics card."
+          }
+        }
+      }
+    },
+    "Se separa en 6 + 2. El cable suele poner «PCI-E» o «VGA». Va a la gráfica." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Splits into 6 + 2. The cable usually says “PCI-E” or “VGA”. It goes to the graphics card."
+          }
+        }
+      }
+    },
     "Según la placa, indica que no hay gráfica o que falla el controlador de teclado." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -15157,6 +17316,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Depending on the motherboard, it means there's no graphics card or the keyboard controller is failing."
+          }
+        }
+      }
+    },
+    "Segunda ranura larga. Suele ir más lenta que la primera: úsala para otra tarjeta, no para la gráfica principal." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Second long slot. It's usually slower than the first: use it for another card, not for the main graphics card."
           }
         }
       }
@@ -15282,6 +17452,17 @@
         }
       }
     },
+    "Si el disipador trae un plástico protector en la base, quítalo." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If the cooler has a protective plastic film on its base, remove it."
+          }
+        }
+      }
+    },
     "Si el procesador tiene gráficos integrados, prueba sin la gráfica." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -15322,6 +17503,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "If there's a picture and the system boots, there's nothing to do."
+          }
+        }
+      }
+    },
+    "Si la gráfica es larga y pesada, usa el soporte que suele traer para que no se combe." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If the card is long and heavy, use the support it usually comes with so it doesn't sag."
           }
         }
       }
@@ -15469,6 +17661,17 @@
         }
       }
     },
+    "Si tu PC no arranca, la app te ayuda a encontrar el motivo." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If your PC won't start, the app helps you find out why."
+          }
+        }
+      }
+    },
     "Si tu placa tiene BIOS Flashback o Dual BIOS, recupérala desde ahí." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -15491,6 +17694,17 @@
         }
       }
     },
+    "Si un lado no encaja, sácalo y vuelve a empezar: no lo fuerces torcido." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If one side doesn't seat, take it out and start again: don't force it in crooked."
+          }
+        }
+      }
+    },
     "Sigue una lista clara para instalar los componentes\nde tu PC en el orden correcto." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -15498,6 +17712,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Follow a clear list to install your PC's\ncomponents in the right order."
+          }
+        }
+      }
+    },
+    "Siguiente" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next"
           }
         }
       }
@@ -15656,6 +17881,28 @@
         }
       }
     },
+    "Socket con los pines en el procesador. Lo usa AMD AM4." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Socket with the pins on the processor. Used by AMD AM4."
+          }
+        }
+      }
+    },
+    "Socket con los pines en la placa base. Lo usan Intel y AMD AM5." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Socket with the pins on the motherboard. Used by Intel and AMD AM5."
+          }
+        }
+      }
+    },
     "Socket CPU" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -15696,6 +17943,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Intel socket"
+          }
+        }
+      }
+    },
+    "Sockets de Intel y AMD" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intel and AMD sockets"
           }
         }
       }
@@ -15942,6 +18200,17 @@
         }
       }
     },
+    "Sujétala por los bordes o por el soporte, no por los ventiladores." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hold it by its edges or the bracket, not by the fans."
+          }
+        }
+      }
+    },
     "SYS_FAN" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -15949,6 +18218,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "SYS_FAN"
+          }
+        }
+      }
+    },
+    "Tamaños de placa base" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Motherboard sizes"
           }
         }
       }
@@ -16052,6 +18332,17 @@
         }
       }
     },
+    "Te avisa de lo esencial antes de encender" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It tells you what's essential before powering on"
+          }
+        }
+      }
+    },
     "Te pasas %@ del límite definido." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -16140,6 +18431,17 @@
         }
       }
     },
+    "Toca una pieza detectada para abrir su ficha" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap a detected part to open its sheet"
+          }
+        }
+      }
+    },
     "Toca uno para ver más detalles" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -16202,6 +18504,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "All"
+          }
+        }
+      }
+    },
+    "Todo: también cabezales, iluminación y componentes internos de la placa." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Everything: also headers, lighting and the motherboard's internal components."
           }
         }
       }
@@ -16275,6 +18588,17 @@
         }
       }
     },
+    "Trabaja con la placa fuera de la caja, apoyada sobre su propia caja de cartón. Toca algo metálico antes de empezar para descargar la electricidad estática." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Work with the motherboard outside the case, resting on its own cardboard box. Touch something metal before you start to discharge static electricity."
+          }
+        }
+      }
+    },
     "Tras cambios de RAM o Clear CMOS puede tardar más de lo normal." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -16286,6 +18610,17 @@
         }
       }
     },
+    "Tres pines y un hueco entre ellos. Cada LED puede tener un color distinto." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Three pins with a gap between them. Each LED can be a different colour."
+          }
+        }
+      }
+    },
     "tu build" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -16293,6 +18628,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "your build"
+          }
+        }
+      }
+    },
+    "Tu plataforma" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your platform"
+          }
+        }
+      }
+    },
+    "Tus capturas se guardan en el historial" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your captures are saved in the history"
           }
         }
       }
@@ -16341,6 +18698,17 @@
         }
       }
     },
+    "Un checklist propio para cada build" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A separate checklist for each build"
+          }
+        }
+      }
+    },
     "Un componente de la placa base no responde. También puede deberse a la RAM." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -16374,6 +18742,17 @@
         }
       }
     },
+    "Un ventilador de 3 pines funciona en un cabezal de 4, y al revés: la guía de plástico solo deja ponerlo de una forma." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A 3-pin fan works on a 4-pin header and vice versa: the plastic guide only lets it go on one way."
+          }
+        }
+      }
+    },
     "Una actualización incorrecta puede dejar la placa sin arrancar." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -16381,6 +18760,61 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "A wrong update can leave the motherboard unable to boot."
+          }
+        }
+      }
+    },
+    "Una lista clara para instalar cada pieza en el orden correcto." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A clear list to install each part in the right order."
+          }
+        }
+      }
+    },
+    "Una muesca (llave M). Es el más rápido." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One notch (M key). It's the fastest."
+          }
+        }
+      }
+    },
+    "Una placa pequeña cabe en una caja grande, pero no al revés. La línea de puntos es el tamaño ATX." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A small motherboard fits in a big case, but not the other way round. The dotted line is the ATX size."
+          }
+        }
+      }
+    },
+    "Una sola esquina recortada. Muchos cables llevan un botón para soltarlos." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A single cut corner. Many cables have a button to release them."
+          }
+        }
+      }
+    },
+    "Unidad de almacenamiento sin partes móviles: mucho más rápida que un disco duro." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Storage drive with no moving parts: much faster than a hard drive."
           }
         }
       }
@@ -16403,6 +18837,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "One of the most common codes when there's no picture."
+          }
+        }
+      }
+    },
+    "Usa la ranura PCIe x16 más cercana al procesador. Al final tiene una pestaña: empújala para abrirla." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use the PCIe x16 slot closest to the processor. It has a latch at the end: push it to open it."
           }
         }
       }
@@ -16517,6 +18962,17 @@
         }
       }
     },
+    "USB-A y USB-C" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "USB-A and USB-C"
+          }
+        }
+      }
+    },
     "USB-C frontal" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -16579,6 +19035,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "You're within budget and can look at optional components, such as a GPU or cooling."
+          }
+        }
+      }
+    },
+    "Velocidad de giro de un ventilador o de un disco duro." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spin speed of a fan or a hard drive."
           }
         }
       }
@@ -16649,6 +19116,17 @@
         }
       }
     },
+    "Ventiladores de 3 y 4 pines" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3-pin and 4-pin fans"
+          }
+        }
+      }
+    },
     "Ver conectores" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -16689,6 +19167,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "View in 3D"
+          }
+        }
+      }
+    },
+    "Ver ficha" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View sheet"
           }
         }
       }

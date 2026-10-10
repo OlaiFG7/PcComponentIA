@@ -23,6 +23,8 @@ struct Punto3D: Identifiable {
     let descripcion: String
     let posicion: SIMD3<Float>
     var claveFicha: String? = nil
+    /// Dibujo de la forma del conector, para reconocerlo cuando en el modelo no se ve bien.
+    var silueta: SiluetaConector? = nil
 }
 
 struct ModeloPieza3D {
@@ -32,6 +34,9 @@ struct ModeloPieza3D {
     let puntos: [Punto3D]
     /// Crédito obligatorio por la licencia CC BY.
     let credito: String
+    /// Lado desde el que se miran siempre los conectores (p. ej. el frente de una placa, que es
+    /// plana y no tiene nada por detrás). Si es nil, la cámara se coloca según dónde esté el punto.
+    var vistaFija: SIMD3<Float>? = nil
 }
 
 enum ModelosPiezas3D {
@@ -65,10 +70,10 @@ enum ModelosPiezas3D {
                     posicion: p(0.7, 1.0, 0.5), claveFicha: "Puerto_DisplayPort"),
             Punto3D(nombre: L("Soporte metálico"),
                     descripcion: L("Se atornilla a la caja para que la gráfica no se incline ni se mueva."),
-                    posicion: p(0.5, 0.98, 0.95)),
+                    posicion: p(0.3, 1.0, 0.3)),
             Punto3D(nombre: L("Alimentación 12 pines"),
                     descripcion: L("Recibe corriente extra de la fuente. Sin este cable la gráfica no arranca; debe entrar hasta el fondo."),
-                    posicion: p(0.5, 0.47, 0.92), claveFicha: "Conector_12VHPWR"),
+                    posicion: p(0.52, 0.405, 0.95), claveFicha: "Conector_12VHPWR"),
             Punto3D(nombre: L("Ventilador"),
                     descripcion: L("Enfría la GPU. Muchos se paran en reposo: es normal."),
                     posicion: p(1.0, 0.2, 0.55)),
@@ -86,51 +91,76 @@ enum ModelosPiezas3D {
         puntos: [
             Punto3D(nombre: L("Socket de la CPU"),
                     descripcion: L("Donde va el procesador. Intel (LGA) y AMD (AM4/AM5) no son compatibles entre sí."),
-                    posicion: p(0.55, 0.72, 0.75), claveFicha: "CPU"),
+                    posicion: p(0.55, 0.72, 0.15), claveFicha: "CPU"),
             Punto3D(nombre: L("Ranuras RAM"),
                     descripcion: L("Cuatro ranuras DIMM. Con dos módulos, usa las que indique el manual (suele ser A2 y B2)."),
-                    posicion: p(0.82, 0.72, 0.8), claveFicha: "Ranura_RAM"),
+                    posicion: p(0.82, 0.72, 0.95), claveFicha: "Ranura_RAM"),
             Punto3D(nombre: L("VRM"),
                     descripcion: L("Regulan la corriente de la CPU; van bajo estos disipadores."),
-                    posicion: p(0.45, 0.93, 1.0), claveFicha: "VRM"),
+                    posicion: p(0.45, 0.93, 0.55), claveFicha: "VRM"),
             Punto3D(nombre: L("Panel trasero (I/O)"),
                     descripcion: L("Puertos USB, red, audio y vídeo que asoman por detrás de la caja."),
-                    posicion: p(0.1, 0.75, 1.0), claveFicha: "Protector_IO"),
+                    posicion: p(0.1, 0.75, 0.8), claveFicha: "Protector_IO"),
             Punto3D(nombre: L("EPS 8 pines (CPU)"),
                     descripcion: L("Alimentación del procesador desde la fuente. Imprescindible."),
-                    posicion: p(0.3, 0.97, 0.8), claveFicha: "Conector_EPS_8p"),
+                    posicion: p(0.29, 0.97, 0.36), claveFicha: "Conector_EPS_8p", silueta: .pines(columnas: 4, corte: 2)),
             Punto3D(nombre: L("ATX 24 pines"),
                     descripcion: L("Alimentación principal de la placa. El conector más grande de la fuente."),
-                    posicion: p(0.97, 0.63, 0.8), claveFicha: "Conector_ATX_24p"),
+                    posicion: p(0.97, 0.65, 0.35), claveFicha: "Conector_ATX_24p", silueta: .pines(columnas: 12, corte: 0)),
             Punto3D(nombre: L("M.2"),
                     descripcion: L("Ranura para SSD M.2 NVMe, el almacenamiento más rápido. Se fija con un tornillo."),
-                    posicion: p(0.5, 0.47, 0.85), claveFicha: "Ranura_M2"),
+                    posicion: p(0.5, 0.47, 0.1), claveFicha: "Ranura_M2", silueta: .ranuraM2),
             Punto3D(nombre: L("PCIe x16"),
                     descripcion: L("Ranura para la tarjeta gráfica. Usa siempre la más cercana a la CPU."),
-                    posicion: p(0.5, 0.41, 0.8), claveFicha: "Ranura_PCIe_x16"),
+                    posicion: p(0.5, 0.4, 0.22), claveFicha: "Ranura_PCIe_x16", silueta: .ranura(largo: 1)),
             Punto3D(nombre: L("PCIe x1"),
                     descripcion: L("Ranura corta para tarjetas de red, sonido o capturadoras."),
-                    posicion: p(0.25, 0.47, 0.8), claveFicha: "Ranura_PCIe_x1"),
+                    posicion: p(0.25, 0.47, 0.22), claveFicha: "Ranura_PCIe_x1", silueta: .ranura(largo: 0.28)),
             Punto3D(nombre: L("Pila CMOS"),
                     descripcion: L("Pila de botón que guarda la hora y la configuración de la BIOS."),
-                    posicion: p(0.4, 0.31, 0.8), claveFicha: "Pila_CMOS"),
+                    posicion: p(0.41, 0.335, 0.1), claveFicha: "Pila_CMOS"),
             Punto3D(nombre: L("Chipset"),
                     descripcion: L("Gestiona USB, SATA y otras conexiones. Va bajo este disipador plano."),
-                    posicion: p(0.78, 0.25, 1.0), claveFicha: "Chipset"),
+                    posicion: p(0.78, 0.25, 0.3), claveFicha: "Chipset"),
             Punto3D(nombre: L("Puertos SATA"),
                     descripcion: L("Para discos duros y SSD de 2,5\". Necesitan también cable de corriente."),
-                    posicion: p(0.97, 0.27, 0.8), claveFicha: "Puerto_SATA"),
+                    posicion: p(0.975, 0.27, 0.35), claveFicha: "Puerto_SATA", silueta: .sata(ancho: 0.42)),
             Punto3D(nombre: L("Audio frontal"),
                     descripcion: L("Cabezal para las tomas de auriculares y micrófono del frontal de la caja."),
-                    posicion: p(0.2, 0.02, 0.8), claveFicha: "Conector_HD_Audio"),
+                    posicion: p(0.23, 0.02, 0.15), claveFicha: "Conector_HD_Audio"),
             Punto3D(nombre: L("USB frontales"),
                     descripcion: L("Cabezales para los USB del frontal de la caja."),
-                    posicion: p(0.6, 0.02, 0.8), claveFicha: "Conector_USB_2_0"),
+                    posicion: p(0.76, 0.02, 0.15), claveFicha: "Conector_USB_2_0"),
             Punto3D(nombre: L("Panel frontal"),
                     descripcion: L("Pines del botón de encendido, reset y LEDs de la caja."),
-                    posicion: p(0.93, 0.02, 0.8), claveFicha: "Panel_Frontal_Pins"),
+                    posicion: p(0.93, 0.02, 0.15), claveFicha: "Panel_Frontal_Pins"),
+            Punto3D(nombre: L("CPU_FAN"),
+                    descripcion: L("Cabezal de 4 pines para el ventilador del disipador de la CPU."),
+                    posicion: p(0.73, 0.92, 0.15), claveFicha: "Conector_FAN", silueta: .cabezal(pines: 4, hueco: nil)),
+            Punto3D(nombre: L("SYS_FAN"),
+                    descripcion: L("Cabezal de 4 pines para ventiladores de la caja."),
+                    posicion: p(0.28, 0.545, 0.15), claveFicha: "Conector_SYS_FAN", silueta: .cabezal(pines: 4, hueco: nil)),
+            Punto3D(nombre: L("M.2 (2)"),
+                    descripcion: L("Segunda ranura M.2 para otro SSD."),
+                    posicion: p(0.6, 0.1, 0.33), claveFicha: "Ranura_M2", silueta: .ranuraM2),
+            Punto3D(nombre: L("PCIe x16 (2)"),
+                    descripcion: L("Segunda ranura larga. Suele ir más lenta que la primera: úsala para otra tarjeta, no para la gráfica principal."),
+                    posicion: p(0.5, 0.2, 0.22), claveFicha: "Ranura_PCIe_x16", silueta: .ranura(largo: 1)),
+            Punto3D(nombre: L("USB 3.0 frontal"),
+                    descripcion: L("Cabezal de 19 pines para los USB 3.0 del frontal de la caja."),
+                    posicion: p(0.965, 0.52, 0.25), claveFicha: "Conector_USB_3_0_Front"),
+            Punto3D(nombre: L("RGB 12 V"),
+                    descripcion: L("Cabezal de 4 pines para tiras de luz de un solo color. No lo confundas con el ARGB de 5 V, que tiene 3 pines."),
+                    posicion: p(0.93, 0.975, 0.15), claveFicha: "Conector_RGB_12V", silueta: .cabezal(pines: 4, hueco: nil)),
+            Punto3D(nombre: L("Chip de audio (DAC)"),
+                    descripcion: L("Convierte el sonido digital en analógico; de él depende la calidad."),
+                    posicion: p(0.12, 0.14, 0.15), claveFicha: "Conector_HD_Audio"),
+            Punto3D(nombre: L("Antenas Wi-Fi"),
+                    descripcion: L("Conectores dorados donde se enroscan las antenas de Wi-Fi y Bluetooth."),
+                    posicion: p(0.02, 0.92, 0.4), claveFicha: "Antena_WiFi"),
         ],
-        credito: L("Modelo 3D: «MotherBoard + Components» de Daniel Cardona (Sketchfab, CC BY 4.0)")
+        credito: L("Modelo 3D: «MotherBoard + Components» de Daniel Cardona (Sketchfab, CC BY 4.0)"),
+        vistaFija: SIMD3(0, 0, 1)
     )
     }
 
@@ -304,6 +334,8 @@ struct VisorPieza3DView: View {
     @State private var mitadTamano: SIMD3<Float> = SIMD3(0.5, 0.5, 0.5)
     @State private var cargado = false
     @State private var fallo = false
+    /// Cambia para volver a crear la escena al reintentar la carga
+    @State private var intento = 0
     @State private var seleccionado: Punto3D?
     @State private var inicioArrastre: EstadoCamara?
     @State private var inicioZoom: Float?
@@ -322,6 +354,7 @@ struct VisorPieza3DView: View {
                 .ignoresSafeArea()
 
                 escena
+                    .id(intento)
                     .gesture(gestoGirar.simultaneously(with: gestoZoom))
                     .onTapGesture { deseleccionar() }
 
@@ -341,11 +374,17 @@ struct VisorPieza3DView: View {
                 }
 
                 if fallo {
-                    ContentUnavailableView(
-                        "No se pudo cargar el modelo",
-                        systemImage: "cube.transparent",
-                        description: Text("Prueba a cerrar y abrir de nuevo.")
-                    )
+                    ContentUnavailableView {
+                        Label("No se pudo cargar el modelo", systemImage: "cube.transparent")
+                    } description: {
+                        Text("Prueba a cerrar y abrir de nuevo.")
+                    } actions: {
+                        Button("Reintentar") {
+                            fallo = false
+                            intento += 1
+                        }
+                        .buttonStyle(.borderedProminent)
+                    }
                     .foregroundStyle(.white)
                 }
             }
@@ -353,13 +392,18 @@ struct VisorPieza3DView: View {
                 VStack(spacing: 10) {
                     if let punto = seleccionado {
                         burbujaDetalle(punto)
+                            .padding(.horizontal, 16)
                             .transition(.move(edge: .bottom).combined(with: .opacity))
+                    }
+                    if cargado {
+                        tiraConectores
                     }
                     Text(modelo.credito.localizado)
                         .font(.caption2)
                         .foregroundStyle(.white.opacity(0.5))
+                        .padding(.horizontal, 16)
                 }
-                .padding(16)
+                .padding(.vertical, 16)
                 .animation(Animaciones.muelle, value: seleccionado?.id)
             }
         }
@@ -466,37 +510,44 @@ struct VisorPieza3DView: View {
 
     private func marcador(_ punto: Punto3D) -> some View {
         let activo = seleccionado?.id == punto.id
+        // Con muchos conectores los nombres se pisan: solo lo lleva el elegido (el resto, en la tira)
+        let conNombre = activo || modelo.puntos.count <= 8
 
         return Button {
             seleccionar(punto)
         } label: {
-            HStack(spacing: 6) {
-                Circle()
-                    .fill(activo ? Color.cyan : Color.white)
-                    .frame(width: 10, height: 10)
-                    .overlay {
-                        if !reducirMovimiento {
-                            Circle()
-                                .stroke(activo ? Color.cyan : Color.white, lineWidth: 1.5)
-                                .phaseAnimator([false, true]) { anillo, expandido in
-                                    anillo.scaleEffect(expandido ? 2.6 : 1).opacity(expandido ? 0 : 0.9)
-                                } animation: { expandido in
-                                    expandido ? .easeOut(duration: 1.4) : .linear(duration: 0)
-                                }
-                        }
+            // El círculo va centrado justo sobre el conector; el nombre cuelga a su derecha
+            // sin desplazarlo.
+            Circle()
+                .fill(activo ? Color.cyan : Color.white)
+                .frame(width: 10, height: 10)
+                .overlay {
+                    if !reducirMovimiento {
+                        Circle()
+                            .stroke(activo ? Color.cyan : Color.white, lineWidth: 1.5)
+                            .phaseAnimator([false, true]) { anillo, expandido in
+                                anillo.scaleEffect(expandido ? 2.6 : 1).opacity(expandido ? 0 : 0.9)
+                            } animation: { expandido in
+                                expandido ? .easeOut(duration: 1.4) : .linear(duration: 0)
+                            }
                     }
-                // Burbuja flotante con el nombre de cada conector
-                Text(punto.nombre.localizado)
-                    .font(.caption2.weight(.semibold))
-                    .foregroundStyle(.white)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .background(.ultraThinMaterial.opacity(0.9), in: Capsule())
-                    .environment(\.colorScheme, .dark)
-            }
-            .fixedSize()
-            .padding(6)
-            .contentShape(Rectangle())
+                }
+                .frame(width: 36, height: 36)
+                .contentShape(Rectangle())
+                .overlay(alignment: .leading) {
+                    if conNombre {
+                        Text(punto.nombre.localizado)
+                            .font(.caption2.weight(.semibold))
+                            .foregroundStyle(.white)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                            .background(.ultraThinMaterial.opacity(0.9), in: Capsule())
+                            .environment(\.colorScheme, .dark)
+                            .fixedSize()
+                            .offset(x: 28)
+                            .allowsHitTesting(false)
+                    }
+                }
         }
         .buttonStyle(.plain)
         .scaleEffect(activo ? 1.12 : 1)
@@ -504,6 +555,48 @@ struct VisorPieza3DView: View {
         .accessibilityLabel(punto.nombre.localizado)
         .accessibilityHint(punto.descripcion.localizado)
         .accessibilityAddTraits(activo ? .isSelected : [])
+    }
+
+    /// Todos los conectores en una fila: en piezas con muchos puntos los marcadores se pisan,
+    /// y así también se pueden recorrer con VoiceOver.
+    private var tiraConectores: some View {
+        ScrollViewReader { proxy in
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 8) {
+                    ForEach(modelo.puntos) { punto in
+                        let activo = seleccionado?.id == punto.id
+                        Button {
+                            seleccionar(punto)
+                        } label: {
+                            Text(punto.nombre.localizado)
+                                .font(.footnote.weight(.semibold))
+                                .foregroundStyle(activo ? Color.black : Color.white)
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 8)
+                                .background(
+                                    activo ? AnyShapeStyle(Color.cyan) : AnyShapeStyle(.ultraThinMaterial),
+                                    in: Capsule()
+                                )
+                                // Zona táctil de 44 pt aunque la cápsula sea más baja
+                                .frame(minHeight: 44)
+                                .contentShape(Rectangle())
+                        }
+                        .buttonStyle(.plain)
+                        .id(punto.id)
+                        .accessibilityHint(punto.descripcion.localizado)
+                        .accessibilityAddTraits(activo ? .isSelected : [])
+                    }
+                }
+                .padding(.horizontal, 16)
+            }
+            .onChange(of: seleccionado?.id) { _, nuevo in
+                guard let nuevo else { return }
+                withAnimation(Animaciones.muelle) {
+                    proxy.scrollTo(nuevo, anchor: .center)
+                }
+            }
+        }
+        .environment(\.colorScheme, .dark)
     }
 
     private func seleccionar(_ punto: Punto3D) {
@@ -515,10 +608,15 @@ struct VisorPieza3DView: View {
         nuevo.objetivo = destinoPunto
         nuevo.distancia = 0.55
         let horizontal = SIMD2(destinoPunto.x, destinoPunto.z)
-        if simd_length(horizontal) > 0.05 {
-            nuevo.giro = atan2(destinoPunto.x, destinoPunto.z)
+        if let vista = modelo.vistaFija {
+            nuevo.giro = atan2(vista.x, vista.z)
+            nuevo.inclinacion = 0.25
+        } else {
+            if simd_length(horizontal) > 0.05 {
+                nuevo.giro = atan2(destinoPunto.x, destinoPunto.z)
+            }
+            nuevo.inclinacion = destinoPunto.y > 0 ? 0.6 : 0.2
         }
-        nuevo.inclinacion = destinoPunto.y > 0 ? 0.6 : 0.2
         camara.destino = nuevo
     }
 
@@ -532,11 +630,23 @@ struct VisorPieza3DView: View {
 
     private func burbujaDetalle(_ punto: Punto3D) -> some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(punto.nombre.localizado)
-                .font(.headline)
-            Text(punto.descripcion.localizado)
-                .font(.subheadline)
-                .fixedSize(horizontal: false, vertical: true)
+            HStack(alignment: .top, spacing: 12) {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(punto.nombre.localizado)
+                        .font(.headline)
+                    Text(punto.descripcion.localizado)
+                        .font(.subheadline)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                Spacer(minLength: 0)
+                // Cómo es el conector, por si en el modelo queda tapado o se ve pequeño
+                if let silueta = punto.silueta {
+                    SiluetaConectorView(silueta: silueta, acento: .cyan)
+                        .frame(width: 116, height: 64)
+                        .background(Color.primary.opacity(0.06), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+                        .accessibilityHidden(true)
+                }
+            }
             if let clave = punto.claveFicha, let info = diccionario[clave] {
                 NavigationLink {
                     DetalleComponenteInfoView(nombre: clave, info: info)

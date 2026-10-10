@@ -493,6 +493,12 @@ final class GestorChecklist: ObservableObject {
     ) -> Int? {
         let nombre = normalizar(nombreComponente)
 
+        // "CPU" a secas es la clase que devuelve el detector: no contiene ninguna de las
+        // palabras de abajo y, como palabra suelta, coincidiría con "CPU_FAN" o "EPS CPU".
+        if nombre == "cpu" {
+            return pasos.firstIndex { $0.nombre == "Instalar CPU en el socket de la placa base" }
+        }
+
         let candidatos: [
             (palabras: [String], paso: String)
         ] = [
@@ -502,7 +508,8 @@ final class GestorChecklist: ObservableObject {
                     "cpu amd",
                     "procesador",
                     "socket intel",
-                    "socket amd"
+                    "socket amd",
+                    "socket cpu"
                 ],
                 paso: "Instalar CPU en el socket de la placa base"
             ),

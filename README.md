@@ -29,16 +29,17 @@ Todo funciona **en el dispositivo**: la detección usa un modelo Core ML propio 
 2. [Cómo lo desarrollé](#cómo-lo-desarrollé)
 3. [Qué he aprendido](#qué-he-aprendido)
 4. [Funcionalidades](#funcionalidades)
-5. [Requisitos y ejecución](#requisitos-y-ejecución)
-6. [Detector de componentes](#detector-de-componentes)
-7. [Asistente de IA](#asistente-de-ia)
-8. [Estructura del proyecto](#estructura-del-proyecto)
-9. [Datos guardados](#datos-guardados)
-10. [Cómo ampliar la app](#cómo-ampliar-la-app)
-11. [Limitaciones y próximos pasos](#limitaciones-y-próximos-pasos)
-12. [Créditos de los datos](#créditos-de-los-datos)
-13. [Autor](#autor)
-14. [Licencia](#licencia)
+5. [Novedades de la última versión](#novedades-de-la-última-versión)
+6. [Requisitos y ejecución](#requisitos-y-ejecución)
+7. [Detector de componentes](#detector-de-componentes)
+8. [Asistente de IA](#asistente-de-ia)
+9. [Estructura del proyecto](#estructura-del-proyecto)
+10. [Datos guardados](#datos-guardados)
+11. [Cómo ampliar la app](#cómo-ampliar-la-app)
+12. [Limitaciones y próximos pasos](#limitaciones-y-próximos-pasos)
+13. [Créditos de los datos](#créditos-de-los-datos)
+14. [Autor](#autor)
+15. [Licencia](#licencia)
 
 ---
 
@@ -92,8 +93,9 @@ Cada versión la medí con el mismo test para comparar de forma honesta: del **4
 - Historial de capturas con retención configurable (7, 30 o 90 días).
 
 **Aprender**
-- Diccionario con 69 fichas de componentes, conectores y puertos: descripción, guía de montaje, dificultad, tiempo y, en algunas, foto real.
+- Diccionario con 69 fichas de componentes, conectores y puertos: descripción, guía de montaje, dificultad, tiempo y, en algunas, foto real. Con **niveles Básico, Intermedio y Experto** y un **glosario de siglas**.
 - **Visor 3D** (RealityKit) de la gráfica, la placa base, la RAM, el SSD M.2 y la fuente: la cámara se acerca a cada conector y muestra una burbuja con su explicación.
+- **"¿Cuál es cuál?"**: comparador de conectores parecidos, con dibujos y avisos.
 - **Esquemas interactivos 2D** de conectores para el resto (p. ej. tarjeta de sonido).
 - Sección **"Se conecta con / Relacionado"** en cada ficha.
 - Lista separada de componentes que la IA puede detectar.
@@ -101,6 +103,7 @@ Cada versión la medí con el mismo test para comparar de forma honesta: del **4
 **Montar y diagnosticar**
 - Gestor de *builds*: componentes, precios, etiquetas, notas y presupuesto; añadir piezas desde el escáner o el diccionario; compartir como texto o imagen.
 - **Compatibilidad y consumo**: socket CPU/placa, DDR4/DDR5, salida de vídeo y fuente recomendada a partir de los nombres de las piezas.
+- **Guías de montaje animadas** para el procesador y el disipador, la RAM y la gráfica.
 - Checklist de montaje persistente, **uno por build**.
 - Diagnóstico por LEDs (Q-LED), códigos POST y **pitidos** (AMI y Award), con historial.
 
@@ -112,6 +115,38 @@ Cada versión la medí con el mismo test para comparar de forma honesta: del **4
 - **Siri y Atajos**: "Escanea un componente con PcComponentIA", "¿Cómo va mi montaje en PcComponentIA?"…
 - **Español e inglés** (catálogo `Localizable.xcstrings`).
 - Onboarding, modo taller (oscuro) / claro, animaciones que respetan "Reducir movimiento" y etiquetas de VoiceOver.
+
+---
+
+## Novedades de la última versión
+
+Versión de octubre de 2026. El objetivo ha sido que la app enseñe mejor, no solo que detecte: más formas de ver cómo es cada pieza y cómo se monta.
+
+**Guías de montaje (nuevo apartado)**
+- Guías paso a paso de los tres puntos más delicados: **procesador y disipador** (9 pasos), **memoria RAM** (5) y **tarjeta gráfica** (6).
+- Cada paso lleva un **dibujo animado** hecho con `Canvas`, el texto y, cuando hay riesgo, un aviso. La del procesador se adapta al socket: Intel LGA, AMD AM5 o AMD AM4.
+- Al terminar, se marcan desde la propia guía los pasos correspondientes del checklist.
+
+**Piezas en 3D (nuevo apartado)**
+- Todos los modelos 3D reunidos en una galería, además del botón de cada ficha.
+- **Visor 3D corregido:** los puntos de la placa base flotaban por delante del modelo, porque este incluye los módulos de RAM montados y falseaba la altura. Ahora cada punto está sobre su pieza y la cámara mira la placa de frente.
+- La placa base pasa de 15 a **23 conectores** explicados, con una fila deslizable para elegirlos y un dibujo de la forma del conector en la burbuja.
+- **"¿Cuál es cuál?":** 12 comparaciones de conectores que se confunden (HDMI y DisplayPort, EPS y PCIe, RGB y ARGB, sockets de Intel y AMD, tamaños de placa, cables de la fuente…), con dibujos vectoriales y avisos en las parejas que pueden causar daños.
+
+**Diccionario**
+- **Niveles Básico, Intermedio y Experto:** quien empieza ve solo las 17 piezas principales; el resto se muestra al subir de nivel. Al buscar se ignora el nivel.
+- **Glosario de siglas** con 35 términos (PWM, XMP, VRM, NVMe…), cada uno explicado en una frase.
+
+**Escáner**
+- Filtro de **cajas repetidas**: si el modelo marca el mismo objeto varias veces, se queda solo con la detección más fiable.
+- Al detectar una CPU o un socket ya se ofrece marcar su paso del checklist (la clase unificada del modelo 4 no estaba contemplada).
+
+**Interfaz**
+- **Bienvenida rehecha:** seis páginas con tres puntos concretos cada una, que ya cuentan las funciones recientes.
+- En iPad, Inicio muestra el botón que abre y cierra la barra lateral; el botón de idioma indica el idioma activo.
+- Correcciones de la versión en inglés (nombres y buscador del diccionario, ficha del escáner).
+
+Para colocar los puntos del visor 3D sin depender del dispositivo usé una herramienta propia: dibuja cada modelo USDZ desde tres vistas con una cuadrícula y los puntos encima. Las revisiones de Codex y Gemini se contrastaron una a una antes de aplicar nada.
 
 ---
 
@@ -220,9 +255,9 @@ PcComponentIA/
 ├── Funciones/
 │   ├── Inicio/             Pantalla de inicio y bienvenida
 │   ├── Escaner/            Cámara, detector (Vision + Core ML), escáner y guía AR
-│   ├── Componentes/        Diccionario, fichas, esquemas 2D, visor 3D y fotos
+│   ├── Componentes/        Diccionario, fichas, niveles, glosario, esquemas 2D, visor 3D y comparador
 │   ├── Builds/             Mis builds, compatibilidad y consumo, compartir
-│   ├── Montaje/            Checklist de montaje (uno por build)
+│   ├── Montaje/            Checklist (uno por build) y guías de montaje animadas
 │   ├── Diagnostico/        LEDs, códigos POST, pitidos e historial de diagnósticos
 │   ├── Asistente/          Chat con Foundation Models
 │   └── Historial/          Historial de capturas y su retención
@@ -287,7 +322,8 @@ Todo se guarda **solo en el dispositivo**.
 ## Limitaciones y próximos pasos
 
 - **Precisión desigual del detector:** las piezas grandes (CPU, socket, M.2, discos duros, fuente) van bien, pero `Modulo_RAM`, `Raton` y la refrigeración líquida siguen flojos. El siguiente paso (modelo 5): **ajustar mejor las etiquetas de las fotos actuales**, completando las que faltan en las fotos de datasets mezclados (el propio modelo 4 puede proponer las cajas y solo habría que validarlas), y **reunir más fotos de los componentes que peor detecta**: módulos de RAM, ratón, radiador, bloque de líquida, puertos USB y GPU. `Pila_CMOS`, `Puerto_SATA`, `Puerto_HDMI` y `Protector_IO` ya no se detectan; se explican en sus fichas, en los esquemas y en el visor 3D.
-- **Visor 3D:** hay que ajustar los puntos seleccionables de cada conector para que caigan exactamente sobre el conector que explican en cada modelo. En la placa base faltan conectores por explicar: hay que añadir puntos para todos.
+- **Próximas funciones:** primer arranque guiado (qué comprobar al encender, BIOS, XMP), buscador global en Inicio y texto distinto por nivel dentro de cada ficha (ahora los niveles solo filtran qué fichas se ven).
+- **Visor 3D:** en el modelo de la placa no se distinguen con seguridad algunos conectores (PCIe x4, USB-C frontal), así que no están señalados.
 - **Puertos en el detector:** los puertos pequeños (`Puerto_USB_A`, `Puerto_USB_C`, `Puerto_Ethernet`) son los que peor detecta. Una opción para el modelo 5 es quitarlos del detector, como ya se hizo con HDMI y SATA, y explicarlos en el visor 3D.
 - **Compatibilidad orientativa:** se deduce de los nombres que escribe el usuario; si un modelo no se reconoce, la app lo dice en lugar de suponer.
 - **Sin widgets ni iCloud:** requieren la cuenta de desarrollador de pago (App Groups / CloudKit).
